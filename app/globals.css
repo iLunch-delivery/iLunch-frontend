@@ -6,10 +6,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
 }
 
 html,
 body {
   height: 100%;
+}
+
+main {
+  padding: 4rem 2rem 1rem 2rem;
 }

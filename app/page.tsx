@@ -3,7 +3,7 @@ import Carousel from '@/components/common/Carousel'
 export default function Home() {
   return (
     <>
-      <main>
+      <main className='flex-1'>
         <section id='recommended-section'>
           <h2>Recomendados para ti</h2>
           <Carousel imageWidth={52} imageHeight={48} />
