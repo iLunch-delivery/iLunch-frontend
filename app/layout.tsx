@@ -1,8 +1,12 @@
+import Footer from '@/components/common/Footer'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Raleway } from 'next/font/google'
+import { SidebarProvider } from '@/contexts/SidebarContext'
+import Header from '@/components/common/Header'
+import Sidebar from '@/components/common/Sidebar'
 
-const inter = Inter({ subsets: ['latin'] })
+const raleway = Raleway({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +20,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link
+          href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css'
+          rel='stylesheet'
+        />
+      </head>
+      <body className={raleway.className}>
+        <SidebarProvider>
+          <Header />
+          <Sidebar />
+        </SidebarProvider>
+        {children}
+        <Footer />
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js'></script>
+      </body>
     </html>
   )
 }
