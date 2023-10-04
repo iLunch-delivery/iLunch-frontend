@@ -61,6 +61,9 @@ function Sidebar() {
             </div>
           </div>
         </div>
+        {isOpen && (
+          <div className='fixed min-h-screen w-screen bg-black opacity-70 '></div>
+        )}
       </div>
     </>
   )
