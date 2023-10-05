@@ -2,7 +2,7 @@ import Footer from '@/components/common/Footer'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
-import { SidebarProvider, useChangeSidebar } from '@/contexts/SidebarContext'
+import { SidebarProvider } from '@/contexts/SidebarContext'
 import Header from '@/components/common/Header'
 import Sidebar from '@/components/common/Sidebar'
 

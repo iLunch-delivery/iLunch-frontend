@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 
 interface CarouselProps {
@@ -15,53 +14,23 @@ function Carousel({ imageHeight, imageWidth }: CarouselProps) {
     >
       <div className='relative h-full overflow-hidden rounded-lg'>
         <div className='hidden ease-in-out' data-carousel-item>
-          <div className='flex bg-white'>
-            <Image
-              src='/assets/recomended.png'
-              width={imageWidth * 8}
-              height={imageHeight * 8}
-              alt='...'
-            />
-            <Image
-              src='/assets/recomended.png'
-              width={imageWidth * 8}
-              height={imageHeight * 8}
-              alt='...'
-            />
+          <div className='flex bg-white h-full'>
+            <img src='/assets/recomended.png' alt='...' />
+            <img src='/assets/recomended.png' alt='...' />
           </div>
         </div>
 
         <div className='hidden duration-700 ease-in-out' data-carousel-item>
-          <div className='flex  bg-white'>
-            <Image
-              src='/assets/recomended.png'
-              width={imageWidth * 8}
-              height={imageHeight * 8}
-              alt='...'
-            />
-            <Image
-              src='/assets/recomended.png'
-              width={imageWidth * 8}
-              height={imageHeight * 8}
-              alt='...'
-            />
+          <div className='flex  bg-white h-full'>
+            <img src='/assets/recomended.png' alt='...' />
+            <img src='/assets/recomended.png' alt='...' />
           </div>
         </div>
 
         <div className='hidden duration-700 ease-in-out' data-carousel-item>
-          <div className='flex  bg-white'>
-            <Image
-              src='/assets/recomended.png'
-              width={imageWidth * 8}
-              height={imageHeight * 8}
-              alt='...'
-            />
-            <Image
-              src='/assets/recomended.png'
-              width={imageWidth * 8}
-              height={imageHeight * 8}
-              alt='...'
-            />
+          <div className='flex  bg-white h-full'>
+            <img src='/assets/recomended.png' alt='...' />
+            <img src='/assets/recomended.png' alt='...' />
           </div>
         </div>
       </div>
