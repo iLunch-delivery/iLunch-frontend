@@ -14,7 +14,9 @@ function Header() {
           icon={faBars}
           color='white'
           className='cursor-pointer h-5'
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen)
+          }}
         />
         <Image
           className='px-2'
