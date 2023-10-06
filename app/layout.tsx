@@ -29,6 +29,7 @@ export default function RootLayout({
       <body className={raleway.className}>
         <SidebarProvider>
           <Header />
+          <div id="spacer" className='px-5 py-2 h-12 w-full'>&nbsp;</div>
           <Sidebar />
         </SidebarProvider>
         {children}
