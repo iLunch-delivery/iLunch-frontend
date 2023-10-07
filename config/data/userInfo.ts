@@ -1,4 +1,6 @@
-export const userInfo = {
+import { ID_TYPES } from '../enums'
+
+export const userInfoBase = {
   name: 'John Doe',
   email: 'fulanitodetal@gmail.com',
   phone: 1234567890,
@@ -7,7 +9,7 @@ export const userInfo = {
   state: 'CA',
   zip: 12345,
   country: 'United States',
-  idType: 'DNI',
+  idType: ID_TYPES.Cedula,
   idNumber: 12345678,
   speciality: 'Cocina Colombiana',
   role: 'aspirante',

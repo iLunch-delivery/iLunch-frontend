@@ -8,16 +8,20 @@ const UserInfoContext = createContext<UserInfoContextInterface>({
   email: '',
   phone: 0,
   address: '',
-  city: '',
-  state: '',
-  zip: 0,
-  country: '',
   idType: '',
   idNumber: 0,
   speciality: '',
   role: '',
   isLogged: false,
-  setUserInfo: () => {}
+  setName: () => {},
+  setEmail: () => {},
+  setPhone: () => {},
+  setAddress: () => {},
+  setIdType: () => {},
+  setIdNumber: () => {},
+  setSpeciality: () => {},
+  setRole: () => {},
+  setIsLogged: () => {}
 })
 
 export const UserInfoProvider = ({
@@ -25,24 +29,39 @@ export const UserInfoProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [userInfo, setUserInfo] = useState({
-    name: '',
-    email: '',
-    phone: 0,
-    address: '',
-    city: '',
-    state: '',
-    zip: 0,
-    country: '',
-    idType: '',
-    idNumber: 0,
-    speciality: '',
-    role: '',
-    isLogged: false
-  })
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState(0)
+  const [address, setAddress] = useState('')
+  const [idType, setIdType] = useState('')
+  const [idNumber, setIdNumber] = useState(0)
+  const [speciality, setSpeciality] = useState('')
+  const [role, setRole] = useState('')
+  const [isLogged, setIsLogged] = useState(false)
 
   return (
-    <UserInfoContext.Provider value={{ ...userInfo, setUserInfo }}>
+    <UserInfoContext.Provider
+      value={{
+        name,
+        address,
+        email,
+        idNumber,
+        idType,
+        isLogged,
+        phone,
+        role,
+        speciality,
+        setName,
+        setAddress,
+        setEmail,
+        setIdNumber,
+        setIdType,
+        setIsLogged,
+        setPhone,
+        setRole,
+        setSpeciality
+      }}
+    >
       {children}
     </UserInfoContext.Provider>
   )
