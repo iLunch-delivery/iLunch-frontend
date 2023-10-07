@@ -1,10 +1,11 @@
-import Footer from '@/components/common/Footer'
+import Footer from '@/components/layout/Footer'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import { SidebarProvider } from '@/contexts/SidebarContext'
-import Header from '@/components/common/Header'
-import Sidebar from '@/components/common/Sidebar'
+import Header from '@/components/layout/Header'
+import Sidebar from '@/components/layout/Sidebar'
+import { UserInfoProvider } from '@/contexts/UserInfoContext'
 
 const raleway = Raleway({ subsets: ['latin'] })
 
@@ -27,12 +28,14 @@ export default function RootLayout({
         />
       </head>
       <body className={raleway.className}>
-        <SidebarProvider>
-          <Header />
-          <Sidebar />
-        </SidebarProvider>
-        {children}
-        <Footer />
+        <UserInfoProvider>
+          <SidebarProvider>
+            <Header />
+            <Sidebar />
+          </SidebarProvider>
+          {children}
+          <Footer />
+        </UserInfoProvider>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js'></script>
       </body>
     </html>
