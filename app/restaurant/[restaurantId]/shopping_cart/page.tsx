@@ -1,5 +1,5 @@
-import ProductPurchase from '@/components/features/ProductPurchase'
-import BillingDetails from '@/components/features/BillingDetails'
+import ProductPurchase from '@/components/features/restaurants/ProductPurchase'
+import BillingDetails from '@/components/features/restaurants/BillingDetails'
 import SelectOption from '@/components/common/SelectOption'
 import {
   shoppingCart,
