@@ -5,6 +5,7 @@ export default function ShoppingCart() {
         <div>
           <section id='purchaseSummary'>
             <h2 className='text-2xl font-semibold'>Resumen de compra</h2>
+            
           </section>
           <section id='receiveOptions'>
             <h3 className='text-xl font-semibold'>¿Cómo quieres recibir el pedido?</h3>
