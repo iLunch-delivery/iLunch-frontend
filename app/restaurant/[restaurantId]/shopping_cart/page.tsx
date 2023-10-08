@@ -3,13 +3,13 @@ export default function ShoppingCart() {
     <main>
       <div className='grid grid-cols-2 gap-x-12'>
         <div>
-          <section id='purchaseSummary' className="px-6 py-3">
+          <section id='purchaseSummary'>
             <h2 className='text-2xl font-semibold'>Resumen de compra</h2>
           </section>
-          <section id='receiveOptions' className="px-6 py-3">
+          <section id='receiveOptions'>
             <h3 className='text-xl font-semibold'>¿Cómo quieres recibir el pedido?</h3>
           </section> 
-          <section id='additionalComments' className="px-6 py-3">
+          <section id='additionalComments'>
             <h3 className='text-xl font-semibold'>Comentarios adicionales</h3>
           </section>
         </div>

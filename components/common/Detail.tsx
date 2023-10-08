@@ -22,7 +22,7 @@ function Product({ imageURL, title, subtitle, description, button }: DetailProps
   }
 
   return(
-    <div className='py-8 max-w space-y-2 md:py-4 md:flex md:items-center md:space-y-0 md:space-x-6'>
+    <div className='py-4 max-w space-y-2 md:py-4 md:flex md:items-center md:space-y-0 md:space-x-6'>
       <img className='block h-32 rounded-md md:mx-0 md:shrink-0' src={imageURL} alt={`Restaurant Product: ${title}`}></img>
       <div className='space-y-4'>
         <div className='space-y-0.5'>
