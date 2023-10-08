@@ -1,8 +1,32 @@
+import { IconName } from "@fortawesome/fontawesome-svg-core";
+
 export interface CarouselProps {
-  images: Array<Array<{ url: string; title?: string }>>
+  images: Array<Array<{ url: string; title?: string; productPrice?: string }>>
   imageHeight: number
   imageWidth?: number
   height?: number
+}
+
+export interface ProductProps {
+  price: string
+}
+
+export interface DetailProps {
+  imageURL: string
+  title: string
+  subtitle?: DetailSubtitleProps
+  description: string
+  button?: DetailButtonProps
+}
+
+export interface DetailSubtitleProps {
+  text: string
+  iconType?: string
+}
+
+export interface DetailButtonProps {
+  text: string
+  link: string
 }
 
 export interface UserInfo {

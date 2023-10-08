@@ -16,3 +16,9 @@ body {
 main {
   padding: 4rem;
 }
+
+.background-cover {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

@@ -3,7 +3,7 @@ import {
   CategoryCarousel,
   DiscountsCarousel,
   RecommendedCarousel
-} from '@/config/carousel'
+} from '@/config/data/carousel'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
