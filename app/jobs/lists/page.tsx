@@ -1,18 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-
-
-
 import Detail from '@/components/common/Detail'
-import OfferReceibed from '@/components/jobs/OffersReceived'
+import OfferReceived from '@/components/features/jobs/OffersReceived'
 
 import {
-  JobOffers
+  jobAvailableOffers,
+  jobReceivedOffers
 } from '@/config/data/jobs'
-
-import {
-  Offers
-} from '@/config/data/offers'
 
 export default function JobsList() {
   return (
@@ -20,9 +12,9 @@ export default function JobsList() {
       <main>
       <section id='jobsOffers'>
           <h2 className='text-2xl font-semibold'>Ofertas recibidas</h2>
-            {Offers.map((product, index) => {
+            {jobReceivedOffers.map((product, index) => {
               return (
-                <OfferReceibed
+                <OfferReceived
                   key={`product-${index}`}
                   imageURL={product.imageURL}
                   title={product.title}
@@ -38,15 +30,15 @@ export default function JobsList() {
         </section>
         <section id='jobsOffers'>
           <h2 className='text-2xl font-semibold'>Ofertas disponibles</h2>
-            {JobOffers.map((product, index) => {
+            {jobAvailableOffers.map((jobs, index) => {
               return (
                 <Detail
                   key={`product-${index}`}
-                  imageURL={product.imageURL}
-                  title={product.title}
-                  subtitle={product.subtitle}
-                  description={product.description}
-                  button={product.button}
+                  imageURL={jobs.imageURL}
+                  title={jobs.title}
+                  subtitle={jobs.subtitle}
+                  description={jobs.description}
+                  button={jobs.button}
                 />
               )
             })}

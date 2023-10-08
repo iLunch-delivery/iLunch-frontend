@@ -2,18 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { faMoneyCheckDollar, faLocationDot, faClock } from '@fortawesome/free-solid-svg-icons'
 
-
-import Detail from '@/components/common/Detail'
-import OfferReceibed from '@/components/jobs/OffersReceived'
-
-import {
-  JobOffers
-} from '@/config/data/jobs'
-
-import {
-  Offers
-} from '@/config/data/offers'
-
 export default function JobOffer({ params }: { params: { restaurantId: string } }) {
   return (
     <>
@@ -138,7 +126,7 @@ export default function JobOffer({ params }: { params: { restaurantId: string } 
               </div>
             </div>
           </div>
-          <div className="h-64 overflow-hidden rounded-lg border border-gray-500 ml-2 h-full w-full">
+          <div className="overflow-hidden rounded-lg border border-gray-500 ml-2 h-full w-full">
             <div className="p-4">
               <h1 className='text-lg font-semibold pb-2'>Sobre XXX-Restaurante</h1>
               <table className="text-md w-full"> 

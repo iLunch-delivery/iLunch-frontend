@@ -19,7 +19,7 @@ function Offer({ imageURL, title, subtitle, description,  offerTime, offerSalary
     return (
       <div className='flex items-center m-1'>
         {iconType != null ? Icon : null}
-        <p className='text-gray-200 inline px-2 text-xs text-slate-500 font-semibold'>{text}</p>
+        <p className='text-gray-200 inline px-2 text-xs font-semibold'>{text}</p>
       </div>
     )
   }
@@ -34,7 +34,7 @@ function Offer({ imageURL, title, subtitle, description,  offerTime, offerSalary
               {title}
             </h3>
             {subtitle != null ? <Subtitle text={subtitle.text} iconType={subtitle.iconType} /> : null}
-            <p className='text-xs text-white text-slate-500 font-normal'>
+            <p className='text-xs text-white font-normal'>
               {description}
             </p>
           </div>
