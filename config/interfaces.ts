@@ -15,6 +15,17 @@ export interface DetailProps {
   button?: DetailButtonProps
 }
 
+export interface DetailPropsOffer {
+  imageURL: string
+  title: string
+  subtitle?: DetailSubtitleProps
+  description: string
+  offerTime?: DetailSubtitleProps
+  offerSalary?: DetailSubtitleProps
+  button?: DetailButtonProps
+  button2?: DetailButtonProps
+}
+
 export interface DetailSubtitleProps {
   text: string
   iconType?: string
