@@ -1,11 +1,7 @@
 'use client'
 
+import type { SidebarContextInterface } from '@/config/interfaces'
 import { createContext, useContext, useState } from 'react'
-
-export interface SidebarContextInterface {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
-}
 
 const SidebarContext = createContext<SidebarContextInterface>({
   isOpen: false,

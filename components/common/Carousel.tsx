@@ -7,7 +7,6 @@ function Carousel({ images, imageHeight, imageWidth, height }: CarouselProps) {
       id='carousel'
       className={`relative z-0 w-full h-${height ?? imageHeight}`}
       data-carousel='slide'
-      interval='0'
     >
       <div className='relative h-full overflow-hidden rounded-lg'>
         {images.map((image, index) => {
