@@ -1,4 +1,4 @@
-export const RecommendedCarousel = [
+export const recommendedCarousel = [
   [
     { url: '/assets/recomended.png' },
     { url: '/assets/recomended.png' },
@@ -11,7 +11,7 @@ export const RecommendedCarousel = [
   ]
 ]
 
-export const CategoryCarousel = [
+export const categoryCarousel = [
   [
     { url: '/assets/category_icons/category(1).png', title: 'Category 1' },
     { url: '/assets/category_icons/category(2).png', title: 'Category 2' },
@@ -28,7 +28,7 @@ export const CategoryCarousel = [
   ]
 ]
 
-export const DiscountsCarousel = [
+export const discountsCarousel = [
   [
     { url: '/assets/discount.png' },
     { url: '/assets/discount.png' },
@@ -41,17 +41,17 @@ export const DiscountsCarousel = [
   ]
 ]
 
-export const PopularProductsCarousel = [
+export const popularProductsCarousel = [
   [
-    { url: '/assets/restaurant/menu-product-1.png', title: 'Producto 1', productPrice: 'COP $10.000' },
-    { url: '/assets/restaurant/menu-product-2.png', title: 'Producto 2', productPrice: 'COP $6.000' },
-    { url: '/assets/restaurant/menu-product-3.png', title: 'Producto 3', productPrice: 'COP $7.000' },
-    { url: '/assets/restaurant/menu-product-4.png', title: 'Product 4', productPrice: 'COP $8.500' }
+    { url: '/assets/restaurant/menu-product-1.png', title: 'Producto 1', subtitle: 'COP $10.000' },
+    { url: '/assets/restaurant/menu-product-2.png', title: 'Producto 2', subtitle: 'COP $6.000' },
+    { url: '/assets/restaurant/menu-product-3.png', title: 'Producto 3', subtitle: 'COP $7.000' },
+    { url: '/assets/restaurant/menu-product-4.png', title: 'Product 4', subtitle: 'COP $8.500' }
   ],
   [
-    { url: '/assets/restaurant/menu-product-1.png', title: 'Producto 1', productPrice: 'COP $10.000' },
-    { url: '/assets/restaurant/menu-product-2.png', title: 'Producto 2', productPrice: 'COP $6.000' },
-    { url: '/assets/restaurant/menu-product-3.png', title: 'Producto 3', productPrice: 'COP $7.000' },
-    { url: '/assets/restaurant/menu-product-4.png', title: 'Product 4', productPrice: 'COP $8.500' }
+    { url: '/assets/restaurant/menu-product-1.png', title: 'Producto 1', subtitle: 'COP $10.000' },
+    { url: '/assets/restaurant/menu-product-2.png', title: 'Producto 2', subtitle: 'COP $6.000' },
+    { url: '/assets/restaurant/menu-product-3.png', title: 'Producto 3', subtitle: 'COP $7.000' },
+    { url: '/assets/restaurant/menu-product-4.png', title: 'Product 4', subtitle: 'COP $8.500' }
   ]
 ]
