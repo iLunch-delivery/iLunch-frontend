@@ -29,7 +29,7 @@ function Product({ imageURL, title, subtitle, description, button }: DetailProps
           <h3 className='text-lg text-black font-semibold'>
             {title}
           </h3>
-          {subtitle != null ? <Subtitle text={subtitle.text} iconType={subtitle.iconType} /> : null}
+          {subtitle != null ? <Subtitle text={subtitle.text} iconType={"price"} /> : null}
           <p className='text-xs text-slate-500 font-normal'>
             {description}
           </p>
