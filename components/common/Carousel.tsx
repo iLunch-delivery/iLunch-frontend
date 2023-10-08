@@ -1,10 +1,14 @@
-import type { CarouselProps, ProductProps } from '@/config/interfaces'
+import type { CarouselProps } from '@/config/interfaces'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
 
+interface ProductPriceProps {
+  price: string
+}
+
 function Carousel({ images, imageHeight, imageWidth, height }: CarouselProps) {
-  function ProductPrice({ price }: ProductProps) {
+  function ProductPrice( { price }: ProductPriceProps ) {
     return (
       <div className='flex items-center'>
         <FontAwesomeIcon icon={faMoneyCheckDollar} style={{color: "#b9b9b9",}} />
@@ -39,8 +43,8 @@ function Carousel({ images, imageHeight, imageWidth, height }: CarouselProps) {
                         alt='...'
                         className={`h-${imageHeight} w-${imageWidth}`}
                       />
-                      {img.title != null ? <p className='text-lg text-black font-semibold'>{img.title}</p> : null}
-                      {img.productPrice != null ? <ProductPrice price={img.productPrice}/> : null }
+                      {img.title != null ? <p className='text-lg font-semibold'>{img.title}</p> : null}
+                      {img.subtitle != null ? <ProductPrice price={img.subtitle}/> : null }
                     </div>
                   )
                 })}

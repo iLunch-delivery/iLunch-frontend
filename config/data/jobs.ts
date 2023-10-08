@@ -1,4 +1,4 @@
-export const JobOffers = [
+export const jobOffers = [
   { imageURL: '/assets/jobs/job-offer-1.png',
     title: 'Se solicita cocinero',
     subtitle: { text: 'Restaurante 1', iconType: 'location' },

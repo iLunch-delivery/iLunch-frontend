@@ -1,8 +1,8 @@
 import Carousel from '@/components/common/Carousel'
 import {
-  CategoryCarousel,
-  DiscountsCarousel,
-  RecommendedCarousel
+  categoryCarousel,
+  discountsCarousel,
+  recommendedCarousel
 } from '@/config/data/carousel'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +13,7 @@ export default function Home() {
       <main className='flex-1'>
         <section id='recommended-section' className='my-4'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
-          <Carousel images={RecommendedCarousel} imageHeight={36} height={48} />
+          <Carousel images={recommendedCarousel} imageHeight={36} height={48} />
         </section>
         <section id='near-by-section' className='flex flex-wrap my-8'>
           <h2 className='flex-shrink-0 flex-grow-0 basis-full mb-4 text-xl font-semibold'>
@@ -63,12 +63,12 @@ export default function Home() {
         </section>
         <section id='discount-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Descuentos imperdibles</h2>
-          <Carousel images={DiscountsCarousel} imageHeight={36} height={48} />
+          <Carousel images={discountsCarousel} imageHeight={36} height={48} />
         </section>
         <section id='category-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Para tus antojos</h2>
           <Carousel
-            images={CategoryCarousel}
+            images={categoryCarousel}
             imageWidth={25}
             imageHeight={24}
             height={48}

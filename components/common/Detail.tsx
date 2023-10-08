@@ -2,15 +2,15 @@ import type { DetailProps, DetailSubtitleProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
-function Product({ imageURL, title, subtitle, description, button }: DetailProps) {
+function Detail({ imageURL, title, subtitle, description, button }: DetailProps) {
   function Subtitle({ text, iconType }: DetailSubtitleProps) {
     let Icon = <></>
     
     if (iconType === "location") {
-      Icon = <FontAwesomeIcon icon={faLocationDot} style={{color: "#b9b9b9",}} />
+      Icon = <FontAwesomeIcon icon={faLocationDot} style={{color: "#808080",}} />
     } 
     else if (iconType === "price") {
-      Icon = <FontAwesomeIcon icon={faMoneyCheckDollar} style={{color: "#b9b9b9",}} />
+      Icon = <FontAwesomeIcon icon={faMoneyCheckDollar} style={{color: "#808080",}} />
     }
 
     return (
@@ -22,13 +22,13 @@ function Product({ imageURL, title, subtitle, description, button }: DetailProps
   }
 
   return(
-    <div className='py-4 max-w space-y-2 md:py-4 md:flex md:items-center md:space-y-0 md:space-x-6'>
+    <div className='py-4 max-w space-y-2 md:flex md:items-center md:space-y-0 md:space-x-6'>
       <img className='block h-32 rounded-md md:mx-0 md:shrink-0' src={imageURL} alt={`Restaurant Product: ${title}`}></img>
       <div className='space-y-4'>
         <div className='space-y-0.5'>
-          <h3 className='text-lg text-black font-semibold'>
+          <p className='text-lg font-semibold'>
             {title}
-          </h3>
+          </p>
           {subtitle != null ? <Subtitle text={subtitle.text} iconType={subtitle.iconType} /> : null}
           <p className='text-xs text-slate-500 font-normal'>
             {description}
@@ -40,4 +40,4 @@ function Product({ imageURL, title, subtitle, description, button }: DetailProps
   )
 }
 
-export default Product
+export default Detail
