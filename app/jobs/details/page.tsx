@@ -46,40 +46,81 @@ export default function JobOffer({ params }: { params: { restaurantId: string } 
             <textarea className='w-full rounded-lg h-full resize-none' placeholder="Cuentanos tus dudas y nos pondremos en contacto contigo pronto"></textarea>
         </section>
         <section className="p-5 grid grid-cols-1 sm:grid-cols-3">
-        <div className="p-4 rounded-lg border border-gray-500 mr-2 h-full">
-          <h1 className='text-lg font-semibold pb-2'>Horario Laboral</h1>
-          <table className="text-md p-2  w-full">
-            <tbody>
-              <tr>
-                <td className="align-top w-1/2">Lunes</td>
-                <td>08:00 - 17:00</td>
-              </tr>
-              <tr>
-                <td className="align-top ">Martes</td>
-                <td>08:00 - 17:00</td>
-              </tr>
-              <tr>
-                <td className="align-top ">Miércoles</td>
-                <td>08:00 - 17:00</td>
-              </tr>
-              <tr>
-                <td className="align-top ">Jueves</td>
-                <td>08:00 - 17:00</td>
-              </tr>
-              <tr>
-                <td className="align-top ">Viernes</td>
-                <td>08:00 - 17:00</td>
-              </tr>
-              <tr>
-                <td className="align-top ">Sábado</td>
-                <td>09:00 - 14:00</td>
-              </tr>
-              <tr>
-                <td className="align-top ">Domingo</td>
-                <td>Cerrado</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="h-full pr-2">
+          
+          <div className="h-1/2 pl-3 pt-2 pb-2 rounded-lg border border-gray-500">
+            <h1 className='text-lg font-semibold pb-2'>Horario Laboral</h1>
+            <table className="text-md p-2  w-full">
+              <tbody>
+                <tr>
+                  <td className="align-top w-1/2">Lunes</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Martes</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Miércoles</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Jueves</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Viernes</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Sábado</td>
+                  <td>09:00 - 14:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Domingo</td>
+                  <td>Cerrado</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="h-1/2 p-2 pt-2 rounded-lg border border-gray-500">
+            <h1 className='text-lg font-semibold pb-2'>Horario Laboral</h1>
+            <table className="text-md p-2  w-full">
+              <tbody>
+                <tr>
+                  <td className="align-top w-1/2">Lunes</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Martes</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Miércoles</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Jueves</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Viernes</td>
+                  <td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Sábado</td>
+                  <td>09:00 - 14:00</td>
+                </tr>
+                <tr>
+                  <td className="align-top ">Domingo</td>
+                  <td>Cerrado</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
         </div>
 
 
