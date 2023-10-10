@@ -3,10 +3,22 @@
 @tailwind utilities;
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body,
-html {
-  height: 100vh;
+html,
+body {
+  height: 100%;
+}
+
+main {
+  padding: 4rem;
+}
+
+.background-cover {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
