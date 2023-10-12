@@ -1,7 +1,7 @@
 'use client'
 
-import UserFilesTable from '@/components/features/UserFilesTable'
-import UserInfoTable from '@/components/features/UserInfoTable'
+import UserFilesTable from '@/components/features/Tables/UserFilesTable'
+import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import { userFiles } from '@/config/data/userInfo'
 import type { File } from '@/config/interfaces'
 import { useChangeUserInfo } from '@/contexts/UserInfoContext'
