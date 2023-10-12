@@ -16,7 +16,7 @@ import React, { useState, useEffect } from 'react'
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
   const [files, setUserFiles] = useState<File[] | undefined>()
-  const { email, address, phone, idNumber, idType, speciality } =
+  const { email, address, phone, idNumber, idType, speciality, role } =
     useChangeUserInfo()
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function UserProfile() {
         <div className='flex-1 mx-4 flex flex-col'>
           <h2 className='text-2xl font-semibold mb-4'>Tus datos</h2>
           <div className='flex items-start shadow-md rounded-xl p-4 h-full'>
-            <UserInfoTable isEditing={isEditing} />
+            <UserInfoTable isEditing={isEditing} role={role} voucher={false} />
           </div>
         </div>
         <div className='flex-1 mx-4 flex flex-col'>
