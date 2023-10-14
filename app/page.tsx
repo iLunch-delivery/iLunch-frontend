@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <main className='flex-1'>
-        <section id='recommended-section' className='my-4'>
+        <section id='recommended-section'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
           <Carousel images={recommendedCarousel} imageHeight={36} height={48} />
         </section>

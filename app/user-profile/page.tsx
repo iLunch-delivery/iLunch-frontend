@@ -43,7 +43,7 @@ function UserProfile() {
       </button>
       <section
         id='banner-section'
-        className='w-full bg-gray-300 pt-16 pb-8 px-8 flex flex-col justify-center items-center'
+        className='w-full bg-gray-300 pb-8 px-8 flex flex-col justify-center items-center'
       >
         <div className='flex'>
           <FontAwesomeIcon
