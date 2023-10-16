@@ -6,7 +6,7 @@ import {
 function BillingDetails() {
   return (
     <div className='my-4 space-y-6'>
-      <div className='space-y-2'>
+      <div id='priceSummary' className='space-y-2'>
         <h3 className='text-md font-bold'>Resumen de precios</h3>
         <hr className='border-gray-400'></hr>
         <ul className='text-sm'>
@@ -29,7 +29,7 @@ function BillingDetails() {
           <p>COP $ XXX.XXX</p>
         </div>
       </div>
-      <div className='space-y-2'>
+      <div id='contactInformation' className='space-y-2'>
         <h3 className='text-md font-bold'>Información de contacto</h3>
         <div className='w-full text-sm space-y-1'>
           <div className='flex text-left'>
@@ -56,7 +56,7 @@ function BillingDetails() {
           </div>
         </div>
       </div>
-      <div>
+      <div id='paymentMethod'>
         <h3 className='text-md font-bold'>Forma de pago</h3>
         <div className='py-4 flex justify-evenly items-center'>
         {billingOptions.map((option, index) => {

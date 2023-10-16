@@ -13,8 +13,39 @@ body {
   height: 100%;
 }
 
-main {
-  padding: 4rem;
+/*Small Mobile*/
+@media (max-width: 321px) {
+  main {
+    padding: 2rem 0.5rem 2rem 0.5rem;
+  }
+}
+
+/*Mobile*/
+@media (min-width: 321px) and (max-width: 426px) {
+  main {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+}
+
+/*Tablet*/
+@media (min-width: 426px) and (max-width: 769px) {
+  main {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+}
+
+/*Laptop*/
+@media (min-width: 769px) and (max-width: 1441px) {
+  main {
+    padding: 2rem 4rem 2rem 4rem;
+  }
+}
+
+/*4K*/
+@media (min-width: 1441px) and (max-width: 2561px) {
+  main {
+    padding: 2rem 8rem 2rem 8rem;
+  }
 }
 
 .background-cover {
