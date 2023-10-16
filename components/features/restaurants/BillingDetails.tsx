@@ -31,30 +31,30 @@ function BillingDetails() {
       </div>
       <div className='space-y-2'>
         <h3 className='text-md font-bold'>Información de contacto</h3>
-        <table className='w-full text-sm space-y-1'>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Nombre:</th>
-            <td>Fulanito de tal</td>
-          </tr>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Correo:</th>
-            <td>fulanitodetal@gmail.com</td>
-          </tr>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Celular:</th>
-            <td>+57 3XX-XXX-XXXX</td>
-          </tr>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Dirección:</th>
-            <td>
+        <div className='w-full text-sm space-y-1'>
+          <div className='flex text-left'>
+            <p className='w-1/4'>Nombre:</p>
+            <p>Fulanito de tal</p>
+          </div>
+          <div className='flex text-left'>
+            <p className='w-1/4'>Correo:</p>
+            <p>fulanitodetal@gmail.com</p>
+          </div>
+          <div className='flex text-left'>
+            <p className='w-1/4'>Celular:</p>
+            <p>+57 3XX-XXX-XXXX</p>
+          </div>
+          <div className='flex text-left'>
+            <p className='w-1/4'>Dirección:</p>
+            <div>
               <input id='address' name='address'
                 placeholder='Por favor especifica tu dirección'
                 size={30} 
                 className='border-b'>
               </input>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
       </div>
       <div>
         <h3 className='text-md font-bold'>Forma de pago</h3>
