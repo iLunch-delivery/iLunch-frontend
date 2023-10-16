@@ -8,12 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Footer() {
   return (
-    <footer className='flex justify-around bg-gray-500 text-white py-8'>
+    <footer className='flex flex-col gap-4 justify-around bg-gray-500 text-white py-8 sm:flex-row sm:gap-2'>
       <section
         id='footer-menu'
-        className='flex-1 flex justify-center items-center'
+        className='flex justify-center items-center basis-5/12'
       >
-        <nav className='flex'>
+        <nav className='flex flex-1 justify-around'>
           <div>
             <h2 className='text-xl font-semibold'>Explora</h2>
             <hr className='solid mb-2' />
@@ -46,7 +46,15 @@ function Footer() {
           </div>
         </nav>
       </section>
-      <section className='flex-1 flex justify-center items-center'>
+      <section className='flex flex-col items-center justify-center basis-3/12'>
+        <h2 className='text-xl font-semibold'>Siguenos</h2>
+        <div id='social-icons' className='flex mt-4 text-2xl'>
+          <FontAwesomeIcon icon={faFacebook} />
+          <FontAwesomeIcon className='mx-2' icon={faInstagram} />
+          <FontAwesomeIcon icon={faTwitter} />
+        </div>
+      </section>
+      <section className='flex justify-center items-center basis-4/12'>
         <div className='h-fit'>
           <img
             className='h-16 mx-auto'
@@ -56,14 +64,6 @@ function Footer() {
           <p className='text-sm text-center'>
             © [2023] iLunch. Todos los derechos reservados.
           </p>
-        </div>
-      </section>
-      <section className='flex-1 flex items-center justify-center flex-col'>
-        <h2 className='text-xl font-semibold'>Siguenos</h2>
-        <div id='social-icons' className='flex mt-4 text-2xl'>
-          <FontAwesomeIcon icon={faFacebook} />
-          <FontAwesomeIcon className='mx-2' icon={faInstagram} />
-          <FontAwesomeIcon icon={faTwitter} />
         </div>
       </section>
     </footer>

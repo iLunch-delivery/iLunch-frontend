@@ -1,5 +1,6 @@
 import ProductPurchase from '@/components/features/restaurants/ProductPurchase'
 import BillingDetails from '@/components/features/restaurants/BillingDetails'
+import OrderStatusChat from '@/components/features/restaurants/OrderStatusChat'
 import SelectOption from '@/components/common/SelectOption'
 import {
   shoppingCart,
@@ -53,9 +54,15 @@ export default function ShoppingCart() {
           </div>
         </div>
       </section>
-      <section id='billingDetails' className='shadow-md shadow-black rounded-xl px-6 py-3'>
+      <section id='billingDetails' className='shadow-md shadow-slate-500 rounded-xl px-6 py-3'>
         <h2 className='text-2xl font-semibold'>Detalles de facturación</h2>
         <BillingDetails />
+      </section>
+      <section>
+        <h3 className='text-xl font-semibold'>¿Tienes algun problema?</h3>
+        <div className="mt-2">
+          <OrderStatusChat />
+        </div>
       </section>
     </main>
   )
