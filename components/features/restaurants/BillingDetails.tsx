@@ -32,20 +32,20 @@ function BillingDetails() {
       <div id='contactInformation' className='space-y-2'>
         <h3 className='text-md font-bold'>Información de contacto</h3>
         <div className='w-full text-sm space-y-1'>
-          <div className='flex text-left'>
-            <p className='w-1/4'>Nombre:</p>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Nombre:</p>
             <p>Fulanito de tal</p>
           </div>
-          <div className='flex text-left'>
-            <p className='w-1/4'>Correo:</p>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Correo:</p>
             <p>fulanitodetal@gmail.com</p>
           </div>
-          <div className='flex text-left'>
-            <p className='w-1/4'>Celular:</p>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Celular:</p>
             <p>+57 3XX-XXX-XXXX</p>
           </div>
-          <div className='flex text-left'>
-            <p className='w-1/4'>Dirección:</p>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Dirección:</p>
             <div>
               <input id='address' name='address'
                 placeholder='Por favor especifica tu dirección'
