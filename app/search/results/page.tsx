@@ -44,7 +44,8 @@ export default function searchingResults() {
                             <div id='category-section' className='h-80'>
                                 <h2 className='text-2xl font-semibold' style={{ marginTop: '50', marginBottom: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>Para tus antojos</h2>
                                 <Carousel
-                                    images={categoryCarouselTwo}
+                                    items={categoryCarouselTwo}
+                                    itemsPerSlide={2}
                                     imageWidth={30}
                                     imageHeight={60}
                                     height={56}
