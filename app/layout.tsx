@@ -28,6 +28,12 @@ export default function RootLayout({
         />
       </head>
       <body className={raleway.className}>
+        <UserInfoProvider>
+          <SidebarProvider>
+            <Header />
+            <Sidebar />
+            <div id="spacer" className='px-5 py-2 h-12 w-full'>&nbsp;</div>
+          </SidebarProvider>
           {children}
         <script src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js'></script>
       </body>

@@ -1,3 +1,5 @@
+'use client'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,7 +13,24 @@ import {
   menu
 } from '@/config/data/restaurants'
 
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+
 export default function Restaurant({ params }: { params: { restaurantId: string } }) {
+  let itemsPerSlide = 4
+
+  /*
+  const isTablet = useMediaQuery('md')
+  const isLargeMobile = useMediaQuery('sm')
+
+  if (isTablet) {
+    itemsPerSlide = 3
+  } else if (isLargeMobile) {
+    itemsPerSlide = 2
+  } else {
+    itemsPerSlide = 1
+  }
+  */
+
   return (
     <>
       <section id='restaurant-banner' className='w-full h-max background-cover' style={{backgroundImage: `url('/assets/restaurant/restaurant-banner.png')`}}>
@@ -32,7 +51,8 @@ export default function Restaurant({ params }: { params: { restaurantId: string 
         <section id='popular-dishes'>
           <h2 className='text-2xl font-semibold'>Los más populares</h2>
           <Carousel
-            images={popularProductsCarousel}
+            items={popularProductsCarousel}
+            itemsPerSlide={itemsPerSlide}
             imageWidth={24}
             imageHeight={24}
             height={48}
@@ -40,7 +60,7 @@ export default function Restaurant({ params }: { params: { restaurantId: string 
         </section>
         <section id='menu'>
           <h2 className='text-2xl font-semibold'>Menú</h2>
-          <div className='grid grid-cols-2 gap-x-12 justify-items-start'>
+          <div className='grid grid-cols-1 gap-x-12 justify-items-start sm:grid-cols-2'>
             {menu.map((product, index) => {
               return (
                 <Detail
