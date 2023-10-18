@@ -12,6 +12,7 @@ import { menus } from '@/config/data/menus'
 import { useEffect, useState } from 'react'
 import type { DishProps, RestaurantInfoProps } from '@/config/interfaces'
 import { restaurants } from '@/config/data/restaurants'
+import RestaurantDetails from '@/components/features/restaurants/RestaurantDetails'
 
 export default function Restaurant({
   params
@@ -104,6 +105,9 @@ export default function Restaurant({
               )
             })}
           </div>
+        </section>
+        <section>
+          <RestaurantDetails restaurantInfo={restaurantInfo} />
         </section>
       </main>
     </>

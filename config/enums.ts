@@ -3,6 +3,11 @@ export const enum ID_TYPES {
   Pasaporte = 'Pasaporte'
 }
 
+export const enum ROLE {
+  costumer = 'costumer',
+  worker = 'worker'
+}
+
 export const enum PAYMENT_METHODS {
   Efectivo = 'Efectivo',
   Tarjeta = 'Tarjeta'

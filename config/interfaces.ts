@@ -126,6 +126,16 @@ export interface RestaurantInfoProps {
   id: number
   name: string
   description: string
+  adress: string
+  city: string
+  state: string
+  categories: string[]
+  country: string
+  speciality: string
+  rating: number
+  popularDishes: string[]
+  deliveryTime: number
+  promotions: string[]
   logoURL: string
   bannerURL: string
   open: boolean
@@ -137,6 +147,30 @@ export interface DishProps {
   imageURL: string
   title: string
   subtitle: {
+    text: string
+    iconType: string
+  }
+  description: string
+  button: {
+    text: string
+    link: string
+  }
+}
+
+export interface jobInfoProps {
+  id: number
+  restaurantId: number
+  imageURL: string
+  title: string
+  subtitle: {
+    text: string
+    iconType: string
+  }
+  offerTime: {
+    text: string
+    iconType: string
+  }
+  offerSalary: {
     text: string
     iconType: string
   }
