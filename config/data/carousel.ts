@@ -46,5 +46,5 @@ export const categoryCarouselTwo = [
   { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 3' },
   { imageUrl: '/assets/category_icons/category(4).png', title: 'Category 4' },
   { imageUrl: '/assets/category_icons/category(5).png', title: 'Category 5' },
-  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 6' },
+  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 6' }
 ]
