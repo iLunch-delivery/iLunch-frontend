@@ -4,6 +4,7 @@ import logo from '@/assets/i-Lunch - Logo 1.png'
 import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
 import apple from '@/public/assets/Apple - I.png'
+import google from '@/public/assets/google-logo.svg'
 
 function Input({ texto = '', tipo }) {
   return (
@@ -20,10 +21,12 @@ export default function Login() {
           <Input texto="Correo electrónico" tipo="email" />
           <Input texto="Contraseña" tipo="password" />
           <button type='submit' className=' mt-10 p-2 text-white rounded-full border-2 border-white  w-1/2  self-center'>Iniciar sesión</button>
-          <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 w-1/2 self-center shadow-md'>Ingresa con google</button>
+          <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 w-1/2 self-center shadow-lg inline-flex flex-row '>
+            <Image className="w-6 flex self-center mr-6" src={google} loading="lazy" alt="google logo" />Ingresa con google
+          </button>
           <div className=' text-white flex flex-col mt-24 items-center'>
             <p className='flex'>¿Aún no estás registrado?</p>
-            <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/2 shadow-md '>¡Regístrate!</button>
+            <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/2 shadow-lg '>¡Regístrate!</button>
           </div>
         </form>
       </section>
