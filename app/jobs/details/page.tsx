@@ -46,7 +46,6 @@ export default function JobOffer({ params }: { params: { restaurantId: string } 
         </section>
         <section>
         <RestaurantDetails></RestaurantDetails>
-
         </section>
       </main>
     </>
