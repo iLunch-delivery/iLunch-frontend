@@ -12,7 +12,7 @@ export default function JobOffer({ params }: { params: { restaurantId: string } 
         <div className='px-8 py-4'>
           <FontAwesomeIcon icon={faChevronLeft} size='2xl' style={{color: '#b9b9b9',}} />
           <div className='flex flex-col items-center space-y-2 text-center text-white mb-12'>
-            <img className='block h-32 rounded-full mx-0 shrink-0' src='/assets/restaurant/restaurant-logo.png' alt="Restaurant's Logo" />
+            <img className='block h-32 rounded-full mx-0 shrink-0' src='/assets/restaurant/logos/restaurant-logo-1.png' alt="Restaurant's Logo" />
             <h1 className='text-3xl font-semibold'>Restaurante {params.restaurantId}</h1>
             <p className='text-sm sm:w-1/2'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. 

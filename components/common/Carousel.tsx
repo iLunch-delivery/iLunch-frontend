@@ -34,6 +34,7 @@ function Carousel({
     const slideItems = items.slice(i, i + itemsPerSlide)
     slidesItems.push(slideItems)
   }
+
   return (
     <div
       id='carousel'
