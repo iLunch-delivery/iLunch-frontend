@@ -1,26 +1,36 @@
 import Image from 'next/image'
 import React from 'react'
 import logo from '@/assets/i-Lunch - Logo 1.png'
-import LoginForm from '@/components/features/LoginForm'
 import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
 import apple from '@/public/assets/Apple - I.png'
+
+function Input({ texto = '', tipo }) {
+  return (
+    <input type={tipo} placeholder={texto} className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  ' />
+  )
+}
 
 export default function Login() {
   return (
     <main className='flex h-full w-full p-0'>
       <section className='form-section bg-blue-700 w-1/2 flex flex-col items-center justify-around py-2'>
         <Image src={logo} alt='iLunch Logo' />
-        <LoginForm />
-        <div className=' text-white flex flex-col'>
-          <p>¿Aún no estás registrado?</p>
-          <button className=' mt-2 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/2 shadow-md '>¡Regístrate!</button>
-        </div>
+        <form className=' flex flex-col w-1/2' >
+          <Input texto="Correo electrónico" tipo="email" />
+          <Input texto="Contraseña" tipo="password" />
+          <button type='submit' className=' mt-10 p-2 text-white rounded-full border-2 border-white  w-1/2  self-center'>Iniciar sesión</button>
+          <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 w-1/2 self-center shadow-md'>Ingresa con google</button>
+          <div className=' text-white flex flex-col mt-24 items-center'>
+            <p className='flex'>¿Aún no estás registrado?</p>
+            <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/2 shadow-md '>¡Regístrate!</button>
+          </div>
+        </form>
       </section>
       <section className='banner-section w-1/2 flex flex-col items-center justify-around'>
           <Image src={mobile} alt='Mobie App'/>
           <div>
-            <h1>Descarga nuestra App</h1>
+            <p className=' font-semibold text-3xl text-blue-700 '>Descarga nuestra App</p>
             <div className='flex justify-center m-5'>
               <Image className='m-5' src={apple} alt='Apple Icon'/>
               <Image className='m-5' src={android} alt='Android Icon'/>
