@@ -77,16 +77,10 @@ export const popularProductsCarousel = [
 ]
 
 export const categoryCarouselTwo = [
-  [
-    { url: '/assets/category_icons/category(1).png', title: 'Category 1' },
-    { url: '/assets/category_icons/category(2).png', title: 'Category 2' }
-  ],
-  [
-    { url: '/assets/category_icons/category(3).png', title: 'Category 3' },
-    { url: '/assets/category_icons/category(4).png', title: 'Category 4' }
-  ],
-  [
-    { url: '/assets/category_icons/category(5).png', title: 'Category 5' },
-    { url: '/assets/category_icons/category(3).png', title: 'Category 6' }
-  ]
+  { imageUrl: '/assets/category_icons/category(1).png', title: 'Category 1' },
+  { imageUrl: '/assets/category_icons/category(2).png', title: 'Category 2' },
+  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 3' },
+  { imageUrl: '/assets/category_icons/category(4).png', title: 'Category 4' },
+  { imageUrl: '/assets/category_icons/category(5).png', title: 'Category 5' },
+  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 6' }
 ]

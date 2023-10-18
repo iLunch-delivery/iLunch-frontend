@@ -1,6 +1,4 @@
 'use client'
-import { useState, useEffect } from 'react';
-
 import type { CarouselProps, CarouselItemProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
@@ -9,25 +7,33 @@ interface ProductPriceProps {
   price: string
 }
 
-function Carousel({ items, itemsPerSlide, imageHeight, imageWidth, height }: CarouselProps) {
-  function ProductPrice( { price }: ProductPriceProps ) {
+function Carousel({
+  items,
+  itemsPerSlide,
+  imageHeight,
+  imageWidth,
+  height
+}: CarouselProps) {
+  function ProductPrice({ price }: ProductPriceProps) {
     return (
       <div className='flex items-center'>
-        <FontAwesomeIcon icon={faMoneyCheckDollar} style={{color: "#b9b9b9",}} />
-        <p className='inline px-2 text-xs text-slate-500 font-semibold'>{price}</p>
+        <FontAwesomeIcon
+          icon={faMoneyCheckDollar}
+          style={{ color: '#b9b9b9' }}
+        />
+        <p className='inline px-2 text-xs text-slate-500 font-semibold'>
+          {price}
+        </p>
       </div>
     )
   }
 
-  let slidesItems = Array<Array<CarouselItemProps>>()
+  const slidesItems = Array<CarouselItemProps[]>()
 
-  for (let i = 0; i < items.length; i+=itemsPerSlide) {
+  for (let i = 0; i < items.length; i += itemsPerSlide) {
     const slideItems = items.slice(i, i + itemsPerSlide)
     slidesItems.push(slideItems)
   }
-
-  console.log(slidesItems)
-
   return (
     <div
       id='carousel'
@@ -54,8 +60,12 @@ function Carousel({ items, itemsPerSlide, imageHeight, imageWidth, height }: Car
                         alt='...'
                         className={`h-${imageHeight} w-${imageWidth}`}
                       />
-                      {item.title != null ? <p className='text-lg font-semibold'>{item.title}</p> : null}
-                      {item.subtitle != null ? <ProductPrice price={item.subtitle}/> : null }
+                      {item.title != null ? (
+                        <p className='text-lg font-semibold'>{item.title}</p>
+                      ) : null}
+                      {item.subtitle != null ? (
+                        <ProductPrice price={item.subtitle} />
+                      ) : null}
                     </div>
                   )
                 })}
