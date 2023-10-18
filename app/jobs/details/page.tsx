@@ -45,7 +45,7 @@ export default function JobOffer({ params }: { params: { restaurantId: string } 
           </div>
         </section>
         <section>
-        <RestaurantDetails></RestaurantDetails>
+          <RestaurantDetails/>
         </section>
       </main>
     </>
