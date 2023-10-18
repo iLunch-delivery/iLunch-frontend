@@ -31,7 +31,7 @@ export default function Login() {
         </form>
       </section>
       <section className='banner-section w-1/2 flex flex-col items-center justify-around'>
-          <Image src={mobile} alt='Mobie App'/>
+          <Image src={mobile} alt='Mobile App'/>
           <div>
             <p className=' font-semibold text-3xl text-blue-700 '>Descarga nuestra App</p>
             <div className='flex justify-center m-5'>
