@@ -6,7 +6,7 @@ import {
 function BillingDetails() {
   return (
     <div className='my-4 space-y-6'>
-      <div className='space-y-2'>
+      <div id='priceSummary' className='space-y-2'>
         <h3 className='text-md font-bold'>Resumen de precios</h3>
         <hr className='border-gray-400'></hr>
         <ul className='text-sm'>
@@ -29,34 +29,34 @@ function BillingDetails() {
           <p>COP $ XXX.XXX</p>
         </div>
       </div>
-      <div className='space-y-2'>
+      <div id='contactInformation' className='space-y-2'>
         <h3 className='text-md font-bold'>Información de contacto</h3>
-        <table className='w-full text-sm space-y-1'>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Nombre:</th>
-            <td>Fulanito de tal</td>
-          </tr>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Correo:</th>
-            <td>fulanitodetal@gmail.com</td>
-          </tr>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Celular:</th>
-            <td>+57 3XX-XXX-XXXX</td>
-          </tr>
-          <tr className='flex text-left'>
-            <th className='w-1/4'>Dirección:</th>
-            <td>
+        <div className='w-full text-sm space-y-1'>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Nombre:</p>
+            <p>Fulanito de tal</p>
+          </div>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Correo:</p>
+            <p>fulanitodetal@gmail.com</p>
+          </div>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Celular:</p>
+            <p>+57 3XX-XXX-XXXX</p>
+          </div>
+          <div className='text-left sm:flex'>
+            <p className='w-1/4 font-semibold'>Dirección:</p>
+            <div>
               <input id='address' name='address'
                 placeholder='Por favor especifica tu dirección'
                 size={30} 
                 className='border-b'>
               </input>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
+      <div id='paymentMethod'>
         <h3 className='text-md font-bold'>Forma de pago</h3>
         <div className='py-4 flex justify-evenly items-center'>
         {billingOptions.map((option, index) => {
