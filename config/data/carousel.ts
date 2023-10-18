@@ -30,50 +30,46 @@ export const discountsCarousel = [
 ]
 
 export const popularProductsCarousel = [
-  [
-    {
-      url: '/assets/restaurant/menu-product-1.png',
-      title: 'Producto 1',
-      subtitle: 'COP $10.000'
-    },
-    {
-      url: '/assets/restaurant/menu-product-2.png',
-      title: 'Producto 2',
-      subtitle: 'COP $6.000'
-    },
-    {
-      url: '/assets/restaurant/menu-product-3.png',
-      title: 'Producto 3',
-      subtitle: 'COP $7.000'
-    },
-    {
-      url: '/assets/restaurant/menu-product-4.png',
-      title: 'Product 4',
-      subtitle: 'COP $8.500'
-    }
-  ],
-  [
-    {
-      url: '/assets/restaurant/menu-product-1.png',
-      title: 'Producto 1',
-      subtitle: 'COP $10.000'
-    },
-    {
-      url: '/assets/restaurant/menu-product-2.png',
-      title: 'Producto 2',
-      subtitle: 'COP $6.000'
-    },
-    {
-      url: '/assets/restaurant/menu-product-3.png',
-      title: 'Producto 3',
-      subtitle: 'COP $7.000'
-    },
-    {
-      url: '/assets/restaurant/menu-product-4.png',
-      title: 'Product 4',
-      subtitle: 'COP $8.500'
-    }
-  ]
+  {
+    imageUrl: '/assets/restaurant/menu-product-1.png',
+    title: 'Producto 1',
+    subtitle: 'COP $10.000'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-2.png',
+    title: 'Producto 2',
+    subtitle: 'COP $6.000'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-3.png',
+    title: 'Producto 3',
+    subtitle: 'COP $7.000'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-4.png',
+    title: 'Product 4',
+    subtitle: 'COP $8.500'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-1.png',
+    title: 'Producto 5',
+    subtitle: 'COP $10.000'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-2.png',
+    title: 'Producto 6',
+    subtitle: 'COP $6.000'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-3.png',
+    title: 'Producto 7',
+    subtitle: 'COP $7.000'
+  },
+  {
+    imageUrl: '/assets/restaurant/menu-product-4.png',
+    title: 'Producto 8',
+    subtitle: 'COP $8.500'
+  }
 ]
 
 export const categoryCarouselTwo = [
