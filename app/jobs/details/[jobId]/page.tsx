@@ -18,13 +18,17 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
   const [restaurantInfo, setRestaurantInfo] = useState<RestaurantInfoProps>()
 
   useEffect(() => {
-    const jobInfo = jobReceivedOffers.filter(
-      (job) => job.id === Number(params.jobId)
-    )[0]
+    const jobInfo = jobReceivedOffers.find((job) => {
+      if (job.id === Number(params.jobId)) {
+        return job
+      }
+    })
     setJobInfo(jobInfo)
-    const restaurantInfo = restaurants.filter(
-      (restaurant) => restaurant.id === Number(jobInfo.restaurantId)
-    )[0]
+    const restaurantInfo = restaurants.find((restaurant) => {
+      if (restaurant.id === Number(jobInfo?.restaurantId)) {
+        return restaurant
+      }
+    })
     setRestaurantInfo(restaurantInfo)
   }, [])
 

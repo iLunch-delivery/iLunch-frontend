@@ -11,11 +11,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUserInfo } from '@/contexts/UserInfoContext'
+import { useRouter } from 'next/navigation'
 
 function Sidebar() {
   const { isOpen } = useChangeSidebar()
   const { name } = useUserInfo()
 
+  const router = useRouter()
+
+  const handleNavigation = (route: string) => {
+    router.push(`/${route}`)
+  }
   return (
     <>
       <div
@@ -35,7 +41,12 @@ function Sidebar() {
             <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />
             <ul>
-              <li className='flex m-2 cursor-pointer'>
+              <li
+                className='flex m-2 cursor-pointer'
+                onClick={() => {
+                  handleNavigation('user-profile')
+                }}
+              >
                 <FontAwesomeIcon icon={faCircleUser} className='mr-4' />
                 <p>Tu perfil</p>
               </li>

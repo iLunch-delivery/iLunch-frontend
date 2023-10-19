@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Carousel from '@/components/common/Carousel'
 import {
   categoryCarousel,
@@ -10,14 +10,20 @@ import { useUserInfo } from '@/contexts/UserInfoContext'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
+import MainLayout from '@/components/layout/common/layout'
 
 export default function Home() {
   const { isLogged } = useUserInfo()
+  const router = useRouter()
 
-  !isLogged && useRouter().push('/login')
+  useEffect(() => {
+    if (!isLogged) {
+      router.push('/login')
+    }
+  }, [])
 
   return (
-    <>
+    <MainLayout>
       <main className='flex-1'>
         <section id='recommended-section'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
@@ -102,6 +108,6 @@ export default function Home() {
           />
         </section>
       </main>
-    </>
+    </MainLayout>
   )
 }

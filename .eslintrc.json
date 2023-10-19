@@ -19,6 +19,7 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/space-before-function-paren": "off",
     "@typescript-eslint/indent": "warn",
-    "multiline-ternary": "off"
+    "multiline-ternary": "off",
+    "array-callback-return": "off"
   }
 }
