@@ -1,4 +1,4 @@
-import '/app/globals.css'
+import 'app/globals.css'
 import Footer from '@/components/layout/Footer'
 import { SidebarProvider } from '@/contexts/SidebarContext'
 import Header from '@/components/layout/Header'
