@@ -3,9 +3,10 @@ import { categoryCarouselTwo } from '@/config/data/carousel'
 import { restaurantOptions } from '@/config/data/restaurants'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import React from 'react'
+import MainLayout from '@/components/layout/common/layout'
 export default function searchingResults() {
   return (
-    <>
+    <MainLayout>
       <main>
         <section className='grid md:grid-cols-2 gap-12'>
           <section>
@@ -87,6 +88,6 @@ export default function searchingResults() {
           </section>
         </section>
       </main>
-    </>
+    </MainLayout>
   )
 }

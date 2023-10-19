@@ -14,6 +14,7 @@ import type { DishProps, RestaurantInfoProps } from '@/config/interfaces'
 import { restaurants } from '@/config/data/restaurants'
 import RestaurantDetails from '@/components/features/restaurants/RestaurantDetails'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import MainLayout from '@/components/layout/common/layout'
 
 export default function Restaurant({
   params
@@ -56,7 +57,7 @@ export default function Restaurant({
   }
 
   return (
-    <>
+    <MainLayout>
       <section
         id='restaurant-banner'
         className='w-full h-max background-cover'
@@ -117,6 +118,6 @@ export default function Restaurant({
           <RestaurantDetails restaurantInfo={restaurantInfo} />
         </section>
       </main>
-    </>
+    </MainLayout>
   )
 }
