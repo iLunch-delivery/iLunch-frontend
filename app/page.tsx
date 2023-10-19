@@ -1,13 +1,21 @@
+'use client'
+import React from 'react'
 import Carousel from '@/components/common/Carousel'
 import {
   categoryCarousel,
   discountsCarousel,
   recommendedCarousel
 } from '@/config/data/carousel'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const { isLogged } = useUserInfo()
+
+  !isLogged && useRouter().push('/login')
+
   return (
     <>
       <main className='flex-1'>

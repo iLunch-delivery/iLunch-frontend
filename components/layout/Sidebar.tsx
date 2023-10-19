@@ -10,9 +10,11 @@ import {
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 
 function Sidebar() {
   const { isOpen } = useChangeSidebar()
+  const { name } = useUserInfo()
 
   return (
     <>
@@ -28,7 +30,7 @@ function Sidebar() {
               icon={faCircleUser}
               className='h-48 text-gray-500'
             />
-            <h4 className='m-4'>User Name</h4>
+            <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />
             <ul>
               <li className='flex m-2 cursor-pointer'>
