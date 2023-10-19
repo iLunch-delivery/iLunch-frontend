@@ -6,20 +6,14 @@ import android from '@/public/assets/Android-I.png'
 import apple from '@/public/assets/Apple - I.png'
 import google from '@/public/assets/google-logo.svg'
 
-function Input({ texto = '', tipo }) {
-  return (
-    <input type={tipo} placeholder={texto} className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  ' />
-  )
-}
-
 export default function Login() {
   return (
     <main className='flex h-full w-full p-0'>
       <section className='form-section bg-blue-700 w-1/2 flex flex-col items-center justify-around py-2'>
         <Image src={logo} alt='iLunch Logo' />
         <form className=' flex flex-col w-1/2' >
-          <Input texto="Correo electrónico" tipo="email" />
-          <Input texto="Contraseña" tipo="password" />
+          <input type="email" placeholder='Correo electrónico' className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  '/>
+          <input type="password" placeholder='Contraseña' className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  '/>z
           <button type='submit' className=' mt-10 p-2 text-white rounded-full border-2 border-white  w-1/2  self-center'>Iniciar sesión</button>
           <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 w-1/2 self-center shadow-lg inline-flex flex-row '>
             <Image className="w-6 flex self-center mr-6" src={google} loading="lazy" alt="google logo" />Ingresa con google
