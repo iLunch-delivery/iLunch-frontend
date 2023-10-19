@@ -5,6 +5,8 @@ import {
   faTwitter
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 function Footer() {
   return (
@@ -19,13 +21,13 @@ function Footer() {
             <hr className='solid mb-2' />
             <ul className='leading-6'>
               <li>
-                <a href='#'>Home</a>
+                <Link href='/'>Home</Link>
               </li>
               <li>
-                <a href='#'>Cerca de ti</a>
+                <Link href='/search/results'>Cerca de ti</Link>
               </li>
               <li>
-                <a href='#'>Red de trabajo</a>
+                <Link href='/jobs/list'>Red de trabajo</Link>
               </li>
             </ul>
           </div>
@@ -34,13 +36,13 @@ function Footer() {
             <hr className='solid mb-2' />
             <ul className='leading-6'>
               <li>
-                <a href='#'>Tu perfil</a>
+                <Link href='/user-profile'>Tu perfil</Link>
               </li>
               <li>
-                <a href='#'>Pedidos en curso</a>
+                <Link href='/order/active'>Pedidos en curso</Link>
               </li>
               <li>
-                <a href='#'>Contáctanos</a>
+                <Link href='/'>Contáctanos</Link>
               </li>
             </ul>
           </div>

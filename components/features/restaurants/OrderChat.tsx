@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faCamera, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-function OrderStatusChat() {
+function OrderChat() {
   return(
     <div id='orderChat' className='shadow-md shadow-black rounded-3xl'>
       <div id='chatHeader' className='bg-blue-600 h-16 rounded-t-3xl flex justify-between px-5 py-2 '>
@@ -44,4 +44,4 @@ function OrderStatusChat() {
   )
 }
 
-export default OrderStatusChat
+export default OrderChat

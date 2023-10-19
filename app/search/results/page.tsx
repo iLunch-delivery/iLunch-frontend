@@ -20,6 +20,7 @@ export default function searchingResults() {
                     <RestaurantOptions
                       key={`product-${index}`}
                       imageURL={restaurant.imageURL}
+                      id={restaurant.id}
                       name={restaurant.name}
                       open={restaurant.open}
                       availability={restaurant.availability}

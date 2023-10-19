@@ -1,6 +1,7 @@
 import React from 'react'
 import { restaurantOptionsTwo } from '@/config/data/restaurants'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
+import Link from 'next/link'
 
 function FloatingBox() {
   return (
@@ -22,6 +23,7 @@ function FloatingBox() {
                             <RestaurantOptions
                                 key={`product-${index}`}
                                 imageURL={restaurant.imageURL}
+                                id={restaurant.id}
                                 name={restaurant.name}
                                 open={restaurant.open}
                                 availability={restaurant.availability}
@@ -31,7 +33,11 @@ function FloatingBox() {
                         </>
                   )
                 })}
-                <button className='w-full py-2 mt-4 text-center text-gray-500 rounded'>Ver más opciones</button>
+                <Link href='/search/results'>
+                  <button className='w-full py-2 mt-4 text-center text-gray-500 rounded'>
+                    Ver más opciones
+                  </button>
+                </Link>
             </section>
         </div>
   )

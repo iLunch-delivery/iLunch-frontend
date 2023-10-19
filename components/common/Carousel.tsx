@@ -1,4 +1,7 @@
 'use client'
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+
 import type { CarouselProps, CarouselItemProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
@@ -23,13 +26,20 @@ function Carousel({
   imageWidth,
   height
 }: CarouselProps) {
-  const slidesItems = Array<CarouselItemProps[]>()
+  const pathname = usePathname() 
+  let slidesItems = Array<CarouselItemProps[]>()
+
+  useEffect(() => {
+    slidesItems = Array<CarouselItemProps[]>()
+  }, [pathname])
 
   for (let i = 0; i < items.length; i += itemsPerSlide) {
-    const slideItems = items.slice(i, i + itemsPerSlide)
-    slidesItems.push(slideItems)
+    const slide = items.slice(i, i + itemsPerSlide)
+    slidesItems.push(slide)
   }
-
+  
+  console.log(slidesItems)
+  
   return (
     <div
       id='carousel'

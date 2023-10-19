@@ -1,11 +1,15 @@
 import ProductPurchase from '@/components/features/restaurants/ProductPurchase'
 import BillingDetails from '@/components/features/restaurants/BillingDetails'
-import OrderStatusChat from '@/components/features/restaurants/OrderStatusChat'
+import OrderStatusChat from '@/components/features/restaurants/OrderChat'
 import SelectOption from '@/components/common/SelectOption'
 import { shoppingCart, orderReceiveOptions } from '@/config/data/restaurants'
 import MainLayout from '@/components/layout/common/layout'
 
-export default function ShoppingCart() {
+export default function ShoppingCart({
+  params
+}: {
+  params: { userId: string }
+}) {
   return (
     <MainLayout>
       <main className='grid md:grid-cols-2 gap-12'>
@@ -62,12 +66,6 @@ export default function ShoppingCart() {
         >
           <h2 className='text-2xl font-semibold'>Detalles de facturación</h2>
           <BillingDetails />
-        </section>
-        <section>
-          <h3 className='text-xl font-semibold'>¿Tienes algun problema?</h3>
-          <div className='mt-2'>
-            <OrderStatusChat />
-          </div>
         </section>
       </main>
     </MainLayout>

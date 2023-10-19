@@ -15,6 +15,7 @@ import { restaurants } from '@/config/data/restaurants'
 import RestaurantDetails from '@/components/features/restaurants/RestaurantDetails'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import MainLayout from '@/components/layout/common/layout'
+import Link from 'next/link'
 
 export default function Restaurant({
   params
@@ -70,11 +71,13 @@ export default function Restaurant({
         }}
       >
         <div className='px-8 py-4'>
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            size='2xl'
-            style={{ color: '#b9b9b9' }}
-          />
+          <Link href='/'>
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              size='2xl'
+              style={{ color: '#b9b9b9' }}
+            />
+          </Link>
           <div className='flex flex-col items-center space-y-2 text-center text-white mb-12'>
             <img
               className='block h-32 rounded-full mx-0 shrink-0'

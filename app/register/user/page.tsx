@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import logo from '@/assets/i-Lunch - Logo 1.png'
+import logo from '@/public/assets/iLunch-logo.png'
 
 export default function RegisterUser() {
   return (

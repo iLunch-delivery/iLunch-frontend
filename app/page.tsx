@@ -11,16 +11,19 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
 import MainLayout from '@/components/layout/common/layout'
+import Link from 'next/link'
 
 export default function Home() {
   const { isLogged } = useUserInfo()
   const router = useRouter()
 
+  /*
   useEffect(() => {
     if (!isLogged) {
       router.push('/login')
     }
   }, [])
+  */
 
   return (
     <MainLayout>
@@ -83,9 +86,12 @@ export default function Home() {
               Unete a nuestra red de trabajo donde podras encontrar la oferta
               perfecta para ti.
             </h4>
-            <button className='rounded-full bg-[#FB5A3E] mt-4 text-lg py-2 px-9 w-fit'>
+            <Link 
+              className='rounded-full bg-[#FB5A3E] mt-4 text-lg py-2 px-9 w-fit'
+              href='/register/candidate'
+            >
               Unete ya
-            </button>
+            </Link>
           </div>
         </section>
         <section id='discount-section' className='my-8'>

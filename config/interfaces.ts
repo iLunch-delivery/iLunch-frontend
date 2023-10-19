@@ -115,6 +115,7 @@ export interface UserInfoContextInterface {
 
 export interface RestaurantCardProps {
   imageURL: string
+  id: number
   name: string
   open: boolean
   availability: string
