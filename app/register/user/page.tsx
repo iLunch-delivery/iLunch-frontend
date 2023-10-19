@@ -4,7 +4,8 @@ import logo from '@/assets/i-Lunch - Logo 1.png'
 
 function Input({ texto = '', id, tipo = 'text' }) {
   return (
-    <input type={tipo} id={id} placeholder={texto} className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-none w-full placeholder:p-0 ' />
+    <input type={tipo} id={id} placeholder={texto} className=' focus:ring-0 focus:ring-offset-0
+    border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full placeholder:p-0 shadow-transparent focus:shadow-transparent' />
   )
 }
 
