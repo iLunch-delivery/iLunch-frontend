@@ -3,7 +3,7 @@ import { userInfoBase } from '@/config/data/userInfo'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import React, { useEffect } from 'react'
 import Dropdown from '../../common/Dropdown'
-import { ID_TYPES, USER_ROLES } from '@/config/enums'
+import { ID_TYPES, ROLE } from '@/config/enums'
 
 function UserInfoTable({
   isEditing,
@@ -154,7 +154,7 @@ function UserInfoTable({
               )}
             </td>
           </tr>
-          {role === USER_ROLES.aspirant && (
+          {role === ROLE.worker && (
             <tr className='h-4'>
               <td className='font-semibold'>Especialidad</td>
               <td>

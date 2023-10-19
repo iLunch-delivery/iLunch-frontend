@@ -16,7 +16,8 @@ import React, { useState, useEffect } from 'react'
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
   const [files, setUserFiles] = useState<File[] | undefined>()
-  const { email, address, phone, idNumber, idType, speciality } = useUserInfo()
+  const { email, role, address, phone, idNumber, idType, speciality } =
+    useUserInfo()
 
   useEffect(() => {
     setUserFiles(userFiles)

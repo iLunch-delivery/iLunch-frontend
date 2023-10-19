@@ -1,12 +1,12 @@
 import ProductPuschaseTable from '@/components/features/Tables/ProductPuschaseTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
-import { USER_ROLES } from '@/config/enums'
+import { ROLE } from '@/config/enums'
 import React from 'react'
 
 function OrderStatus() {
   return (
-    <main className='flex'>
-      <section className='mr-8 flex-1 flex flex-col'>
+    <main className='flex flex-col lg:flex-row'>
+      <section className='flex-1 flex flex-col mb-8 lg:mr-8 lg:mb-0'>
         <div id='order-status' className='mb-8'>
           <h2 className='text-2xl font-semibold mb-4'>
             Siguele la pista a tu pedido
@@ -35,7 +35,7 @@ function OrderStatus() {
           <div className='shadow-md rounded-xl px-6 py-3'>Chat</div>
         </div>
       </section>
-      <section className='ml-8 flex-1'>
+      <section className='flex-1 lg:ml-8 '>
         <div className='shadow-md rounded-xl px-6 py-3'>
           <h2 className='text-2xl font-semibold mb-4'>Detalles del pedido</h2>
           <div id='order-details'>
@@ -44,7 +44,7 @@ function OrderStatus() {
             </h3>
             <div id='restaurant-info' className='flex items-center mb-8'>
               <img
-                src='/assets/restaurant/restaurant-logo.png'
+                src='/assets/restaurant/logos/restaurant-logo-1.png'
                 alt='restaurante-1'
                 className='w-auto h-24 mr-4'
               />
@@ -88,7 +88,7 @@ function OrderStatus() {
               <h3 className='text-lg font-semibold'>¿Quién ordena?</h3>
               <UserInfoTable
                 isEditing={false}
-                role={USER_ROLES.costumer}
+                role={ROLE.worker}
                 voucher={true}
               />
             </div>
