@@ -1,3 +1,5 @@
+import type { RESTAURANT_AVAILABILITY } from './enums'
+
 export interface CarouselItemProps {
   imageUrl: string
   title?: string
@@ -5,7 +7,7 @@ export interface CarouselItemProps {
 }
 
 export interface CarouselProps {
-  items: Array<CarouselItemProps>
+  items: CarouselItemProps[]
   itemsPerSlide: number
   imageHeight: number
   imageWidth?: number
@@ -60,7 +62,6 @@ export interface UserInfo {
   address: string
   city: string
   state: string
-  zip: number
   country: string
   idType: string
   idNumber: number
@@ -87,6 +88,10 @@ export interface SidebarContextInterface {
   setIsOpen: (isOpen: boolean) => void
 }
 
+export interface SearchBarContextInterface {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
 export interface UserInfoContextInterface {
   name: string
   email: string
@@ -106,4 +111,71 @@ export interface UserInfoContextInterface {
   setSpeciality: (speciality: string) => void
   setRole: (role: string) => void
   setIsLogged: (isLogged: boolean) => void
+}
+
+export interface RestaurantCardProps {
+  imageURL: string
+  name: string
+  open: boolean
+  availability: string
+  distance: number
+}
+
+export interface RestaurantInfoProps {
+  id: number
+  name: string
+  description: string
+  adress: string
+  city: string
+  state: string
+  categories: string[]
+  country: string
+  speciality: string
+  rating: number
+  popularDishes: string[]
+  deliveryTime: number
+  promotions: string[]
+  logoURL: string
+  bannerURL: string
+  open: boolean
+  availability: RESTAURANT_AVAILABILITY
+  distance: number
+}
+
+export interface DishProps {
+  imageURL: string
+  title: string
+  subtitle: {
+    text: string
+    iconType: string
+  }
+  description: string
+  button: {
+    text: string
+    link: string
+  }
+}
+
+export interface jobInfoProps {
+  id: number
+  restaurantId: number
+  imageURL: string
+  title: string
+  subtitle: {
+    text: string
+    iconType: string
+  }
+  offerTime: {
+    text: string
+    iconType: string
+  }
+  offerSalary: {
+    text: string
+    iconType: string
+  }
+  description: string
+  button: {
+    text: string
+    link: string
+  }
 }
