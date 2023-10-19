@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 export default function Home() {
   const { isLogged } = useUserInfo()
 
-  // !isLogged && useRouter().push('/login')
+  !isLogged && useRouter().push('/login')
 
   return (
     <>
