@@ -25,7 +25,6 @@ export default function RootLayout({
       </head>
       <body className={raleway.className}>
         <UserInfoProvider>{children}</UserInfoProvider>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js'></script>
       </body>
     </html>
   )

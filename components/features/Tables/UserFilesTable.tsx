@@ -1,3 +1,4 @@
+'use client'
 import type { File } from '@/config/interfaces'
 import {
   faCirclePlus,
@@ -54,7 +55,17 @@ function UserFilesTable({
       </table>
     )
   } else {
-    return <p>No hay archivos adjuntos</p>
+    return (
+      <>
+        <p>No hay archivos adjuntos</p>
+        {isEditing && (
+          <FontAwesomeIcon
+            icon={faCirclePlus}
+            className='h-8 text-blue-600 bg-white cursor-pointer w-fit mt-4'
+          />
+        )}
+      </>
+    )
   }
 }
 

@@ -15,12 +15,12 @@ export default function Login() {
           <input
             type='email'
             placeholder='Correo electrónico'
-            className='w-full !border-b !border-x-0 !border-t-0 border-white !bg-transparent text-white outline-none placeholder:text-white placeholder:text-opacity-70'
+            className='w-full !border-b !border-x-0 !border-t-0 !border-white !bg-transparent text-white outline-none placeholder:text-white placeholder:text-opacity-70 focus:!ring-0'
           />
           <input
             type='password'
             placeholder='Contraseña'
-            className='w-full !border-b !border-x-0 !border-t-0 border-white !bg-transparent text-white outline-none placeholder:text-white placeholder:text-opacity-70 mt-5'
+            className='w-full !border-b !border-x-0 !border-t-0 !border-white !bg-transparent text-white outline-none placeholder:text-white placeholder:text-opacity-70 focus:!ring-0 mt-5'
           />
           <button
             type='submit'
