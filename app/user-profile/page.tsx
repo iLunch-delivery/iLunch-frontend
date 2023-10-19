@@ -3,7 +3,7 @@
 import UserFilesTable from '@/components/features/Tables/UserFilesTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import MainLayout from '@/components/layout/common/layout'
-import { userFiles, userInfoBase } from '@/config/data/userInfo'
+import { userFiles } from '@/config/data/userInfo'
 import type { File } from '@/config/interfaces'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import {
@@ -17,30 +17,10 @@ import React, { useState, useEffect } from 'react'
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
   const [files, setUserFiles] = useState<File[] | undefined>()
-  const {
-    name,
-    role,
-    email,
-    address,
-    phone,
-    idNumber,
-    idType,
-    speciality,
-    setAddress,
-    setEmail,
-    setIdNumber,
-    setPhone,
-    setSpeciality,
-    setIdType
-  } = useUserInfo()
+  const { name, role, email, address, phone, idNumber, idType, speciality } =
+    useUserInfo()
 
   useEffect(() => {
-    setEmail(userInfoBase.email)
-    setPhone(userInfoBase.phone)
-    setAddress(userInfoBase.address)
-    setIdType(userInfoBase.idType)
-    setIdNumber(userInfoBase.idNumber)
-    setSpeciality(userInfoBase.speciality)
     setUserFiles(userFiles)
   }, [])
 

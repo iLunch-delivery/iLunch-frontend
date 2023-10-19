@@ -6,7 +6,16 @@ import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
 interface ProductPriceProps {
   price: string
 }
-
+function ProductPrice({ price }: ProductPriceProps) {
+  return (
+    <div className='flex items-center'>
+      <FontAwesomeIcon icon={faMoneyCheckDollar} style={{ color: '#b9b9b9' }} />
+      <p className='inline px-2 text-xs text-slate-500 font-semibold'>
+        {price}
+      </p>
+    </div>
+  )
+}
 function Carousel({
   items,
   itemsPerSlide,
@@ -14,20 +23,6 @@ function Carousel({
   imageWidth,
   height
 }: CarouselProps) {
-  function ProductPrice({ price }: ProductPriceProps) {
-    return (
-      <div className='flex items-center'>
-        <FontAwesomeIcon
-          icon={faMoneyCheckDollar}
-          style={{ color: '#b9b9b9' }}
-        />
-        <p className='inline px-2 text-xs text-slate-500 font-semibold'>
-          {price}
-        </p>
-      </div>
-    )
-  }
-
   const slidesItems = Array<CarouselItemProps[]>()
 
   for (let i = 0; i < items.length; i += itemsPerSlide) {

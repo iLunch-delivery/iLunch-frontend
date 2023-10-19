@@ -26,14 +26,18 @@ export default function Restaurant({
 
   useEffect(() => {
     const menu =
-      menus.filter(
-        (menu) => menu.restaurantId === Number(params.restaurantId)
-      )[0].menu ?? []
+      menus.find((menu) => {
+        if (menu.restaurantId === Number(params.restaurantId)) {
+          return menu
+        }
+      })?.menu ?? []
     setMenu(menu)
 
-    const restaurantInfo = restaurants.filter(
-      (restaurant) => restaurant.id === Number(params.restaurantId)
-    )[0]
+    const restaurantInfo = restaurants.find((restaurant) => {
+      if (restaurant.id === Number(params.restaurantId)) {
+        return restaurant
+      }
+    })
     setRestaurantInfo(restaurantInfo)
   }, [])
 
