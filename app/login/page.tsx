@@ -13,7 +13,7 @@ export default function Login() {
         <Image src={logo} alt='iLunch Logo' />
         <form className=' flex flex-col w-1/2' >
           <input type="email" placeholder='Correo electrónico' className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  '/>
-          <input type="password" placeholder='Contraseña' className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  '/>z
+          <input type="password" placeholder='Contraseña' className=' bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-5 outline-none  '/>
           <button type='submit' className=' mt-10 p-2 text-white rounded-full border-2 border-white  w-1/2  self-center'>Iniciar sesión</button>
           <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 w-1/2 self-center shadow-lg inline-flex flex-row '>
             <Image className="w-6 flex self-center mr-6" src={google} loading="lazy" alt="google logo" />Ingresa con google
