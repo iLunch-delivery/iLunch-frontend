@@ -32,6 +32,7 @@ export default function RootLayout({
           <SidebarProvider>
             <Header />
             <Sidebar />
+            <div id="spacer" className='px-5 py-2 h-12 w-full'>&nbsp;</div>
           </SidebarProvider>
           {children}
           <Footer />

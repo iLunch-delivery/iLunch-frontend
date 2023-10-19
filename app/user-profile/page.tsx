@@ -4,7 +4,7 @@ import UserFilesTable from '@/components/features/Tables/UserFilesTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import { userFiles } from '@/config/data/userInfo'
 import type { File } from '@/config/interfaces'
-import { useChangeUserInfo } from '@/contexts/UserInfoContext'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 import {
   faCircleUser,
   faPencil,
@@ -16,8 +16,7 @@ import React, { useState, useEffect } from 'react'
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
   const [files, setUserFiles] = useState<File[] | undefined>()
-  const { email, address, phone, idNumber, idType, speciality, role } =
-    useChangeUserInfo()
+  const { email, address, phone, idNumber, idType, speciality } = useUserInfo()
 
   useEffect(() => {
     setUserFiles(userFiles)
@@ -43,7 +42,7 @@ function UserProfile() {
       </button>
       <section
         id='banner-section'
-        className='w-full bg-gray-300 pt-16 pb-8 px-8 flex flex-col justify-center items-center'
+        className='w-full bg-gray-300 pb-8 px-8 flex flex-col justify-center items-center'
       >
         <div className='flex'>
           <FontAwesomeIcon

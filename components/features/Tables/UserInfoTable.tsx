@@ -1,6 +1,6 @@
 'use client'
 import { userInfoBase } from '@/config/data/userInfo'
-import { useChangeUserInfo } from '@/contexts/UserInfoContext'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 import React, { useEffect } from 'react'
 import Dropdown from '../../common/Dropdown'
 import { ID_TYPES, USER_ROLES } from '@/config/enums'
@@ -29,7 +29,7 @@ function UserInfoTable({
     setPhone,
     setSpeciality,
     setIdType
-  } = useChangeUserInfo()
+  } = useUserInfo()
 
   useEffect(() => {
     setName(userInfoBase.name)

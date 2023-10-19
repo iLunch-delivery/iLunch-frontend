@@ -1,5 +1,5 @@
-import type { CarouselProps } from '@/config/interfaces'
-import React from 'react'
+'use client'
+import type { CarouselProps, CarouselItemProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
 
@@ -7,14 +7,32 @@ interface ProductPriceProps {
   price: string
 }
 
-function Carousel({ images, imageHeight, imageWidth, height }: CarouselProps) {
-  function ProductPrice( { price }: ProductPriceProps ) {
+function Carousel({
+  items,
+  itemsPerSlide,
+  imageHeight,
+  imageWidth,
+  height
+}: CarouselProps) {
+  function ProductPrice({ price }: ProductPriceProps) {
     return (
       <div className='flex items-center'>
-        <FontAwesomeIcon icon={faMoneyCheckDollar} style={{color: "#b9b9b9",}} />
-        <p className='inline px-2 text-xs text-slate-500 font-semibold'>{price}</p>
+        <FontAwesomeIcon
+          icon={faMoneyCheckDollar}
+          style={{ color: '#b9b9b9' }}
+        />
+        <p className='inline px-2 text-xs text-slate-500 font-semibold'>
+          {price}
+        </p>
       </div>
     )
+  }
+
+  const slidesItems = Array<CarouselItemProps[]>()
+
+  for (let i = 0; i < items.length; i += itemsPerSlide) {
+    const slideItems = items.slice(i, i + itemsPerSlide)
+    slidesItems.push(slideItems)
   }
 
   return (
@@ -24,27 +42,31 @@ function Carousel({ images, imageHeight, imageWidth, height }: CarouselProps) {
       data-carousel='slide'
     >
       <div className='relative h-full overflow-hidden rounded-lg mx-12'>
-        {images.map((image, index) => {
+        {slidesItems.map((slideItems, index) => {
           return (
             <div
               key={`carousel-${index}`}
-              className='hidden ease-in-out '
+              className='hidden ease-in-out'
               data-carousel-item
             >
               <div className='flex bg-white h-full justify-around items-center'>
-                {image.map((img, subindex) => {
+                {slideItems.map((item, subindex) => {
                   return (
                     <div
                       key={`carousel-item-${subindex}`}
                       className='h-full flex flex-col justify-center items-center cursor-pointer transition ease-in-out hover:scale-110'
                     >
                       <img
-                        src={img.url}
+                        src={item.imageUrl}
                         alt='...'
                         className={`h-${imageHeight} w-${imageWidth}`}
                       />
-                      {img.title != null ? <p className='text-lg font-semibold'>{img.title}</p> : null}
-                      {img.subtitle != null ? <ProductPrice price={img.subtitle}/> : null }
+                      {item.title != null ? (
+                        <p className='text-lg font-semibold'>{item.title}</p>
+                      ) : null}
+                      {item.subtitle != null ? (
+                        <ProductPrice price={item.subtitle} />
+                      ) : null}
                     </div>
                   )
                 })}

@@ -3,8 +3,18 @@ export const enum ID_TYPES {
   Pasaporte = 'Pasaporte'
 }
 
-export const enum USER_ROLES {
+export const enum ROLE {
   costumer = 'costumer',
-  aspirant = 'aspirant',
-  none = 'none'
+  worker = 'worker'
+}
+
+export const enum PAYMENT_METHODS {
+  Efectivo = 'Efectivo',
+  Tarjeta = 'Tarjeta'
+}
+
+export const enum RESTAURANT_AVAILABILITY {
+  Lleno = 'lleno',
+  Pronto = 'pronto',
+  Disponible = 'disponible'
 }
