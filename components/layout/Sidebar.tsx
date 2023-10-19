@@ -18,10 +18,12 @@ function Sidebar() {
 
   return (
     <>
-      <div className={`fixed flex z-10 ${isOpen ? 'w-auto' : 'w-0'} `}>
+      <div
+        className={`fixed flex z-10 ${isOpen ? 'w-screen lg:w-auto' : 'w-0'} `}
+      >
         <div
           className={`top-0 left-0 z-20 w-64 h-screen transition-all duration-500 transform -translate-x-full bg-gray-50
-           shadow-lg px-6 pb-4 pt-16 flex flex-col justify-between ${
+           shadow-lg px-6 pb-4 pt-16 flex flex-col justify-between flex-1 ${
              isOpen ? 'translate-x-0' : ''
            }`}
         >

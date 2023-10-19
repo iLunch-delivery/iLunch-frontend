@@ -1,5 +1,5 @@
 'use client'
-import { userInfoBase } from '@/config/data/userInfo'
+
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import React, { useEffect } from 'react'
 import Dropdown from '../../common/Dropdown'
@@ -20,15 +20,6 @@ function UserInfoTable({ isEditing }: { isEditing: boolean }) {
     setSpeciality,
     setIdType
   } = useUserInfo()
-
-  useEffect(() => {
-    setEmail(userInfoBase.email)
-    setPhone(userInfoBase.phone)
-    setAddress(userInfoBase.address)
-    setIdType(userInfoBase.idType)
-    setIdNumber(userInfoBase.idNumber)
-    setSpeciality(userInfoBase.speciality)
-  }, [])
 
   const handleSelectIdType = (idType: string) => {
     setIdType(idType)
