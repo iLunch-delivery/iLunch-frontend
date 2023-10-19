@@ -4,7 +4,7 @@ import UserFilesTable from '@/components/features/Tables/UserFilesTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import { userFiles } from '@/config/data/userInfo'
 import type { File } from '@/config/interfaces'
-import { useChangeUserInfo } from '@/contexts/UserInfoContext'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 import {
   faCircleUser,
   faPencil,
@@ -16,8 +16,7 @@ import React, { useState, useEffect } from 'react'
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
   const [files, setUserFiles] = useState<File[] | undefined>()
-  const { email, address, phone, idNumber, idType, speciality } =
-    useChangeUserInfo()
+  const { email, address, phone, idNumber, idType, speciality } = useUserInfo()
 
   useEffect(() => {
     setUserFiles(userFiles)

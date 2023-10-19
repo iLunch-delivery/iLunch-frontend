@@ -67,6 +67,6 @@ export const UserInfoProvider = ({
   )
 }
 
-export const useChangeUserInfo = () => {
+export const useUserInfo = () => {
   return useContext(UserInfoContext)
 }
