@@ -18,6 +18,7 @@ function UserProfile() {
   const [files, setUserFiles] = useState<File[] | undefined>()
   const {
     name,
+    role,
     email,
     address,
     phone,
@@ -91,7 +92,7 @@ function UserProfile() {
         <div className='flex-1 mx-4 flex flex-col mb-8 lg:m-0'>
           <h2 className='text-2xl font-semibold mb-4'>Tus datos</h2>
           <div className='flex items-start shadow-md rounded-xl p-4 h-full'>
-            <UserInfoTable isEditing={isEditing} />
+            <UserInfoTable isEditing={isEditing} role={role} voucher={false} />
           </div>
         </div>
         <div className='flex-1 mx-4 flex flex-col mb-8 lg:m-0 '>
