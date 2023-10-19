@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import type { DishProps, RestaurantInfoProps } from '@/config/interfaces'
 import { restaurants } from '@/config/data/restaurants'
 import RestaurantDetails from '@/components/features/restaurants/RestaurantDetails'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export default function Restaurant({
   params
@@ -35,18 +36,24 @@ export default function Restaurant({
     setRestaurantInfo(restaurantInfo)
   }, [])
 
-  /*
+  let itemsPerSlide = 5
+
+  const is2xl = useMediaQuery('2xl')
+  const isLaptop = useMediaQuery('lg')
   const isTablet = useMediaQuery('md')
   const isLargeMobile = useMediaQuery('sm')
 
-  if (isTablet) {
+  if (is2xl) {
+    itemsPerSlide = 5
+  } else if (isLaptop) {
+    itemsPerSlide = 4
+  } else if (isTablet) {
     itemsPerSlide = 3
   } else if (isLargeMobile) {
     itemsPerSlide = 2
   } else {
     itemsPerSlide = 1
   }
-  */
 
   return (
     <>
