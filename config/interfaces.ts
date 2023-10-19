@@ -5,7 +5,7 @@ export interface CarouselItemProps {
 }
 
 export interface CarouselProps {
-  items: Array<CarouselItemProps>
+  items: CarouselItemProps[]
   itemsPerSlide: number
   imageHeight: number
   imageWidth?: number
@@ -87,6 +87,10 @@ export interface SidebarContextInterface {
   setIsOpen: (isOpen: boolean) => void
 }
 
+export interface SearchBarContextInterface {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
 export interface UserInfoContextInterface {
   name: string
   email: string
@@ -106,4 +110,12 @@ export interface UserInfoContextInterface {
   setSpeciality: (speciality: string) => void
   setRole: (role: string) => void
   setIsLogged: (isLogged: boolean) => void
+}
+
+export interface RestaurantCardProps {
+  imageURL: string
+  name: string
+  open: boolean
+  availability: string
+  distance: number
 }
