@@ -11,6 +11,7 @@ import RestaurantDetails from '@/components/features/restaurants/RestaurantDetai
 import { restaurants } from '@/config/data/restaurants'
 import { jobReceivedOffers } from '@/config/data/jobs'
 import type { RestaurantInfoProps, jobInfoProps } from '@/config/interfaces'
+import MainLayout from '@/components/layout/common/layout'
 
 export default function JobOffer({ params }: { params: { jobId: string } }) {
   const [jobInfo, setJobInfo] = useState<jobInfoProps>()
@@ -28,7 +29,7 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
   }, [])
 
   return (
-    <>
+    <MainLayout>
       <section
         id='restaurant-banner'
         className='w-full h-max background-cover'
@@ -96,6 +97,6 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
           <RestaurantDetails restaurantInfo={restaurantInfo} />
         </section>
       </main>
-    </>
+    </MainLayout>
   )
 }
