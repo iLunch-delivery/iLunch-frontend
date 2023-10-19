@@ -1,4 +1,4 @@
-import ProductPuschaseTable from '@/components/features/Tables/ProductPuschaseTable'
+import ProductPurchaseTable from '@/components/features/Tables/ProductPuschaseTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import { ROLE } from '@/config/enums'
 import React from 'react'
@@ -58,7 +58,7 @@ function OrderStatus() {
               <h3 className='text-lg font-semibold mb-2'>
                 Resumen de productos
               </h3>
-              <ProductPuschaseTable />
+              <ProductPurchaseTable />
             </div>
             <div id='order-info' className='flex mb-8'>
               <div id='delivery-info' className='flex-1'>
