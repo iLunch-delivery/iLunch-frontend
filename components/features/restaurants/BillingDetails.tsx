@@ -1,7 +1,5 @@
 import SelectOption from '@/components/common/SelectOption'
-import {
-  billingOptions
-} from '@/config/data/restaurants'
+import { billingOptions } from '@/config/data/restaurants'
 
 function BillingDetails() {
   return (
@@ -47,11 +45,13 @@ function BillingDetails() {
           <div className='text-left sm:flex'>
             <p className='w-1/4 font-semibold'>Dirección:</p>
             <div>
-              <input id='address' name='address'
+              <input
+                id='address'
+                name='address'
                 placeholder='Por favor especifica tu dirección'
-                size={30} 
-                className='border-b'>
-              </input>
+                size={30}
+                className='border-b'
+              ></input>
             </div>
           </div>
         </div>
@@ -59,17 +59,19 @@ function BillingDetails() {
       <div id='paymentMethod'>
         <h3 className='text-md font-bold'>Forma de pago</h3>
         <div className='py-4 flex justify-evenly items-center'>
-        {billingOptions.map((option, index) => {
-          return (
-            <SelectOption
-              key={`receive_option-${index}`}
-              imageURL={option.imageURL}
-              name={option.name}
-            />
-          )
-        })}
+          {billingOptions.map((option, index) => {
+            return (
+              <SelectOption
+                key={`receive_option-${index}`}
+                imageURL={option.imageURL}
+                name={option.name}
+              />
+            )
+          })}
         </div>
-        <p className='text-md font-bold text-center'>Total a pagar: COP $ XXX.XXX</p>
+        <p className='text-md font-bold text-center'>
+          Total a pagar: COP $ XXX.XXX
+        </p>
       </div>
       <div className='flex justify-center'>
         <button className='px-4 py-1 w-1/2 bg-lime-500 text-md text-white font-semibold rounded-full hover:text-black hover:bg-lime-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-300 focus:ring-offset-2'>
