@@ -1,7 +1,7 @@
 'use client'
-import { userInfoBase } from '@/config/data/userInfo'
+
 import { useUserInfo } from '@/contexts/UserInfoContext'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Dropdown from '../../common/Dropdown'
 import { ID_TYPES, ROLE } from '@/config/enums'
 
@@ -22,7 +22,6 @@ function UserInfoTable({
     idNumber,
     idType,
     speciality,
-    setName,
     setAddress,
     setEmail,
     setIdNumber,
@@ -30,16 +29,6 @@ function UserInfoTable({
     setSpeciality,
     setIdType
   } = useUserInfo()
-
-  useEffect(() => {
-    setName(userInfoBase.name)
-    setEmail(userInfoBase.email)
-    setPhone(userInfoBase.phone)
-    setAddress(userInfoBase.address)
-    setIdType(userInfoBase.idType)
-    setIdNumber(userInfoBase.idNumber)
-    setSpeciality(userInfoBase.speciality)
-  }, [])
 
   const handleSelectIdType = (idType: string) => {
     setIdType(idType)

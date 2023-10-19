@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 export default function Home() {
   const { isLogged } = useUserInfo()
 
-  !isLogged && useRouter().push('/login')
+  // !isLogged && useRouter().push('/login')
 
   return (
     <>
@@ -28,28 +28,36 @@ export default function Home() {
             height={48}
           />
         </section>
-        <section id='near-by-section' className='flex flex-wrap my-8'>
+        <section
+          id='near-by-section'
+          className='my-8 md:block lg:flex flex-wrap'
+        >
           <h2 className='flex-shrink-0 flex-grow-0 basis-full mb-4 text-xl font-semibold'>
             Cerca de ti
           </h2>
-          <div className='map w-3/4'>
+          <div className='h-64 lg:w-3/4 lg:h-auto'>
             <div className=' shadow-md h-full flex items-center justify-center bg-gray-400 rounded-xl'>
               Mapa
             </div>
           </div>
-          <div className='restaurant-info w-1/4 pl-4'>
-            <div className=' flex flex-col rounded-xl shadow-md p-4'>
-              <img
-                className='rounded-xl'
-                src='/assets/Restaurant-1.png'
-                alt='Restaurante'
-              />
-              <hr className='solid my-4' />
-              <h3 className='text-lg font-medium'>Restaurante</h3>
-              <p className='my-2'>
-                <FontAwesomeIcon icon={faLocationDot} />
-                Ubicación
-              </p>
+          <div className='restaurant-info mt-4 lg:w-1/4 lg:m-0 lg:pl-4'>
+            <div className=' flex flex-col rounded-xl shadow-md p-4 h-full'>
+              <div className='md:flex items-center'>
+                <img
+                  className='rounded-xl h-12 w-12'
+                  src='/assets/restaurant/logos/restaurant-logo-1.png'
+                  alt='Restaurante'
+                />
+                <hr className='solid my-4 md:hidden' />
+                <div className='md:mx-2'>
+                  <h3 className='text-lg font-medium'>Restaurante</h3>
+                  <p className='lg:my-2'>
+                    <FontAwesomeIcon icon={faLocationDot} />
+                    Ubicación
+                  </p>
+                </div>
+              </div>
+              <hr className='solid my-4 lg:hidden' />
               <p className='text-justify'>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero
                 aliquid unde enim assumenda asperiores, iusto possimus

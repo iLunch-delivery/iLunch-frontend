@@ -2,7 +2,7 @@
 
 import UserFilesTable from '@/components/features/Tables/UserFilesTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
-import { userFiles } from '@/config/data/userInfo'
+import { userFiles, userInfoBase } from '@/config/data/userInfo'
 import type { File } from '@/config/interfaces'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import {
@@ -16,17 +16,37 @@ import React, { useState, useEffect } from 'react'
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false)
   const [files, setUserFiles] = useState<File[] | undefined>()
-  const { email, role, address, phone, idNumber, idType, speciality } =
-    useUserInfo()
+  const {
+    name,
+    role,
+    email,
+    address,
+    phone,
+    idNumber,
+    idType,
+    speciality,
+    setAddress,
+    setEmail,
+    setIdNumber,
+    setPhone,
+    setSpeciality,
+    setIdType
+  } = useUserInfo()
 
   useEffect(() => {
+    setEmail(userInfoBase.email)
+    setPhone(userInfoBase.phone)
+    setAddress(userInfoBase.address)
+    setIdType(userInfoBase.idType)
+    setIdNumber(userInfoBase.idNumber)
+    setSpeciality(userInfoBase.speciality)
     setUserFiles(userFiles)
   }, [])
 
   const handleEdit = () => {
     if (isEditing) {
       // Safe Data
-      console.log(email, address, phone, idNumber, idType, speciality)
+      console.log(name, email, address, phone, idNumber, idType, speciality)
     }
     setIsEditing(!isEditing)
   }
@@ -43,7 +63,7 @@ function UserProfile() {
       </button>
       <section
         id='banner-section'
-        className='w-full bg-gray-300 pb-8 px-8 flex flex-col justify-center items-center'
+        className='w-full bg-gray-300 pb-8 pt-16 px-8 flex flex-col justify-center items-center md:pt-0'
       >
         <div className='flex'>
           <FontAwesomeIcon
@@ -63,22 +83,19 @@ function UserProfile() {
             </div>
           )}
         </div>
-        <h1 className='text-4xl font-semibold my-2'>User name</h1>
-        <p className='my-2 w-1/2'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, in!
-          Perspiciatis expedita animi, facere ipsum natus quasi quo asperiores
-          veritatis officiis debitis sunt libero iste aliquam molestiae sint
-          veniam eum.
-        </p>
+        <h1 className='text-4xl font-semibold my-2'>{name}</h1>
       </section>
-      <section id='info-section' className='flex mx-8 my-16'>
-        <div className='flex-1 mx-4 flex flex-col'>
+      <section
+        id='info-section'
+        className='flex flex-col mx-2 my-16 md:mx-8 lg:flex-row '
+      >
+        <div className='flex-1 mx-4 flex flex-col mb-8 lg:m-0'>
           <h2 className='text-2xl font-semibold mb-4'>Tus datos</h2>
           <div className='flex items-start shadow-md rounded-xl p-4 h-full'>
             <UserInfoTable isEditing={isEditing} role={role} voucher={false} />
           </div>
         </div>
-        <div className='flex-1 mx-4 flex flex-col'>
+        <div className='flex-1 mx-4 flex flex-col mb-8 lg:m-0 '>
           <h2 className='text-2xl font-semibold mb-4'>Tus archivos</h2>
           <div className='flex flex-col shadow-md rounded-xl p-4 h-full'>
             <h3 className='text-lg font-semibold mb-8'>Archivos adjuntos</h3>
