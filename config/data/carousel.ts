@@ -8,16 +8,14 @@ export const recommendedCarousel = [
 ]
 
 export const categoryCarousel = [
-  { imageUrl: '/assets/category_icons/category(1).png', title: 'Category 1' },
-  { imageUrl: '/assets/category_icons/category(2).png', title: 'Category 2' },
-  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 3' },
-  { imageUrl: '/assets/category_icons/category(4).png', title: 'Category 4' },
-  { imageUrl: '/assets/category_icons/category(5).png', title: 'Category 5' },
-  { imageUrl: '/assets/category_icons/category(1).png', title: 'Category 6' },
-  { imageUrl: '/assets/category_icons/category(2).png', title: 'Category 7' },
-  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 8' },
-  { imageUrl: '/assets/category_icons/category(4).png', title: 'Category 9' },
-  { imageUrl: '/assets/category_icons/category(5).png', title: 'Category 10' }
+  { imageUrl: '/assets/category_icons/category(1).png', title: 'Postres' },
+  { imageUrl: '/assets/category_icons/category(2).png', title: 'Bebidas' },
+  { imageUrl: '/assets/category_icons/category(3).png', title: 'Hamburguesas' },
+  { imageUrl: '/assets/category_icons/category(4).png', title: 'Panadería' },
+  { imageUrl: '/assets/category_icons/category(5).png', title: 'Vegetariana' },
+  { imageUrl: '/assets/category_icons/category(6).png', title: 'Pizza' },
+  { imageUrl: '/assets/category_icons/category(7).png', title: 'Pollo' },
+  { imageUrl: '/assets/category_icons/category(8).png', title: 'Oriental' }
 ]
 
 export const discountsCarousel = [
