@@ -31,7 +31,6 @@ export default function Home() {
         <section id='recommended-section'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
           <Carousel
-            id={1}
             items={recommendedCarousel}
             itemsPerSlide={3}
             imageHeight={36}
@@ -60,7 +59,7 @@ export default function Home() {
                 />
                 <hr className='solid my-4 md:hidden' />
                 <div className='md:mx-2'>
-                  <h3 className='text-lg font-medium'>Restaurante</h3>
+                  <h3 className='text-lg font-medium'>Restaurante 1</h3>
                   <p className='lg:my-2'>
                     <FontAwesomeIcon icon={faLocationDot} />
                     Ubicación
@@ -74,9 +73,12 @@ export default function Home() {
                 aspernatur sint velit doloremque adipisci quibusdam eos sequi
                 sed voluptates. Voluptatibus eos repellendus doloribus?
               </p>
-              <button className='rounded-full bg-[#FB5A3E] text-white mt-8 text-lg py-2 px-9 w-fit mx-auto'>
+              <Link 
+                className='rounded-full bg-[#FB5A3E] text-white mt-8 text-lg py-2 px-9 w-fit mx-auto'
+                href={'/restaurant/1'}
+              >
                 Explorar menu
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -98,7 +100,6 @@ export default function Home() {
         <section id='discount-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Descuentos imperdibles</h2>
           <Carousel
-            id={2}
             items={discountsCarousel}
             itemsPerSlide={3}
             imageHeight={36}
@@ -108,10 +109,9 @@ export default function Home() {
         <section id='category-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Para tus antojos</h2>
           <Carousel
-            id={3}
             items={categoryCarousel}
             itemsPerSlide={4}
-            imageWidth={25}
+            imageWidth={24}
             imageHeight={24}
             height={48}
           />

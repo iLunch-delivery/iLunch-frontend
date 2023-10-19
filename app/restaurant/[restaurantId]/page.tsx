@@ -98,7 +98,7 @@ export default function Restaurant({
           <h2 className='text-2xl font-semibold'>Los más populares</h2>
           <Carousel
             items={popularProductsCarousel}
-            itemsPerSlide={6}
+            itemsPerSlide={itemsPerSlide}
             imageWidth={24}
             imageHeight={24}
             height={48}
@@ -110,7 +110,7 @@ export default function Restaurant({
             {menu?.map((product, index) => {
               return (
                 <Detail
-                  key={`product-${index}`}
+                  key={`dish-${index}`}
                   imageURL={product?.imageURL ?? ''}
                   title={product?.title ?? ''}
                   subtitle={product?.subtitle ?? ''}

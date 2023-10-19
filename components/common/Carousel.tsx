@@ -6,13 +6,6 @@ import type { CarouselProps, CarouselItemProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
 
-const customTheme: CustomFlowbiteTheme['carousel'] = {
-  control: {
-    base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-800/30 group-hover:bg-gray-800/60 group-focus:outline-none group-focus:ring-4 group-focus:ring-gray-800/70 dark:bg-white/30 dark:group-hover:bg-white/60 dark:group-focus:ringwhite/70 sm:h-10 sm:w-10",
-    icon: "h-4 w-4 text-gray-800 dark:text-white sm:h-6 sm:w-6"
-  },
-};
-
 interface ProductPriceProps {
   price: string
 }
@@ -27,7 +20,6 @@ function ProductPrice({ price }: ProductPriceProps) {
   )
 }
 function ItemsCarousel({
-  id,
   items,
   itemsPerSlide,
   imageHeight,
@@ -40,21 +32,33 @@ function ItemsCarousel({
     const slide = items.slice(i, i + itemsPerSlide)
     slides.push(slide)
   }
+
+  console.log(slides)
   
+  const customTheme: CustomFlowbiteTheme['carousel'] = {
+    scrollContainer: {
+      base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-hidden scroll-smooth rounded-lg",
+      snap: "snap-x"
+    },
+    control: {
+      base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-800/30 group-hover:bg-gray-800/60 group-focus:outline-none group-focus:ring-4 group-focus:ring-gray-800/70 dark:bg-white/30 dark:group-hover:bg-white/60 dark:group-focus:ringwhite/70 sm:h-10 sm:w-10",
+      icon: "h-4 w-4 text-gray-800 dark:text-white sm:h-6 sm:w-6"
+    },
+  };
+
   return (
     <Carousel  
-      className={`relative z-0 w-full h-${height ?? imageHeight}`}
+      className={`z-0 h-${height ?? imageHeight}`}
       theme={customTheme}
       indicators={false}
       pauseOnHover
-      key={`carousel-${id}`}
     >
       {slides.map((slide, index) => {
         return (
           <div
             key={`slide-${index}`}
           >
-            <div className='flex bg-white h-full justify-around items-center overflow-hidden rounded-lg mx-12'>
+            <div className='flex bg-white h-full justify-around items-center overflow-hidden rounded-lg mx-12 overscroll-none'>
               {slide.map((item, subindex) => {
                 return (
                   <div

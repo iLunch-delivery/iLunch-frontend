@@ -19,18 +19,18 @@ function FloatingBox() {
                 <h2 className='text-2xl font-semibold mt-3'>Resultados de tu busqueda</h2>
                 {restaurantOptionsTwo.map((restaurant, index) => {
                   return (
-                        <>
-                            <RestaurantOptions
-                                key={`product-${index}`}
-                                imageURL={restaurant.imageURL}
-                                id={restaurant.id}
-                                name={restaurant.name}
-                                open={restaurant.open}
-                                availability={restaurant.availability}
-                                distance={restaurant.distance}
-                            />
-                            <hr className='border-gray-400'></hr>
-                        </>
+                        <div key={`restaurant-${index}`}>
+                          <RestaurantOptions
+                              key={`restaurant-${index}`}
+                              imageURL={restaurant.imageURL}
+                              id={restaurant.id}
+                              name={restaurant.name}
+                              open={restaurant.open}
+                              availability={restaurant.availability}
+                              distance={restaurant.distance}
+                          />
+                          <hr className='border-gray-400'></hr>
+                        </div>
                   )
                 })}
                 <Link href='/search/results'>
