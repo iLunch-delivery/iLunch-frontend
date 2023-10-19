@@ -31,6 +31,7 @@ export default function Home() {
         <section id='recommended-section'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
           <Carousel
+            id={1}
             items={recommendedCarousel}
             itemsPerSlide={3}
             imageHeight={36}
@@ -97,6 +98,7 @@ export default function Home() {
         <section id='discount-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Descuentos imperdibles</h2>
           <Carousel
+            id={2}
             items={discountsCarousel}
             itemsPerSlide={3}
             imageHeight={36}
@@ -106,6 +108,7 @@ export default function Home() {
         <section id='category-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Para tus antojos</h2>
           <Carousel
+            id={3}
             items={categoryCarousel}
             itemsPerSlide={4}
             imageWidth={25}

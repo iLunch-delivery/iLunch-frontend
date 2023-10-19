@@ -7,6 +7,7 @@ export interface CarouselItemProps {
 }
 
 export interface CarouselProps {
+  id: number
   items: CarouselItemProps[]
   itemsPerSlide: number
   imageHeight: number
