@@ -2,13 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 import logo from '@/assets/i-Lunch - Logo 1.png'
 
-function Input({ texto = '', id, tipo = 'text' }) {
-  return (
-    <input type={tipo} id={id} placeholder={texto} className=' focus:ring-0 focus:ring-offset-0
-    border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full placeholder:p-0 shadow-transparent focus:shadow-transparent' />
-  )
-}
-
 export default function RegisterUser() {
   return (
     <main className='flex h-full w-full p-0'>
@@ -20,14 +13,14 @@ export default function RegisterUser() {
           <span className='mt-1 text-center'>Para comenzar a disfrutar de todas las deliciosas opciones que ofrecemos, necesitamos que completes el formulario de registro a continuación y sigas unos sencillos pasos</span>
         </div>
         <form className='flex flex-col w-4/5 mb-20 text-white' >
-          <Input texto="Nombre" id='nombre' tipo="text" />
-          <Input texto="Apellido" id='apellido' tipo="text" />
-          <Input texto="Correo electrónico" id='correo' tipo="email" />
-          <Input texto="Contraseña" id='contraseña' tipo="password" />
+          <input type="text" id="nombre" placeholder="Nombre" className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full' />
+          <input type="text" id="apellido" placeholder="Apellido" className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full' />
+          <input type="email" id="correo" placeholder="Correo electrónico" className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full' />
+          <input type="password" id="contraseña" placeholder="Contraseña" className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full' />
           <span className='mt-6 text-center'>Debes ingresar tu número de teléfono</span>
           <div className='w-full inline-flex'>
             <label htmlFor="telefono" className=' inline-block mt-3 border-b-2 mr-6'>+57</label>
-            <Input texto='Número de teléfono ' id='telefono' tipo='' />
+            <input type="tel" id="telefono" placeholder="Número de teléfono" className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full' />
           </div>
           <div className="w-full mt-5">
             <input type="checkbox" id='terminos' className='bg-transparent border-white' />
