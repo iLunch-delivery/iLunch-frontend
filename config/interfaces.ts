@@ -72,6 +72,7 @@ export interface DishProps {
 export interface SelectOptionProps {
   imageURL: string
   name: string
+  selected: boolean
   action: () => void
 }
 

@@ -12,7 +12,7 @@ export default function ShoppingCart({
 }: {
   params: { userId: string }
 }) {
-  const { products, total, setDeliveryWay } = useShoppingCart()
+  const { products, total, deliveryWay, setDeliveryWay } = useShoppingCart()
   const { name, email, phone, address } = useUserInfo()
 
   return (
@@ -47,6 +47,7 @@ export default function ShoppingCart({
                     key={`receive_option-${index}`}
                     imageURL={option.imageURL}
                     name={option.name}
+                    selected={deliveryWay.name === option.name}
                     action={() => {
                       setDeliveryWay(option)
                     }}

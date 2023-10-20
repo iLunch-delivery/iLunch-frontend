@@ -1,9 +1,11 @@
 import type { SelectOptionProps } from '@/config/interfaces'
 
-function SelectOption({ imageURL, name, action }: SelectOptionProps) {
+function SelectOption({ imageURL, name, selected, action }: SelectOptionProps) {
   return (
     <div
-      className='w-32 flex flex-col justify-center items-center cursor-pointer hover:scale-110'
+      className={`w-32 flex flex-col justify-center items-center cursor-pointer hover:scale-110 ${
+        selected ? 'scale-110 ' : 'opacity-50 hover:opacity-100'
+      } `}
       onClick={() => {
         action()
       }}

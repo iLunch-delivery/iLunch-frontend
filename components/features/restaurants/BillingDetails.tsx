@@ -82,6 +82,7 @@ function BillingDetails({
                 key={`receive_option-${index}`}
                 imageURL={option.imageURL}
                 name={option.name}
+                selected={paymentMethod.name === option.name}
                 action={() => {
                   setPaymentMethod(option)
                 }}
