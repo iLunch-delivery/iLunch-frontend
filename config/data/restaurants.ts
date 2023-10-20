@@ -44,7 +44,7 @@ export const restaurants = [
       '2X1 en hamburguesas especiales',
       'Envío gratis por pedidos mayores a $50.000'
     ],
-    logoURL: '/assets/restaurant/logos/restaurant-logo-1.png',
+    logoURL: '/assets/restaurant/logos/restaurant-logo-2.png',
     bannerURL: '/assets/restaurant/banners/restaurant-banner.png',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Disponible,
@@ -65,7 +65,7 @@ export const restaurants = [
     popularDishes: ['Pizza hawaiana', 'Pizza vegetariana', 'Pizza de pollo'],
     deliveryTime: 50,
     promotions: ['Bebida gratis con tu pizza favorita tamaño familiar'],
-    logoURL: '/assets/restaurant/logos/restaurant-logo-1.png',
+    logoURL: '/assets/restaurant/logos/restaurant-logo-3.png',
     bannerURL: '/assets/restaurant/banners/restaurant-banner.png',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Pronto,
@@ -121,6 +121,7 @@ export const billingOptions = [
 export const restaurantOptions = [
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-1.png',
+    id: 1,
     name: 'Restaurante 1',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Lleno,
@@ -129,6 +130,7 @@ export const restaurantOptions = [
 
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-2.png',
+    id: 2,
     name: 'Restaurante 2',
     open: false,
     availability: RESTAURANT_AVAILABILITY.Pronto,
@@ -136,6 +138,7 @@ export const restaurantOptions = [
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-3.png',
+    id: 3,
     name: 'Restaurante 3',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Disponible,
@@ -143,14 +146,16 @@ export const restaurantOptions = [
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-1.png',
-    name: 'Restaurante 4',
+    id: 1,
+    name: 'Restaurante 1',
     open: false,
     availability: RESTAURANT_AVAILABILITY.Pronto,
     distance: 1.3
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-2.png',
-    name: 'Restaurante 5',
+    id: 2,
+    name: 'Restaurante 2',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Lleno,
     distance: 1.0
@@ -158,21 +163,24 @@ export const restaurantOptions = [
 
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-3.png',
-    name: 'Restaurante 6',
+    id: 3,
+    name: 'Restaurante 3',
     open: false,
     availability: RESTAURANT_AVAILABILITY.Pronto,
     distance: 1.1
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-1.png',
-    name: 'Restaurante 7',
+    id: 1,
+    name: 'Restaurante 1',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Disponible,
     distance: 1.2
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-2.png',
-    name: 'Restaurante 8',
+    id: 2,
+    name: 'Restaurante 2',
     open: false,
     availability: RESTAURANT_AVAILABILITY.Pronto,
     distance: 1.3
@@ -182,6 +190,7 @@ export const restaurantOptions = [
 export const restaurantOptionsTwo = [
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-1.png',
+    id: 1,
     name: 'Restaurante 1',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Lleno,
@@ -189,6 +198,7 @@ export const restaurantOptionsTwo = [
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-2.png',
+    id: 2,
     name: 'Restaurante 2',
     open: false,
     availability: RESTAURANT_AVAILABILITY.Pronto,
@@ -196,6 +206,7 @@ export const restaurantOptionsTwo = [
   },
   {
     imageURL: '/assets/restaurant/logos/restaurant-logo-3.png',
+    id: 3,
     name: 'Restaurante 3',
     open: true,
     availability: RESTAURANT_AVAILABILITY.Disponible,

@@ -11,16 +11,19 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
 import MainLayout from '@/components/layout/common/layout'
+import Link from 'next/link'
 
 export default function Home() {
   const { isLogged } = useUserInfo()
   const router = useRouter()
 
+  /*
   useEffect(() => {
     if (!isLogged) {
       router.push('/login')
     }
   }, [])
+  */
 
   return (
     <MainLayout>
@@ -56,7 +59,7 @@ export default function Home() {
                 />
                 <hr className='solid my-4 md:hidden' />
                 <div className='md:mx-2'>
-                  <h3 className='text-lg font-medium'>Restaurante</h3>
+                  <h3 className='text-lg font-medium'>Restaurante 1</h3>
                   <p className='lg:my-2'>
                     <FontAwesomeIcon icon={faLocationDot} />
                     Ubicación
@@ -70,9 +73,12 @@ export default function Home() {
                 aspernatur sint velit doloremque adipisci quibusdam eos sequi
                 sed voluptates. Voluptatibus eos repellendus doloribus?
               </p>
-              <button className='rounded-full bg-[#FB5A3E] text-white mt-8 text-lg py-2 px-9 w-fit mx-auto'>
+              <Link 
+                className='rounded-full bg-[#FB5A3E] text-white mt-8 text-lg py-2 px-9 w-fit mx-auto'
+                href={'/restaurant/1'}
+              >
                 Explorar menu
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -83,9 +89,12 @@ export default function Home() {
               Unete a nuestra red de trabajo donde podras encontrar la oferta
               perfecta para ti.
             </h4>
-            <button className='rounded-full bg-[#FB5A3E] mt-4 text-lg py-2 px-9 w-fit'>
+            <Link 
+              className='rounded-full bg-[#FB5A3E] mt-4 text-lg py-2 px-9 w-fit'
+              href='/register/candidate'
+            >
               Unete ya
-            </button>
+            </Link>
           </div>
         </section>
         <section id='discount-section' className='my-8'>
@@ -102,7 +111,7 @@ export default function Home() {
           <Carousel
             items={categoryCarousel}
             itemsPerSlide={4}
-            imageWidth={25}
+            imageWidth={24}
             imageHeight={24}
             height={48}
           />

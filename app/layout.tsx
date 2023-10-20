@@ -18,10 +18,6 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <link
-          href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css'
-          rel='stylesheet'
-        />
       </head>
       <body className={raleway.className}>
         <UserInfoProvider>{children}</UserInfoProvider>

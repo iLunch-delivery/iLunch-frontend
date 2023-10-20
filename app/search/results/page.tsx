@@ -1,9 +1,13 @@
+'use client'
+
 import Carousel from '@/components/common/Carousel'
 import { categoryCarouselTwo } from '@/config/data/carousel'
 import { restaurantOptions } from '@/config/data/restaurants'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import React from 'react'
 import MainLayout from '@/components/layout/common/layout'
+import Link from 'next/link'
+
 export default function searchingResults() {
   return (
     <MainLayout>
@@ -16,17 +20,18 @@ export default function searchingResults() {
               </h2>
               {restaurantOptions.map((restaurant, index) => {
                 return (
-                  <>
+                  <div key={`restaurant-${index}`}>
                     <RestaurantOptions
                       key={`product-${index}`}
                       imageURL={restaurant.imageURL}
+                      id={restaurant.id}
                       name={restaurant.name}
                       open={restaurant.open}
                       availability={restaurant.availability}
                       distance={restaurant.distance}
                     />
                     <hr className='border-gray-400'></hr>
-                  </>
+                  </div>
                 )
               })}
             </div>
@@ -53,20 +58,21 @@ export default function searchingResults() {
                     El destacado de la semana
                   </h2>
                 </div>
-                <button
+                <Link
                   style={{
                     background: 'none',
                     border: 'none',
                     marginBlockEnd: '20px'
                   }}
+                  href={'/restaurant/2'}
                 >
                   <img src='/assets/recomended.png' alt='recommendedButton' />
-                </button>
+                </Link>
               </div>
             </div>
             <div id='category-section' className='h-80'>
               <h2
-                className='text-2xl font-semibold'
+                className='text-2xl font-semibold h-'
                 style={{
                   marginTop: '50',
                   marginBottom: '30px',
@@ -80,9 +86,9 @@ export default function searchingResults() {
               <Carousel
                 items={categoryCarouselTwo}
                 itemsPerSlide={2}
-                imageWidth={30}
-                imageHeight={60}
-                height={56}
+                imageWidth={36}
+                imageHeight={36}
+                height={48}
               />
             </div>
           </section>

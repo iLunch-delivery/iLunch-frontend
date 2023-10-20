@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState } from 'react'
-import logo from '@/assets/i-Lunch - Logo 1.png'
+import logo from '@/public/assets/iLunch-logo.png'
 import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
 import apple from '@/public/assets/Apple - I.png'

@@ -1,8 +1,9 @@
 import type { DetailProps, DetailSubtitleProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
-function Detail({ imageURL, title, subtitle, description, button }: DetailProps) {
+function Detail({ imageURL, title, subtitle, description, button, action }: DetailProps) {
   function Subtitle({ text, iconType }: DetailSubtitleProps) {
     let Icon = <></>
     
@@ -34,7 +35,17 @@ function Detail({ imageURL, title, subtitle, description, button }: DetailProps)
             {description}
           </p>
         </div>
-        {button != null ? <button className='px-4 py-1 bg-orange-600 text-xs text-white font-semibold rounded-full border border-orange-300 hover:text-black hover:bg-orange-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2'>{button.text}</button> : null }
+        <div>
+          {button != null ?
+              <Link 
+                className='px-4 py-1 bg-orange-600 text-xs text-white font-semibold rounded-full border border-orange-300 hover:text-black hover:bg-orange-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2'
+                href={button.href}
+                onClick={action}
+              >
+                {button.text}
+              </Link>
+          : null }
+        </div>
       </div>
     </div>
   )

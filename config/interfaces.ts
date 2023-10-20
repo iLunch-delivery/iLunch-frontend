@@ -20,6 +20,7 @@ export interface DetailProps {
   subtitle?: DetailSubtitleProps
   description: string
   button?: DetailButtonProps
+  action?: () => void
 }
 
 export interface DetailPropsOffer {
@@ -31,6 +32,8 @@ export interface DetailPropsOffer {
   offerSalary?: DetailSubtitleProps
   button?: DetailButtonProps
   button2?: DetailButtonProps
+  action1?: () => void
+  action2?: () => void
 }
 
 export interface DetailSubtitleProps {
@@ -40,7 +43,7 @@ export interface DetailSubtitleProps {
 
 export interface DetailButtonProps {
   text: string
-  link: string
+  href: string
 }
 
 export interface ProductProps {
@@ -115,6 +118,7 @@ export interface UserInfoContextInterface {
 
 export interface RestaurantCardProps {
   imageURL: string
+  id: number
   name: string
   open: boolean
   availability: string
@@ -152,7 +156,7 @@ export interface DishProps {
   description: string
   button: {
     text: string
-    link: string
+    href: string
   }
 }
 

@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faHourglassHalf, faStore } from '@fortawesome/free-solid-svg-icons'
 import { type RestaurantCardProps } from '@/config/interfaces'
+import Link from 'next/link'
 
-function RestaurantOptions({ imageURL, name, open, availability, distance }: RestaurantCardProps) {
+function RestaurantOptions({ imageURL, id, name, open, availability, distance }: RestaurantCardProps) {
   let icon, color, status
   switch (availability) {
     case 'disponible':
@@ -25,7 +26,10 @@ function RestaurantOptions({ imageURL, name, open, availability, distance }: Res
   }
 
   return (
-      <button className='flex justify-between w-full items-center'> {/* Aquí he añadido la clase 'items-center' */}
+      <Link 
+        className='flex justify-between w-full items-center'
+        href={`/restaurant/${id}`}
+      >
         <div className='py-4 max-w space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6'>
           <img className='block h-16 rounded-md sm:mx-0 sm:shrink-0' src={imageURL} alt={`Restaurant Product: ${name}`}></img>
           <div className='space-y-5'>
@@ -49,7 +53,7 @@ function RestaurantOptions({ imageURL, name, open, availability, distance }: Res
             {distance} km
           </p>
         </div>
-      </button>
+      </Link>
   )
 }
 

@@ -1,11 +1,26 @@
 'use client'
+
+import type { CustomFlowbiteTheme } from 'flowbite-react';
+import { Carousel } from 'flowbite-react';
 import type { CarouselProps, CarouselItemProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
 
+const customTheme: CustomFlowbiteTheme['carousel'] = {
+  scrollContainer: {
+    base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-hidden scroll-smooth rounded-lg",
+    snap: "snap-x"
+  },
+  control: {
+    base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-800/30 group-hover:bg-gray-800/60 group-focus:outline-none group-focus:ring-4 group-focus:ring-gray-800/70 dark:bg-white/30 dark:group-hover:bg-white/60 dark:group-focus:ringwhite/70 sm:h-10 sm:w-10",
+    icon: "h-4 w-4 text-gray-800 dark:text-white sm:h-6 sm:w-6"
+  }
+}
+
 interface ProductPriceProps {
   price: string
 }
+
 function ProductPrice({ price }: ProductPriceProps) {
   return (
     <div className='flex items-center'>
@@ -16,111 +31,62 @@ function ProductPrice({ price }: ProductPriceProps) {
     </div>
   )
 }
-function Carousel({
+
+function ItemsCarousel({
   items,
   itemsPerSlide,
   imageHeight,
   imageWidth,
   height
 }: CarouselProps) {
-  const slidesItems = Array<CarouselItemProps[]>()
+  let slides = Array<CarouselItemProps[]>()
 
   for (let i = 0; i < items.length; i += itemsPerSlide) {
-    const slideItems = items.slice(i, i + itemsPerSlide)
-    slidesItems.push(slideItems)
+    const slide = items.slice(i, i + itemsPerSlide)
+    slides.push(slide)
   }
 
-  return (
-    <div
-      id='carousel'
-      className={`relative z-0 w-full h-${height ?? imageHeight}`}
-      data-carousel='slide'
-    >
-      <div className='relative h-full overflow-hidden rounded-lg mx-12'>
-        {slidesItems.map((slideItems, index) => {
-          return (
-            <div
-              key={`carousel-${index}`}
-              className='hidden ease-in-out'
-              data-carousel-item
-            >
-              <div className='flex bg-white h-full justify-around items-center'>
-                {slideItems.map((item, subindex) => {
-                  return (
-                    <div
-                      key={`carousel-item-${subindex}`}
-                      className='h-full flex flex-col justify-center items-center cursor-pointer transition ease-in-out hover:scale-110'
-                    >
-                      <img
-                        src={item.imageUrl}
-                        alt='...'
-                        className={`h-${imageHeight} w-${imageWidth}`}
-                      />
-                      {item.title != null ? (
-                        <p className='text-lg font-semibold'>{item.title}</p>
-                      ) : null}
-                      {item.subtitle != null ? (
-                        <ProductPrice price={item.subtitle} />
-                      ) : null}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )
-        })}
-      </div>
+  console.log(slides)
 
-      <button
-        type='button'
-        className='absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none'
-        data-carousel-prev
-      >
-        <span className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-800/30group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-gray-800/70 group-focus:outline-none'>
-          <svg
-            className='w-4 h-4 text-gray-800'
-            aria-hidden='true'
-            xmlns='http://www.w3.org/imageWidth0/svg'
-            fill='none'
-            viewBox='0 0 6 10'
+  return (
+    <Carousel  
+      className={`z-0 h-${height ?? imageHeight}`}
+      theme={customTheme}
+      indicators={false}
+      pauseOnHover
+    >
+      {slides.map((slide, index) => {
+        return (
+          <div
+            key={`slide-${index}`}
           >
-            <path
-              stroke='currentColor'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M5 1 1 5l4 4'
-            />
-          </svg>
-          <span className='sr-only'>Previous</span>
-        </span>
-      </button>
-      <button
-        type='button'
-        className='absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none'
-        data-carousel-next
-      >
-        <span className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-800/30group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-gray-800/70 group-focus:outline-none'>
-          <svg
-            className='w-4 h-4 text-gray-800'
-            aria-hidden='true'
-            xmlns='http://www.w3.org/imageWidth0/svg'
-            fill='none'
-            viewBox='0 0 6 10'
-          >
-            <path
-              stroke='currentColor'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='m1 9 4-4-4-4'
-            />
-          </svg>
-          <span className='sr-only'>Next</span>
-        </span>
-      </button>
-    </div>
+            <div className='flex bg-white h-full justify-around items-center overflow-hidden rounded-lg mx-12 overscroll-none'>
+              {slide.map((item, subindex) => {
+                return (
+                  <div
+                    key={`item-${subindex}`}
+                    className='h-full my-4 flex flex-col justify-center items-center cursor-pointer hover:scale-110'
+                  >
+                    <img
+                      src={item.imageUrl}
+                      alt='...'
+                      className={`h-${imageHeight} w-${imageWidth}`}
+                    />
+                    {item.title != null ? (
+                      <p className='text-lg font-semibold'>{item.title}</p>
+                    ) : null}
+                    {item.subtitle != null ? (
+                      <ProductPrice price={item.subtitle} />
+                    ) : null}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )
+      })}
+    </Carousel>
   )
 }
 
-export default Carousel
+export default ItemsCarousel

@@ -11,17 +11,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUserInfo } from '@/contexts/UserInfoContext'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 function Sidebar() {
   const { isOpen } = useChangeSidebar()
   const { name } = useUserInfo()
+  const pathname = usePathname()
 
-  const router = useRouter()
-
-  const handleNavigation = (route: string) => {
-    router.push(`/${route}`)
-  }
   return (
     <>
       <div
@@ -41,30 +38,65 @@ function Sidebar() {
             <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />
             <ul>
-              <li
-                className='flex m-2 cursor-pointer'
-                onClick={() => {
-                  handleNavigation('user-profile')
-                }}
-              >
-                <FontAwesomeIcon icon={faCircleUser} className='mr-4' />
-                <p>Tu perfil</p>
+              <li>
+                <Link 
+                  className={`
+                    flex m-2 cursor-pointer
+                    ${pathname === '/user-profile' ? 'text-blue-600' : ''}
+                  `}
+                  href='/user-profile'
+                >
+                  <FontAwesomeIcon icon={faCircleUser} className='mr-4' />
+                  <p>Tu perfil</p>
+                </Link>
               </li>
-              <li className='flex m-2 cursor-pointer'>
-                <FontAwesomeIcon icon={faMapLocationDot} className='mr-4' />
-                <p>Cerda de ti</p>
+              <li>
+                <Link 
+                  className={`
+                    flex m-2 cursor-pointer
+                    ${pathname === '/search/results' ? 'text-blue-600' : ''}
+                  `}
+                  href='/search/results'
+                >
+                  <FontAwesomeIcon icon={faMapLocationDot} className='mr-4' />
+                  <p>Cerca de ti</p>
+                </Link>
               </li>
-              <li className='flex m-2 cursor-pointer'>
-                <FontAwesomeIcon icon={faCartShopping} className='mr-4' />
-                <p>Pedidos activos</p>
+              <li>
+                <Link 
+                  className={`
+                    flex m-2 cursor-pointer
+                    ${pathname === '/order/active' ? 'text-blue-600' : ''}
+                  `}
+                  href='/order/active'
+                >
+                  <FontAwesomeIcon icon={faCartShopping} className='mr-4' />
+                  <p>Pedidos activos</p>
+                </Link>
               </li>
-              <li className='flex m-2 cursor-pointer'>
-                <FontAwesomeIcon icon={faSuitcase} className='mr-4' />
-                <p>Red de trabajo</p>
+              <li>
+                <Link 
+                  className={`
+                    flex m-2 cursor-pointer
+                    ${pathname === '/jobs/list' ? 'text-blue-600' : ''}
+                  `}
+                  href='/jobs/list'
+                >
+                  <FontAwesomeIcon icon={faSuitcase} className='mr-4' />
+                  <p>Red de trabajo</p>
+                </Link>
               </li>
-              <li className='flex m-2 cursor-pointer'>
-                <FontAwesomeIcon icon={faHeadset} className='mr-4' />
-                <p>Contáctanos</p>
+              <li>
+                <Link 
+                  className={`
+                    flex m-2 cursor-pointer
+                    ${pathname === '' ? 'text-blue-600' : ''}
+                  `}
+                  href='/'
+                >
+                  <FontAwesomeIcon icon={faHeadset} className='mr-4' />
+                  <p>Contáctanos</p>
+                </Link>
               </li>
             </ul>
           </div>

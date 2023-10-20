@@ -1,5 +1,6 @@
 import ProductPurchaseTable from '@/components/features/Tables/ProductPurchaseTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
+import OrderChat from '@/components/features/restaurants/OrderChat'
 import MainLayout from '@/components/layout/common/layout'
 import { ROLE } from '@/config/enums'
 import React from 'react'
@@ -37,7 +38,7 @@ function OrderStatus() {
             <h3 className='text-xl font-semibold mb-2'>
               ¿Tienes algun problema?
             </h3>
-            <div className='shadow-md rounded-xl px-6 py-3'>Chat</div>
+            <OrderChat />
           </div>
         </section>
         <section className='flex-1 lg:ml-8 '>
