@@ -17,13 +17,11 @@ export default function Home() {
   const { isLogged } = useUserInfo()
   const router = useRouter()
 
-  /*
   useEffect(() => {
     if (!isLogged) {
       router.push('/login')
     }
   }, [])
-  */
 
   return (
     <MainLayout>
