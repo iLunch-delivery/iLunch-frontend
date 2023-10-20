@@ -199,6 +199,6 @@ export interface jobInfoProps {
   description: string
   button: {
     text: string
-    link: string
+    href: string
   }
 }
