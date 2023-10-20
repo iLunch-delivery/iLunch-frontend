@@ -26,14 +26,14 @@ function Sidebar() {
       >
         <div
           className={`top-0 left-0 z-20 w-64 h-screen transition-all duration-500 transform -translate-x-full bg-gray-50
-           shadow-lg px-6 pb-4 pt-16 flex flex-col justify-between flex-1 ${
+           shadow-lg px-6 pb-4 pt-48 sm:pt-24 flex flex-col justify-between flex-1 ${
              isOpen ? 'translate-x-0' : ''
            }`}
         >
           <div className='flex flex-col items-center'>
             <FontAwesomeIcon
               icon={faCircleUser}
-              className='h-48 text-gray-500'
+              className='h-16 sm:h-32 lg:h-48 text-gray-500'
             />
             <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />

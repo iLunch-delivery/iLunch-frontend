@@ -81,11 +81,10 @@ function RestaurantDetails({
           </div>
         </div>
         {/* Soy el mapa soy el mapa */}
-        <div className='rounded-lg border shadow-md bg-cover bg-center row-span-4'>
-          <div
-            className='h-[400px] bg-cover bg-center'
-            style={{ backgroundImage: "url('/assets/map-mockup.png')" }}
-          ></div>
+        <div
+          className='rounded-lg border shadow-md h-full bg-cover bg-center row-span-4'
+          style={{ backgroundImage: "url('/assets/map-mockup.png')" }}
+        >
         </div>
       </div>
 

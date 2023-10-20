@@ -82,7 +82,7 @@ export default function Restaurant({
     <MainLayout>
       <section
         id='restaurant-banner'
-        className='w-full h-max background-cover'
+        className='w-full h-max bg-no-repeat bg-fixed bg-cover'
         style={{
           backgroundImage: "url('/assets/restaurant/restaurant-banner.png')"
         }}

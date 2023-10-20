@@ -12,10 +12,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export default function Home() {
   const { isLogged } = useUserInfo()
   const router = useRouter()
+
+  let cardsPerSlide = 3
+  let categoriesPerSlide = 3
+
+  const is2xl = useMediaQuery('2xl')
+  const isDesktop = useMediaQuery('xl')
+  const isLaptop = useMediaQuery('lg')
+  const isTablet = useMediaQuery('md')
+  const isLargeMobile = useMediaQuery('sm')
+
+  if (is2xl) {
+    cardsPerSlide = 3
+    categoriesPerSlide = 8
+  } else if (isLaptop) {
+    cardsPerSlide = 3
+    categoriesPerSlide = 4
+  } else if (isTablet) {
+    cardsPerSlide = 2
+    categoriesPerSlide = 3
+  } else if (isLargeMobile) {
+    cardsPerSlide = 1
+    categoriesPerSlide = 2
+  } else {
+    cardsPerSlide = 1
+    categoriesPerSlide = 1
+  }
 
   useEffect(() => {
     if (!isLogged) {
@@ -30,7 +57,7 @@ export default function Home() {
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
           <Carousel
             items={recommendedCarousel}
-            itemsPerSlide={3}
+            itemsPerSlide={cardsPerSlide}
             imageHeight={36}
             height={48}
           />
@@ -59,7 +86,7 @@ export default function Home() {
                 <div className='md:mx-2'>
                   <h3 className='text-lg font-medium'>Restaurante 1</h3>
                   <p className='lg:my-2'>
-                    <FontAwesomeIcon icon={faLocationDot} />
+                    <FontAwesomeIcon icon={faLocationDot} className='mr-1' />
                     Ubicación
                   </p>
                 </div>
@@ -87,19 +114,21 @@ export default function Home() {
               Unete a nuestra red de trabajo donde podras encontrar la oferta
               perfecta para ti.
             </h4>
-            <Link
-              className='rounded-full bg-[#FB5A3E] mt-4 text-lg py-2 px-9 w-fit'
-              href='/register/candidate'
-            >
-              Unete ya
-            </Link>
+            <div className='mt-4'>
+              <Link
+                className='rounded-full bg-[#FB5A3E] text-lg py-2 px-9 w-fit'
+                href='/register/candidate'
+              >
+                Unete ya
+              </Link>
+            </div>
           </div>
         </section>
         <section id='discount-section' className='my-8'>
           <h2 className='text-xl font-semibold mb-4'>Descuentos imperdibles</h2>
           <Carousel
             items={discountsCarousel}
-            itemsPerSlide={3}
+            itemsPerSlide={cardsPerSlide}
             imageHeight={36}
             height={48}
           />
@@ -108,7 +137,7 @@ export default function Home() {
           <h2 className='text-xl font-semibold mb-4'>Para tus antojos</h2>
           <Carousel
             items={categoryCarousel}
-            itemsPerSlide={4}
+            itemsPerSlide={categoriesPerSlide}
             imageWidth={24}
             imageHeight={24}
             height={48}

@@ -47,9 +47,3 @@ main {
     padding: 2rem 8rem 2rem 8rem;
   }
 }
-
-.background-cover {
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
