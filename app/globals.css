@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  padding: 2rem 1rem 2rem 1rem;
+}
+
+/*sm (Large Phones)*/
+@media (min-width: 40em /*640px*/) { 
+
+}
+
+/*md (Tablets)*/
+@media (min-width: 48em /*768px*/) {
+  main {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+}
+
+/*lg (Laptops)*/
+@media (min-width: 64em /*1024px*/) {
+  main {
+    padding: 2rem 4rem 2rem 4rem;
+  }
+}
+
+/*xl (Desktops)*/
+@media (min-width: 80em /*1280px*/) {
+  
+}
+
+/*2xl*/
+@media (min-width: 96em /*1536px*/) {
+  main {
+    padding: 2rem 8rem 2rem 8rem;
+  }
+}
