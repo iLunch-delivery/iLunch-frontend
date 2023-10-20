@@ -6,9 +6,21 @@ import type { CarouselProps, CarouselItemProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons'
 
+const customTheme: CustomFlowbiteTheme['carousel'] = {
+  scrollContainer: {
+    base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-hidden scroll-smooth rounded-lg",
+    snap: "snap-x"
+  },
+  control: {
+    base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-800/30 group-hover:bg-gray-800/60 group-focus:outline-none group-focus:ring-4 group-focus:ring-gray-800/70 dark:bg-white/30 dark:group-hover:bg-white/60 dark:group-focus:ringwhite/70 sm:h-10 sm:w-10",
+    icon: "h-4 w-4 text-gray-800 dark:text-white sm:h-6 sm:w-6"
+  }
+}
+
 interface ProductPriceProps {
   price: string
 }
+
 function ProductPrice({ price }: ProductPriceProps) {
   return (
     <div className='flex items-center'>
@@ -19,6 +31,7 @@ function ProductPrice({ price }: ProductPriceProps) {
     </div>
   )
 }
+
 function ItemsCarousel({
   items,
   itemsPerSlide,
@@ -34,17 +47,6 @@ function ItemsCarousel({
   }
 
   console.log(slides)
-  
-  const customTheme: CustomFlowbiteTheme['carousel'] = {
-    scrollContainer: {
-      base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-hidden scroll-smooth rounded-lg",
-      snap: "snap-x"
-    },
-    control: {
-      base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-800/30 group-hover:bg-gray-800/60 group-focus:outline-none group-focus:ring-4 group-focus:ring-gray-800/70 dark:bg-white/30 dark:group-hover:bg-white/60 dark:group-focus:ringwhite/70 sm:h-10 sm:w-10",
-      icon: "h-4 w-4 text-gray-800 dark:text-white sm:h-6 sm:w-6"
-    },
-  };
 
   return (
     <Carousel  
