@@ -1,11 +1,22 @@
+'use client'
 import ProductPurchaseTable from '@/components/features/Tables/ProductPurchaseTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import OrderChat from '@/components/features/restaurants/OrderChat'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
+import { restaurants } from '@/config/data/restaurants'
 import { ROLE } from '@/config/enums'
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 import React from 'react'
 
 function OrderStatus() {
+  const { products, total, paymentMethod, deliveryWay, restaurantId } =
+    useShoppingCart()
+
+  const restaurantInfo = restaurants.find((restaurant) => {
+    if (restaurant.id === restaurantId) {
+      return restaurant
+    }
+  })
   return (
     <MainLayout>
       <main className='flex flex-col lg:flex-row'>
@@ -30,7 +41,13 @@ function OrderStatus() {
                   preparación
                 </p>
                 <p className='font-semibold'>Tiempo de entrega estimado</p>
-                <p>XX min - XX min</p>
+                <p>
+                  {restaurantInfo?.deliveryTime} min -{' '}
+                  {restaurantInfo !== undefined
+                    ? restaurantInfo.deliveryTime + 15
+                    : ''}{' '}
+                  min
+                </p>
               </div>
             </div>
           </div>
@@ -51,21 +68,23 @@ function OrderStatus() {
 
               <div id='restaurant-info' className='flex items-center mb-8'>
                 <img
-                  src='/assets/restaurant/logos/restaurant-logo-1.png'
+                  src={restaurantInfo?.logoURL}
                   alt='restaurante-1'
                   className='w-auto h-24 mr-4'
                 />
                 <div id='restaurant-details'>
-                  <p className='font-medium '>Restaurante 1</p>
-                  <p className='text-gray-500'>Cra. x # xxx - xxx local xx</p>
-                  <p className='text-gray-500'>+57 3XX-XXX-XXXX</p>
+                  <p className='font-medium '>{restaurantInfo?.name}</p>
+                  <p className='text-gray-500'>{restaurantInfo?.adress}</p>
+                  <p className='text-gray-500'>
+                    {restaurantInfo?.city}, {restaurantInfo?.state}
+                  </p>
                 </div>
               </div>
               <div id='products-list' className='mb-8'>
                 <h3 className='text-lg font-semibold mb-2'>
                   Resumen de productos
                 </h3>
-                <ProductPurchaseTable />
+                <ProductPurchaseTable products={products} total={total} />
               </div>
               <div id='order-info' className='flex mb-8'>
                 <div id='delivery-info' className='flex-1'>
@@ -74,22 +93,22 @@ function OrderStatus() {
                   </h3>
                   <div className='flex items-center'>
                     <img
-                      src='/assets/restaurant/receive_options/receive-at-home.png'
+                      src={deliveryWay.imageURL}
                       alt='Forma de entrega'
                       className='w-auto h-12 mr-4'
                     />
-                    <p>Recibir a domicilio</p>
+                    <p>{deliveryWay.name}</p>
                   </div>
                 </div>
                 <div id='billing info' className='flex-1'>
                   <h3 className='text-lg font-semibold mb-2'>Forma de pago</h3>
                   <div className='flex items-center'>
                     <img
-                      src='/assets/restaurant/billing_options/card.png'
+                      src={paymentMethod.imageURL}
                       alt='Forma de pago'
                       className='w-auto h-12 mr-4'
                     />
-                    <p>Tarjeta</p>
+                    <p>{paymentMethod.name}</p>
                   </div>
                 </div>
               </div>

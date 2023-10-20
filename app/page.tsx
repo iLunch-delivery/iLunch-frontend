@@ -10,7 +10,7 @@ import { useUserInfo } from '@/contexts/UserInfoContext'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
@@ -98,7 +98,7 @@ export default function Home() {
                 aspernatur sint velit doloremque adipisci quibusdam eos sequi
                 sed voluptates. Voluptatibus eos repellendus doloribus?
               </p>
-              <Link 
+              <Link
                 className='rounded-full bg-[#FB5A3E] text-white mt-8 text-lg py-2 px-9 w-fit mx-auto'
                 href={'/restaurant/1'}
               >
@@ -115,7 +115,7 @@ export default function Home() {
               perfecta para ti.
             </h4>
             <div className='mt-4'>
-              <Link 
+              <Link
                 className='rounded-full bg-[#FB5A3E] text-lg py-2 px-9 w-fit'
                 href='/register/candidate'
               >

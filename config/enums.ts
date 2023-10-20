@@ -18,3 +18,9 @@ export const enum RESTAURANT_AVAILABILITY {
   Pronto = 'pronto',
   Disponible = 'disponible'
 }
+
+export const enum DELIVERY_WAY {
+  Domicilio = 'Domicilio',
+  Recoger = 'Recoger',
+  ParaLlevar = 'Para Llevar'
+}

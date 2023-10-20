@@ -5,7 +5,7 @@ import { categoryCarouselTwo } from '@/config/data/carousel'
 import { restaurantOptions } from '@/config/data/restaurants'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import React from 'react'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 

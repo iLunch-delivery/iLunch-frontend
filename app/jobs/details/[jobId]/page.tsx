@@ -11,7 +11,7 @@ import RestaurantDetails from '@/components/features/restaurants/RestaurantDetai
 import { restaurants } from '@/config/data/restaurants'
 import { jobReceivedOffers } from '@/config/data/jobs'
 import type { RestaurantInfoProps, jobInfoProps } from '@/config/interfaces'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 
 export default function JobOffer({ params }: { params: { jobId: string } }) {

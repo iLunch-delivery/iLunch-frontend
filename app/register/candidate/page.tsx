@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import logo from '@/public/assets/iLunchN.png'
 import UserFilesTable from '@/components/features/Tables/UserFilesTable'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
 import type { File } from '@/config/interfaces'
 
 export default function RegisterCandidate() {

@@ -1,6 +1,9 @@
 'use client'
-
-import { faBars, faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBars,
+  faCartShopping,
+  faMagnifyingGlass
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import { useChangeSidebar } from '@/contexts/SidebarContext'
@@ -8,22 +11,34 @@ import React, { useRef, useState, useEffect } from 'react'
 import SearchModal from './SearchModal'
 import Link from 'next/link'
 import { useUserInfo } from '@/contexts/UserInfoContext'
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from 'next/navigation'
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 
 function Header() {
+  const { products } = useShoppingCart()
   const { idNumber } = useUserInfo()
   const { isOpen, setIsOpen } = useChangeSidebar()
-  const [ isModalOpen, setIsModalOpen] = useState(false)
   const pathname = usePathname()
+
+  const router = useRouter()
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen)
   }
 
+  const handleCartNavigation = () => {
+    if (products.length > 0) {
+      router.push(`/shopping_cart/${idNumber}`)
+    } else {
+      alert('El carrito está vacío')
+    }
+  }
+
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
-  
 
   return (
     <header className='fixed z-50 px-5 py-2 h-40 bg-blue-600 flex flex-col justify-between items-center w-full gap-2 sm:h-16 sm:flex-row'>
@@ -59,13 +74,17 @@ function Header() {
         <SearchModal isOpen={isModalOpen} handleOpen={handleModalOpen} />
       </section>
       <section>
-        <Link href={`/shopping_cart/${idNumber}`}>
+        <button
+          onClick={() => {
+            handleCartNavigation()
+          }}
+        >
           <FontAwesomeIcon
             icon={faCartShopping}
             className='h-5'
             color='white'
           />
-        </Link>
+        </button>
       </section>
     </header>
   )

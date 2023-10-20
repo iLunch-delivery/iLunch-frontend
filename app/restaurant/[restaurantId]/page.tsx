@@ -14,8 +14,9 @@ import type { DishProps, RestaurantInfoProps } from '@/config/interfaces'
 import { restaurants } from '@/config/data/restaurants'
 import RestaurantDetails from '@/components/features/restaurants/RestaurantDetails'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 
 export default function Restaurant({
   params
@@ -24,7 +25,23 @@ export default function Restaurant({
 }) {
   const [menu, setMenu] = useState<DishProps[]>()
   const [restaurantInfo, setRestaurantInfo] = useState<RestaurantInfoProps>()
+  const { products, setProducts, total, setTotal, setRestaurantId } =
+    useShoppingCart()
 
+  const handleAddProduct = (product: DishProps) => {
+    setProducts([
+      {
+        name: product.title,
+        price: product.price,
+        amount: 1,
+        imageURL: product.imageURL
+      },
+      ...products
+    ])
+    setTotal(total + product.price)
+    setRestaurantId(Number(params.restaurantId))
+    alert('Producto agregado al carrito')
+  }
   useEffect(() => {
     const menu =
       menus.find((menu) => {
@@ -116,6 +133,10 @@ export default function Restaurant({
                   subtitle={product?.subtitle ?? ''}
                   description={product?.description ?? ''}
                   button={product?.button ?? ''}
+                  price={product?.price ?? 0}
+                  action={() => {
+                    handleAddProduct(product)
+                  }}
                 />
               )
             })}

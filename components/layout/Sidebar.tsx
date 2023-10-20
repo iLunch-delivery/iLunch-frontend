@@ -39,7 +39,7 @@ function Sidebar() {
             <hr className='solid w-full mb-2' />
             <ul>
               <li>
-                <Link 
+                <Link
                   className={`
                     flex m-2 cursor-pointer
                     ${pathname === '/user-profile' ? 'text-blue-600' : ''}
@@ -51,7 +51,7 @@ function Sidebar() {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   className={`
                     flex m-2 cursor-pointer
                     ${pathname === '/search/results' ? 'text-blue-600' : ''}
@@ -63,7 +63,7 @@ function Sidebar() {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   className={`
                     flex m-2 cursor-pointer
                     ${pathname === '/order/active' ? 'text-blue-600' : ''}
@@ -75,7 +75,7 @@ function Sidebar() {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   className={`
                     flex m-2 cursor-pointer
                     ${pathname === '/jobs/list' ? 'text-blue-600' : ''}
@@ -84,18 +84,6 @@ function Sidebar() {
                 >
                   <FontAwesomeIcon icon={faSuitcase} className='mr-4' />
                   <p>Red de trabajo</p>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  className={`
-                    flex m-2 cursor-pointer
-                    ${pathname === '' ? 'text-blue-600' : ''}
-                  `}
-                  href='/'
-                >
-                  <FontAwesomeIcon icon={faHeadset} className='mr-4' />
-                  <p>Contáctanos</p>
                 </Link>
               </li>
             </ul>

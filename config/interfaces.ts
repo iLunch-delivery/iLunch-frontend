@@ -19,6 +19,7 @@ export interface DetailProps {
   title: string
   subtitle?: DetailSubtitleProps
   description: string
+  price: number
   button?: DetailButtonProps
   action?: () => void
 }
@@ -46,16 +47,33 @@ export interface DetailButtonProps {
   href: string
 }
 
-export interface ProductProps {
+export interface ProductPurchaseProps {
   imageURL: string
   name: string
   price: number
   amount: number
 }
 
+export interface DishProps {
+  imageURL: string
+  title: string
+  price: number
+  subtitle: {
+    text: string
+    iconType: string
+  }
+  description: string
+  button: {
+    text: string
+    href: string
+  }
+}
+
 export interface SelectOptionProps {
   imageURL: string
   name: string
+  selected: boolean
+  action: () => void
 }
 
 export interface UserInfo {
@@ -116,6 +134,19 @@ export interface UserInfoContextInterface {
   setIsLogged: (isLogged: boolean) => void
 }
 
+export interface ShoppingCartInterface {
+  products: ProductPurchaseProps[]
+  setProducts: (products: ProductPurchaseProps[]) => void
+  total: number
+  setTotal: (total: number) => void
+  deliveryWay: { imageURL: string; name: string }
+  setDeliveryWay: (deliveryWay: { imageURL: string; name: string }) => void
+  paymentMethod: { imageURL: string; name: string }
+  setPaymentMethod: (paymentMethod: { imageURL: string; name: string }) => void
+  restaurantId: number
+  setRestaurantId: (restaurantId: number) => void
+}
+
 export interface RestaurantCardProps {
   imageURL: string
   id: number
@@ -144,20 +175,6 @@ export interface RestaurantInfoProps {
   open: boolean
   availability: RESTAURANT_AVAILABILITY
   distance: number
-}
-
-export interface DishProps {
-  imageURL: string
-  title: string
-  subtitle: {
-    text: string
-    iconType: string
-  }
-  description: string
-  button: {
-    text: string
-    href: string
-  }
 }
 
 export interface jobInfoProps {
