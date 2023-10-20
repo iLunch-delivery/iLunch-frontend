@@ -15,11 +15,13 @@ export interface CarouselProps {
 }
 
 export interface DetailProps {
+  id?: number
+  restaurantId?: number
   imageURL: string
   title: string
   subtitle?: DetailSubtitleProps
   description: string
-  price: number
+  price?: number
   button?: DetailButtonProps
   action?: () => void
 }
@@ -44,7 +46,7 @@ export interface DetailSubtitleProps {
 
 export interface DetailButtonProps {
   text: string
-  href: string
+  href?: string
 }
 
 export interface ProductPurchaseProps {
@@ -65,7 +67,6 @@ export interface DishProps {
   description: string
   button: {
     text: string
-    href: string
   }
 }
 
@@ -109,10 +110,11 @@ export interface SidebarContextInterface {
   setIsOpen: (isOpen: boolean) => void
 }
 
-export interface SearchBarContextInterface {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
+export interface SearchContextInterface {
+  search: Array<RestaurantInfoProps>
+  setSearch: (search: Array<RestaurantInfoProps>) => void
 }
+
 export interface UserInfoContextInterface {
   name: string
   email: string

@@ -22,7 +22,6 @@ export default function Home() {
   let categoriesPerSlide = 3
 
   const is2xl = useMediaQuery('2xl')
-  const isDesktop = useMediaQuery('xl')
   const isLaptop = useMediaQuery('lg')
   const isTablet = useMediaQuery('md')
   const isLargeMobile = useMediaQuery('sm')

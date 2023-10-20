@@ -2,9 +2,9 @@
 
 import { Modal } from 'flowbite-react';
 import React from 'react'
-import { restaurantOptionsTwo } from '@/config/data/restaurants'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import Link from 'next/link'
+import { useSearch } from '@/contexts/SearchContext'
 
 function SearchModal({
   isOpen,
@@ -13,18 +13,22 @@ function SearchModal({
   isOpen: boolean,
   handleOpen: () => void
 }) {
+  // Search state context
+  const { search } = useSearch()
+  const shortSearch = search.slice(0, 2)
+
   return(
     <Modal dismissible show={isOpen} onClose={handleOpen}>
       <Modal.Header className='text-2xl font-semibold'>
         Resultados de tu busqueda
       </Modal.Header>
       <Modal.Body>
-        {restaurantOptionsTwo.map((restaurant, index) => {
+        {shortSearch.map((restaurant, index) => {
           return (
             <div key={`restaurant-${index}`}>
               <RestaurantOptions
                 key={`restaurant-${index}`}
-                imageURL={restaurant.imageURL}
+                imageURL={restaurant.logoURL}
                 id={restaurant.id}
                 name={restaurant.name}
                 open={restaurant.open}

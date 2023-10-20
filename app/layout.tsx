@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import { UserInfoProvider } from '@/contexts/UserInfoContext'
 import { ShoppingCartProvider } from '@/contexts/ShoppingCartContext'
+import { SearchProvider } from '@/contexts/SearchContext'
 
 const raleway = Raleway({ subsets: ['latin'] })
 
@@ -22,7 +23,11 @@ export default function RootLayout({
 
       <body className={raleway.className}>
         <ShoppingCartProvider>
-          <UserInfoProvider>{children}</UserInfoProvider>
+          <UserInfoProvider>
+            <SearchProvider>
+              {children}
+            </SearchProvider>
+          </UserInfoProvider>
         </ShoppingCartProvider>
       </body>
     </html>
