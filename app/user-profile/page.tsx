@@ -69,9 +69,9 @@ function UserProfile() {
         </section>
         <section
           id='info-section'
-          className='flex flex-col mx-2 my-16 md:mx-8 lg:flex-row '
+          className='flex flex-col mx-2 my-16 md:mx-8 gap-8 lg:flex-row'
         >
-          <div className='flex-1 mx-4 flex flex-col mb-8 lg:m-0'>
+          <div className='flex flex-col basis-1/2'>
             <h2 className='text-2xl font-semibold mb-4'>Tus datos</h2>
             <div className='flex items-start shadow-md rounded-xl p-4 h-full'>
               <UserInfoTable
@@ -81,7 +81,7 @@ function UserProfile() {
               />
             </div>
           </div>
-          <div className='flex-1 mx-4 flex flex-col mb-8 lg:m-0 '>
+          <div className='flex flex-col basis-1/2'>
             <h2 className='text-2xl font-semibold mb-4'>Tus archivos</h2>
             <div className='flex flex-col shadow-md rounded-xl p-4 h-full'>
               <h3 className='text-lg font-semibold mb-8'>Archivos adjuntos</h3>
