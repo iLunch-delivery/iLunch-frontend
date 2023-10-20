@@ -7,8 +7,28 @@ import RestaurantOptions from '@/components/features/restaurants/RestaurantOptio
 import React from 'react'
 import MainLayout from '@/components/layout/common/layout'
 import Link from 'next/link'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export default function searchingResults() {
+  let itemsPerSlide = 2
+
+  const is2xl = useMediaQuery('2xl')
+  const isLaptop = useMediaQuery('lg')
+  const isTablet = useMediaQuery('md')
+  const isLargeMobile = useMediaQuery('sm')
+
+  if (is2xl) {
+    itemsPerSlide = 3
+  } else if (isLaptop) {
+    itemsPerSlide = 2
+  } else if (isTablet) {
+    itemsPerSlide = 1
+  } else if (isLargeMobile) {
+    itemsPerSlide = 2
+  } else {
+    itemsPerSlide = 1
+  }
+
   return (
     <MainLayout>
       <main>
@@ -85,7 +105,7 @@ export default function searchingResults() {
               </h2>
               <Carousel
                 items={categoryCarouselTwo}
-                itemsPerSlide={2}
+                itemsPerSlide={itemsPerSlide}
                 imageWidth={36}
                 imageHeight={36}
                 height={48}

@@ -13,7 +13,7 @@ export default function MainLayout({
       <SidebarProvider>
         <Header />
         <Sidebar />
-        <div id='spacer' className='px-5 py-2 h-12 w-full'>
+        <div id='spacer' className='px-5 py-2 h-40 w-full sm:h-16'>
           &nbsp;
         </div>
       </SidebarProvider>
