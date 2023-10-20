@@ -50,6 +50,7 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
               style={{ color: '#b9b9b9' }}
             />
           </Link>
+          {/* Info de la oferta */}
           <div className='flex flex-col items-center space-y-2 text-center text-white mb-12'>
             <img
               className='block h-32 rounded-full mx-0 shrink-0'
@@ -86,6 +87,7 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
         </div>
       </section>
       <main>
+        {/* Recuadro de dudas */}
         <section>
           <h1 className='text-xl font-semibold p-2'>
             ¿Tienes alguna pregunta?
@@ -101,6 +103,7 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
           </div>
         </section>
         <section>
+          {/* Traemos componente de la info de los restaurantes */}
           <RestaurantDetails restaurantInfo={restaurantInfo} />
         </section>
       </main>

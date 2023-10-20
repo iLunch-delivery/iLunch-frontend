@@ -8,8 +8,10 @@ export default function JobsList() {
   return (
     <MainLayout>
       <main>
+        {/* Seccion de ofertas recibidas */}
         <section id='jobsOffers'>
           <h2 className='text-2xl font-semibold'>Ofertas recibidas</h2>
+          {/* Listan ofertas recibidas */}
           {jobReceivedOffers.map((product, index) => {
             return (
               <OfferReceived
@@ -28,6 +30,7 @@ export default function JobsList() {
         </section>
         <section id='jobsOffers'>
           <h2 className='text-2xl font-semibold'>Ofertas disponibles</h2>
+          {/* Listan ofertas disponibles */}
           {jobAvailableOffers.map((jobs, index) => {
             return (
               <Detail
