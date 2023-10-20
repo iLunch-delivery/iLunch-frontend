@@ -2,14 +2,17 @@
 
 import Carousel from '@/components/common/Carousel'
 import { categoryCarouselTwo } from '@/config/data/carousel'
-import { restaurantOptions } from '@/config/data/restaurants'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import React from 'react'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useSearch } from '@/contexts/SearchContext'
 
 export default function searchingResults() {
+  // Search state context
+  const { search } = useSearch()
+
   let itemsPerSlide = 2
 
   const is2xl = useMediaQuery('2xl')
@@ -38,12 +41,12 @@ export default function searchingResults() {
               <h2 className='text-2xl font-semibold'>
                 Resultados de tu busqueda
               </h2>
-              {restaurantOptions.map((restaurant, index) => {
+              {search.map((restaurant, index) => {
                 return (
                   <div key={`restaurant-${index}`}>
                     <RestaurantOptions
                       key={`product-${index}`}
-                      imageURL={restaurant.imageURL}
+                      imageURL={restaurant.logoURL}
                       id={restaurant.id}
                       name={restaurant.name}
                       open={restaurant.open}
