@@ -25,7 +25,7 @@ function UserFilesTable({
               className='border-b border-b-gray-300 h-12'
             >
               <td className='font-medium w-36'>{file.name}</td>
-              <td className=''>{file.description}</td>
+              <td className='py-4'>{file.description}</td>
               <td className='font-medium w-16 text-center'>{file.weight}</td>
               {isEditing && (
                 <td className='font-medium w-16 text-center '>
