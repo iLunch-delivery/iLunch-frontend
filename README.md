@@ -1,9 +1,9 @@
 ## Equipo
 
 - Andrés Aparicio Mestre
+- David Mateo García Vallejo
 - José David Cardona Soto
 - Manuel Alejandro Gallego Jiménez
-- David Mateo García Vallejo
 - Maria Paula Duque Muñoz
 
 ## Sobre el trabajo
@@ -18,7 +18,7 @@
 
 1. Ubicarse al interior del repositorio
 
-2. instalar los paquetes necesarios:
+2. Instalar los paquetes necesarios:
 
 ```bash
 npm install
