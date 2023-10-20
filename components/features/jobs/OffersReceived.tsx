@@ -45,23 +45,51 @@ function Offer({ imageURL, title, subtitle, description,  offerTime, offerSalary
           </div>
           <div>
             {button != null ? 
-              <Link 
-                className='me-2 px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
-                href={button.href}
-                onClick={action1}
-              >
-                {button.text}
-              </Link> 
-            : null }
+              button.href != null ? (
+                <div>
+                  <Link
+                    className='me-2 px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
+                    href={button.href}
+                  >
+                    {button.text}
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    className='me-2 px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
+                    onClick={() => {
+                      action1?.()
+                    }}
+                  >
+                    {button.text}
+                  </button>
+                </div>
+              )
+            : null}
             {button2 != null ? 
-              <Link 
-                className='me-2 px-4 py-1 bg-red-600 text-xs text-white rounded-full border border-red-600 hover:bg-red-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2'
-                href={button2.href}
-                onClick={action2}
-              >
-                {button2.text}
-              </Link>
-            : null }
+              button2.href != null ? (
+                <div>
+                  <Link
+                    className='me-2 px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
+                    href={button2.href}
+                  >
+                    {button2.text}
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    className='me-2 px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
+                    onClick={() => {
+                      action2?.()
+                    }}
+                  >
+                    {button2.text}
+                  </button>
+                </div>
+              )
+            : null}
           </div>
         </div>
       </div>

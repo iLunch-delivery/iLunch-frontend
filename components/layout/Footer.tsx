@@ -5,7 +5,6 @@ import {
   faTwitter
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 function Footer() {
