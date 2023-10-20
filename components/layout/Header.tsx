@@ -8,24 +8,36 @@ import React, { useRef, useState, useEffect } from 'react'
 import FloatingBox from './FloatingBox'
 import Link from 'next/link'
 import { useUserInfo } from '@/contexts/UserInfoContext'
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from 'next/navigation'
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 
 function Header() {
+  const { products } = useShoppingCart()
   const { idNumber } = useUserInfo()
   const { isOpen, setIsOpen } = useChangeSidebar()
   const [isBoxVisible, setIsBoxVisible] = useState(false)
   const boxRef = useRef(null)
-  const pathname = usePathname() 
+  const pathname = usePathname()
+
+  const router = useRouter()
+
   const handleClickOutside = (event: { target: any }) => {
     if (boxRef.current && !boxRef.current.contains(event.target)) {
       setIsBoxVisible(false)
     }
   }
 
+  const handleCartNavigation = () => {
+    if (products.length > 0) {
+      router.push(`/shopping_cart/${idNumber}`)
+    } else {
+      alert('El carrito está vacío')
+    }
+  }
+
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
-  
 
   return (
     <header className='fixed z-50 flex justify-between px-5 py-2 bg-blue-600 items-center h-12 w-full'>
@@ -48,39 +60,45 @@ function Header() {
           />
         </Link>
       </section>
-        <section className='w-1/2'>
-            <input
-                type='text'
-                className='rounded-full w-full font-thin px-4'
-                placeholder='Busca un restaurante o platillo'
-                onClick={() => { setIsBoxVisible(true) }}
-            />
-            {isBoxVisible && (
-                <div
-                    style={{
-                      position: 'fixed',
-                      top: '0',
-                      left: '0',
-                      width: '100%',
-                      height: '100%',
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)'
-                    }}
-                    onClick={handleClickOutside}
-                >
-                    <div ref={boxRef}>
-                        <FloatingBox />
-                    </div>
-                </div>
-            )}
-        </section>
+      <section className='w-1/2'>
+        <input
+          type='text'
+          className='rounded-full w-full font-thin px-4'
+          placeholder='Busca un restaurante o platillo'
+          onClick={() => {
+            setIsBoxVisible(true)
+          }}
+        />
+        {isBoxVisible && (
+          <div
+            style={{
+              position: 'fixed',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)'
+            }}
+            onClick={handleClickOutside}
+          >
+            <div ref={boxRef}>
+              <FloatingBox />
+            </div>
+          </div>
+        )}
+      </section>
       <section>
-        <Link href={`/shopping_cart/${idNumber}`}>
+        <button
+          onClick={() => {
+            handleCartNavigation()
+          }}
+        >
           <FontAwesomeIcon
             icon={faCartShopping}
             className='h-5'
             color='white'
           />
-        </Link>
+        </button>
       </section>
     </header>
   )

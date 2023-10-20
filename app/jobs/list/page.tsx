@@ -1,6 +1,6 @@
 import Detail from '@/components/common/Detail'
 import OfferReceived from '@/components/features/jobs/OffersReceived'
-import MainLayout from '@/components/layout/common/layout'
+import MainLayout from '@/components/layout/common/MainLayout'
 
 import { jobAvailableOffers, jobReceivedOffers } from '@/config/data/jobs'
 

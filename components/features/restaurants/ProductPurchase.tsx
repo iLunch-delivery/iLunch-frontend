@@ -1,4 +1,4 @@
-import type { ProductProps } from '@/config/interfaces'
+import type { ProductPurchaseProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faMoneyCheckDollar,
@@ -7,7 +7,12 @@ import {
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
 
-function ProductPurchase({ imageURL, name, price, amount }: ProductProps) {
+function ProductPurchase({
+  imageURL,
+  name,
+  price,
+  amount
+}: ProductPurchaseProps) {
   return (
     <div className='flex justify-between'>
       <div className='py-4 max-w space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6'>
@@ -25,7 +30,7 @@ function ProductPurchase({ imageURL, name, price, amount }: ProductProps) {
                 style={{ color: '#808080' }}
               />
               <p className='inline px-2 text-xs text-slate-500 font-semibold'>
-                COP ${price.toLocaleString('es')}
+                COP ${price}
               </p>
             </div>
             <div className='flex items-center'>

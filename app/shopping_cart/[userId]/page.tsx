@@ -1,22 +1,27 @@
+'use client'
 import ProductPurchase from '@/components/features/restaurants/ProductPurchase'
 import BillingDetails from '@/components/features/restaurants/BillingDetails'
-import OrderStatusChat from '@/components/features/restaurants/OrderChat'
 import SelectOption from '@/components/common/SelectOption'
-import { shoppingCart, orderReceiveOptions } from '@/config/data/restaurants'
-import MainLayout from '@/components/layout/common/layout'
+import { DELIVERY_OPTIONS } from '@/config/data/constants'
+import MainLayout from '@/components/layout/common/MainLayout'
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 
 export default function ShoppingCart({
   params
 }: {
   params: { userId: string }
 }) {
+  const { products, total, setDeliveryWay } = useShoppingCart()
+  const { name, email, phone, address } = useUserInfo()
+
   return (
     <MainLayout>
       <main className='grid md:grid-cols-2 gap-12'>
         <section id='purchaseSummary'>
           <div id='productSummary'>
             <h2 className='text-2xl font-semibold'>Resumen de compra</h2>
-            {shoppingCart.map((product, index) => {
+            {products.map((product, index) => {
               return (
                 <>
                   <ProductPurchase
@@ -36,12 +41,15 @@ export default function ShoppingCart({
               ¿Cómo quieres recibir el pedido?
             </h3>
             <div className='py-4 flex flex-col justify-between items-start space-y-4 sm:flex-row sm:space-y-0'>
-              {orderReceiveOptions.map((option, index) => {
+              {DELIVERY_OPTIONS.map((option, index) => {
                 return (
                   <SelectOption
                     key={`receive_option-${index}`}
                     imageURL={option.imageURL}
                     name={option.name}
+                    action={() => {
+                      setDeliveryWay(option)
+                    }}
                   />
                 )
               })}
@@ -65,7 +73,10 @@ export default function ShoppingCart({
           className='shadow-md shadow-slate-500 rounded-xl px-6 py-3'
         >
           <h2 className='text-2xl font-semibold'>Detalles de facturación</h2>
-          <BillingDetails />
+          <BillingDetails
+            total={total}
+            userInfo={{ name, email, phone, address }}
+          />
         </section>
       </main>
     </MainLayout>
