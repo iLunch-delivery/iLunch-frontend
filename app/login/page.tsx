@@ -11,6 +11,7 @@ import { userData } from '@/config/data/users'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
 import { ROLE } from '@/config/enums'
+import Link from 'next/link'
 
 export default function Login() {
   const router = useRouter()
@@ -54,14 +55,14 @@ export default function Login() {
   }
   return (
     <main className='flex h-full w-full p-0'>
-      <section className='form-section bg-blue-700 w-1/2 flex flex-col flex-1 items-center justify-around py-2'>
+      <section className='form-section bg-blue-700 w-1/2 flex flex-col flex-1 items-center justify-around py-2'> {/* Se crea la sección del formulario para logearse */ }
         <Image src={logo} alt='iLunch Logo' className='h-24 w-auto' />
         <form
           className=' flex flex-col w-1/2'
           onSubmit={(e) => {
             handleLogin(e)
           }}
-        >
+        > {/* Se comprueba que los datos ingresados sean los correctos */}
           <input
             type='email'
             placeholder='Correo electrónico'
@@ -70,7 +71,7 @@ export default function Login() {
             onChange={(e) => {
               setInputEmail(e.target.value)
             }}
-          />
+          /> {/* Se guarda el email para comprobación de información correcta de login */}
           <input
             type='password'
             placeholder='Contraseña'
@@ -79,31 +80,34 @@ export default function Login() {
             onChange={(e) => {
               setPassword(e.target.value)
             }}
-          />
+          /> {/* Se guarda la contraseña para comprobación de información correcta de login */}
           <button
             type='submit'
-            className=' mt-10 p-2 text-white rounded-full border-2 border-white  w-1/2  self-center'
+            className=' mt-10 p-2 text-white rounded-full border-2 border-white sm:w-full lg:w-1/2  self-center'
           >
             Iniciar sesión
           </button>
-          <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 w-1/2 self-center shadow-lg inline-flex flex-row '>
+          <button className=' mt-5 p-2 text-white rounded-full border-2 bg-blue-600 border-blue-600 sm:w-full lg:w-1/2 self-center shadow-lg inline-flex flex-row '>
             <Image
               className='w-6 flex self-center mr-6'
               src={google}
               loading='lazy'
               alt='google logo'
             />
-            Ingresa con google
+            Ingresa con google {/* El inicio de sesión con google será implemetando después */}
           </button>
-          <div className=' text-white flex flex-col mt-24 items-center'>
-            <p className='flex'>¿Aún no estás registrado?</p>
-            <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/2 shadow-lg '>
-              ¡Regístrate!
-            </button>
-          </div>
         </form>
+        <div className=' text-white flex flex-col items-center'>
+          <p className='flex text-center'>¿Aún no estás registrado?</p>
+          <Link 
+            className=' mt-3 p-2 text-white text-center rounded-full border-2 self-center bg-orange-600 border-orange-600 sm:w-full lg:w-fit shadow-lg '
+            href='/register/user'
+          >
+            ¡Regístrate!
+          </Link>
+        </div>
       </section>
-      <section className='banner-section w-1/2 flex-col items-center justify-end flex-1 hidden md:flex'>
+      <section className='banner-section w-1/2 flex-col items-center justify-end flex-1 hidden md:flex'>  {/* Sección publicitaria de la app. La appa no existe en realidad. No se da prioridad en baja resoluciones debbido a que lo importante es logearse */}
         <Image className='h-2/3 w-auto' src={mobile} alt='Mobile App' />
         <div className='mt-8'>
           <h2 className=' font-semibold text-xl text-blue-700 '>

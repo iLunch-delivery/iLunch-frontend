@@ -1,7 +1,7 @@
 'use client'
 
-import type { SearchContextInterface } from '@/config/interfaces'
 import { createContext, useContext, useState } from 'react'
+import type { SearchContextInterface } from '@/config/interfaces'
 import { RestaurantInfoProps } from '@/config/interfaces'
 
 const SearchContext = createContext<SearchContextInterface>({

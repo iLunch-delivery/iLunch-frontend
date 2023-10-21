@@ -14,6 +14,7 @@ function UserInfoTable({
   role: string
   voucher: boolean
 }) {
+  // Contexto para los datos del usuario
   const {
     name,
     email,
@@ -30,10 +31,12 @@ function UserInfoTable({
     setIdType
   } = useUserInfo()
 
+  // Función para seleccionar el tipo de ID
   const handleSelectIdType = (idType: string) => {
     setIdType(idType)
   }
 
+  // Layyout cuando la tabla se debe mostrar en el resumen de la orden
   if (voucher) {
     return (
       <table className='w-full border-spacing-y-5 border-separate'>
@@ -58,6 +61,8 @@ function UserInfoTable({
       </table>
     )
   } else {
+    // Layout cuando la tabla se debe mostrar en el perfil del usuario
+    // Se controla la edición de los datos
     return (
       <table className='w-full border-spacing-y-5 border-separate'>
         <tbody>
