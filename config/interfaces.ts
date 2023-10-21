@@ -12,6 +12,7 @@ export interface CarouselProps {
   imageHeight: number
   imageWidth?: number
   height?: number
+  itemSearch?: (categorySearch: string) => void
 }
 
 export interface DetailProps {
