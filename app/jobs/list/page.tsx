@@ -17,7 +17,6 @@ export default function JobsList() {
       setJobsReceived(jobsReceived.filter((jobReceived) => jobReceived.id !== jobId))
       alert('Se ha notificado al restaurante que has rechazado la oferta.')
     }
-    console.log(jobsReceived)
   }
 
   return (

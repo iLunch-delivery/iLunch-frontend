@@ -37,7 +37,8 @@ function ItemsCarousel({
   itemsPerSlide,
   imageHeight,
   imageWidth,
-  height
+  height,
+  itemSearch
 }: CarouselProps) {
   let slides = Array<CarouselItemProps[]>()
 
@@ -45,8 +46,6 @@ function ItemsCarousel({
     const slide = items.slice(i, i + itemsPerSlide)
     slides.push(slide)
   }
-
-  console.log(slides)
 
   return (
     <Carousel  
@@ -66,6 +65,11 @@ function ItemsCarousel({
                   <div
                     key={`item-${subindex}`}
                     className='h-full my-4 flex flex-col justify-center items-center cursor-pointer hover:scale-110'
+                    onClick={() => {
+                      item.title != null
+                      ? itemSearch?.(item.title)
+                      : null
+                    }}
                   >
                     <img
                       src={item.imageUrl}

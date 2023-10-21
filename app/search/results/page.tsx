@@ -8,10 +8,12 @@ import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSearch } from '@/contexts/SearchContext'
+import { RestaurantInfoProps } from '@/config/interfaces'
+import { restaurants } from '@/config/data/restaurants'
 
 export default function searchingResults() {
   // Search state context
-  const { search } = useSearch()
+  const { search, setSearch } = useSearch()
 
   let itemsPerSlide = 2
 
@@ -30,6 +32,34 @@ export default function searchingResults() {
     itemsPerSlide = 2
   } else {
     itemsPerSlide = 1
+  }
+
+  // Search handler
+  const handleSearch = (categorySearch: string) => {
+    const searchRestaurants = Array<RestaurantInfoProps>()
+
+    // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
+    restaurants.map((restaurant) => {
+      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar 
+        la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
+      const search = categorySearch.trim().toLowerCase()
+
+      // Para cada restaurante se itera sobre sus categorias de comida
+      restaurant.categories.map((category) => {
+        if (category.toLowerCase().includes(search)) {
+          searchRestaurants.push(restaurant)
+          return
+        }
+      })
+    })
+
+    /* En caso de haber resultados, se actualiza el context para la busqueda y poder 
+      accederla desde la página de los resultados completos*/
+    if (searchRestaurants.length > 0) {
+      setSearch(searchRestaurants)
+    } else {
+      alert('No se han encontrado resultados')
+    }
   }
 
   return (
@@ -118,6 +148,7 @@ export default function searchingResults() {
                 imageWidth={36}
                 imageHeight={36}
                 height={48}
+                itemSearch={handleSearch}
               />
             </div>
           </section>

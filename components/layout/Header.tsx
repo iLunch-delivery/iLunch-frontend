@@ -26,7 +26,7 @@ function Header() {
   const { isOpen, setIsOpen } = useChangeSidebar()
 
   // Search results states
-  const { search, setSearch } = useSearch()
+  const { setSearch } = useSearch()
   const [inputSearch, setInputSearch] = useState('')
   
   // Search Modal state
