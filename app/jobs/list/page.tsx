@@ -25,7 +25,11 @@ export default function JobsList() {
       <main>
         {/* Seccion de ofertas recibidas */}
         <section id='jobsOffers'>
-          <h2 className='text-2xl font-semibold'>Ofertas recibidas</h2>
+          {jobsReceived.length > 0 ? (
+            <h2 className='text-2xl font-semibold'>Ofertas recibidas</h2>
+          ) : (
+            <h2 className='text-2xl font-semibold text-red-700 mb-4 '>No tienes ofertas recibidas</h2>
+          )}
           {/* Listan ofertas recibidas */}
           {jobsReceived.map((jobReceived, index) => {
             return (

@@ -15,7 +15,7 @@ export const JobsReceivedProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [jobsReceived, setJobsReceived] = useState(Array<JobReceivedInfoProps>)
+  const [jobsReceived, setJobsReceived] = useState(jobReceivedOffers)
 
   return (
     <JobsReceivedContext.Provider value={{ jobsReceived, setJobsReceived }}>

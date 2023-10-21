@@ -1,7 +1,7 @@
 'use client'
 
 import Carousel from '@/components/common/Carousel'
-import { categoryCarouselTwo } from '@/config/data/carousel'
+import { categoryCarousel } from '@/config/data/carousel'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import React from 'react'
 import MainLayout from '@/components/layout/common/MainLayout'
@@ -38,9 +38,15 @@ export default function searchingResults() {
         <section className='grid md:grid-cols-2 gap-12'>
           <section>
             <div id='purchaseSummary'>
-              <h2 className='text-2xl font-semibold'>
-                Resultados de tu busqueda
-              </h2>
+              {search.length > 0 ? (
+                <h2 className='text-2xl font-semibold'>
+                  Resultados de tu busqueda
+                </h2>
+              ) : (
+                <h2 className='text-2xl font-semibold text-red-700 mb-4'>
+                  No se han encontrado resultados
+                </h2>
+              )}
               {search.map((restaurant, index) => {
                 return (
                   <div key={`restaurant-${index}`}>
@@ -107,7 +113,7 @@ export default function searchingResults() {
                 Para tus antojos
               </h2>
               <Carousel
-                items={categoryCarouselTwo}
+                items={categoryCarousel}
                 itemsPerSlide={itemsPerSlide}
                 imageWidth={36}
                 imageHeight={36}
