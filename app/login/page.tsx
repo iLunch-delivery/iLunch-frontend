@@ -100,7 +100,7 @@ export default function Login() {
         <div className=' text-white flex flex-col items-center'>
           <p className='flex text-center'>¿Aún no estás registrado?</p>
           <Link 
-            className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 sm:w-full lg:w-1/2 shadow-lg '
+            className=' mt-3 p-2 text-white text-center rounded-full border-2 self-center bg-orange-600 border-orange-600 sm:w-full lg:w-fit shadow-lg '
             href='/register/user'
           >
             ¡Regístrate!
