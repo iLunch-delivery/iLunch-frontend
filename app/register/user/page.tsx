@@ -31,7 +31,7 @@ export default function RegisterUser() {
           onSubmit={(e) => {
             handleSubmit(e)
           }}
-        >
+        >   {/* Se indica el onSubmit para indicar que esos datos se tomarán en el registro */}
           <input
             type='text'
             id='nombre'

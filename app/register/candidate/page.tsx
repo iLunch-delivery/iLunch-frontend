@@ -11,7 +11,7 @@ export default function RegisterCandidate() {
   return (
     <MainLayout>
       <main className='flex flex-col items-center p-0 bg-white'>
-        <div className='flex flex-row mt-10 align-middle font-semibold text-2xl'>
+        <div className='flex flex-row mt-10 align-middle font-semibold text-2xl text-center'>
           {' '}
           Bienvenido a la red de trabajo de{' '}
           <Image
@@ -20,23 +20,23 @@ export default function RegisterCandidate() {
             className='align-middle h-9 w-auto ml-2 '
           />
         </div>
-        <div className='flex flex-col items-center mt-5'>
-          <span>
+        <div className='flex flex-col items-center mt-5 w-11/12'>
+          <span className='text-center '>
             Por favor ingresa tus datos y cúentanos tu experiencia en el sector
             gastronómico.
           </span>
-          <span className='mt-0'>
+          <span className='mt-0 text-center'>
             También nos gustaría que anexaras tu hoja de vida y otros documentos
             que soporten tu experiencia y nos dejen saber más de ti.
           </span>
-          <span className='mt-0'>
+          <span className='mt-0 text-center'>
             Luego de llenar el formulario solo queda esperar a que un
             restaurante interesado en tus servicios te contacte por medio de la
             aplicación
           </span>
         </div>
-        <section className='form-section w-3/5 flex mt-7 mb-12'>
-          <div className='form w-1/2 flex flex-col rounded-xl mx-4 p-2'>
+        <section className='form-section w-11/12 md:w-5/6 flex-col md:flex mt-7 mb-12'>
+          <div className='form w-11/12 md:w-1/2 flex-col rounded-xl mx-0 md:mx-4 p-0 md:p-2'>
             <form className='flex flex-col'>
               <input
                 type='text'
@@ -93,14 +93,14 @@ export default function RegisterCandidate() {
               ></textarea>
             </form>
           </div>
-          <div className='files w-1/2'>
-            <div className='flex flex-col shadow-md rounded-xl p-4 h-full'>
+          <div className='files w-11/12 mt-5' >
+            <div className='flex flex-col shadow-md rounded-xl p-0 md:p-4 h-full'>
               <h3 className='text-lg font-semibold mb-8'>Archivos adjuntos</h3>
               <UserFilesTable isEditing={true} files={fileList} />
             </div>
           </div>
         </section>
-        <button className=' mt-2 mb-16 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/12 shadow-lg '>
+        <button className=' mt-2 mb-16 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-6/12 md:w-1/6 lg:w-2/12 xl:w-1/12 shadow-lg '>
           ¡Regístrate!
         </button>
       </main>
