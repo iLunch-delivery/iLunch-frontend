@@ -1,18 +1,20 @@
+'use client'
+
 import Image from 'next/image'
 import React from 'react'
 import logo from '@/public/assets/iLunch-logo.png'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function RegisterUser() {
-  const router = useRouter()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     alert('Registro exitoso')
   }
+
   return (
-    <main className='flex h-full w-full p-0'>
+    <main className='flex h-auto w-full p-0'>
       <section className='form-section bg-blue-700 w-1/2 flex flex-col items-center justify-around  py-2'>
-        <Image src={logo} alt='iLunch Logo' />
+        <Image src={logo} alt='iLunch Logo' className='h-24 w-auto' />
         <div className='flex flex-col text-white items-center whitespace-pre-wrap w-4/5'>
           <span className=' self-center text-2xl font-semibold'>
             ¡Bienvenido!
@@ -99,9 +101,12 @@ export default function RegisterUser() {
         <div className=' bg-slate-400 w-2/3 h-2/5 rounded-lg '></div>
         <div className=' flex items-center flex-col mt-20'>
           <span>¿Ya estás registrado?</span>
-          <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-full shadow-lg'>
+          <Link 
+            className=' mt-3 p-2 text-white text-center rounded-full border-2 self-center bg-orange-600 border-orange-600 w-full shadow-lg'
+            href='/login'
+          >
             Iniciar sesión
-          </button>
+          </Link>
         </div>
       </section>
     </main>

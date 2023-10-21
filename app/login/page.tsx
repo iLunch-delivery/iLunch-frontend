@@ -11,6 +11,7 @@ import { userData } from '@/config/data/users'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
 import { ROLE } from '@/config/enums'
+import Link from 'next/link'
 
 export default function Login() {
   const router = useRouter()
@@ -95,13 +96,16 @@ export default function Login() {
             />
             Ingresa con google
           </button>
-          <div className=' text-white flex flex-col mt-24 items-center'>
-            <p className='flex'>¿Aún no estás registrado?</p>
-            <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 w-1/2 shadow-lg '>
-              ¡Regístrate!
-            </button>
-          </div>
         </form>
+        <div className=' text-white flex flex-col items-center'>
+          <p className='flex'>¿Aún no estás registrado?</p>
+          <Link 
+            className=' mt-3 p-2 text-white text-center rounded-full border-2 self-center bg-orange-600 border-orange-600 w-full shadow-lg '
+            href='/register/user'
+          >
+            ¡Regístrate!
+          </Link>
+        </div>
       </section>
       <section className='banner-section w-1/2 flex-col items-center justify-end flex-1 hidden md:flex'>
         <Image className='h-2/3 w-auto' src={mobile} alt='Mobile App' />
