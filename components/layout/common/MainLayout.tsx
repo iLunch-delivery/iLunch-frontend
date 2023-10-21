@@ -1,7 +1,8 @@
-import { SidebarProvider } from '@/contexts/SidebarContext'
 import Header from '@/components/layout/Header'
 import Sidebar from '@/components/layout/Sidebar'
 import Footer from '@/components/layout/Footer'
+import { SidebarProvider } from '@/contexts/SidebarContext'
+import { JobsReceivedProvider } from '@/contexts/JobsReceivedContext'
 
 export default function MainLayout({
   children
@@ -17,7 +18,9 @@ export default function MainLayout({
           &nbsp;
         </div>
       </SidebarProvider>
-      {children}
+      <JobsReceivedProvider>
+        {children}
+      </JobsReceivedProvider>
       <Footer />
     </>
   )
