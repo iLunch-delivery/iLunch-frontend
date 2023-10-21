@@ -1,5 +1,6 @@
 import { PAYMENT_METHODS, RESTAURANT_AVAILABILITY } from '../enums'
 
+// Información de los restaurantes registrados en la plataforma
 export const restaurants = [
   {
     id: 1,
@@ -73,22 +74,7 @@ export const restaurants = [
   }
 ]
 
-export const shoppingCart = [
-  {
-    imageURL: '/assets/restaurant/menu-product-1.png',
-    name: 'Producto 1',
-    price: 10000,
-    amount: 2
-  },
-
-  {
-    imageURL: '/assets/restaurant/menu-product-3.png',
-    name: 'Producto 3',
-    price: 7000,
-    amount: 2
-  }
-]
-
+// Formas de pago disponibles
 export const billingOptions = [
   {
     imageURL: '/assets/restaurant/billing_options/cash.png',

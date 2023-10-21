@@ -14,16 +14,20 @@ import { useRouter } from 'next/navigation'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { RestaurantInfoProps } from '@/config/interfaces'
+import type { RestaurantInfoProps } from '@/config/interfaces'
 import { restaurants } from '@/config/data/restaurants'
 
 export default function Home() {
+  // Contexto para obtener el estado de la sesión
   const { isLogged } = useUserInfo()
+
+  // Hook para redireccionar
   const router = useRouter()
 
-  // Search result set context state
+  // Hook para actualizar el contexto de la busqueda
   const { setSearch } = useSearch()
 
+  // Variables y lógica para el responsive de los carouseles
   let cardsPerSlide = 3
   let categoriesPerSlide = 3
 
@@ -49,6 +53,7 @@ export default function Home() {
     categoriesPerSlide = 1
   }
 
+  // Hook para redireccionar si no hay sesión
   useEffect(() => {
     if (!isLogged) {
       router.push('/login')
@@ -61,7 +66,7 @@ export default function Home() {
 
     // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
     restaurants.map((restaurant) => {
-      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar 
+      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar
         la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
       const search = categorySearch.trim().toLowerCase()
 
@@ -69,13 +74,12 @@ export default function Home() {
       restaurant.categories.map((category) => {
         if (category.toLowerCase().includes(search)) {
           searchRestaurants.push(restaurant)
-          return
         }
       })
     })
 
-    /* En caso de haber resultados, se actualiza el context para la busqueda y poder 
-      accederla desde la página de los resultados completos*/
+    /* En caso de haber resultados, se actualiza el context para la busqueda y poder
+      accederla desde la página de los resultados completos */
     if (searchRestaurants.length > 0) {
       setSearch(searchRestaurants)
       router.push('/search/results')
@@ -89,6 +93,7 @@ export default function Home() {
       <main className='flex-1'>
         <section id='recommended-section'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
+          {/* Carousel de destacados */}
           <Carousel
             items={recommendedCarousel}
             itemsPerSlide={cardsPerSlide}
@@ -100,6 +105,7 @@ export default function Home() {
           id='near-by-section'
           className='my-8 md:block lg:flex flex-wrap'
         >
+          {/* Mapa con restaurantes cercano e información del restuarante seleccionado */}
           <h2 className='flex-shrink-0 flex-grow-0 basis-full mb-4 text-xl font-semibold'>
             Cerca de ti
           </h2>
@@ -142,6 +148,7 @@ export default function Home() {
           </div>
         </section>
         <section id='banner-section' className='my-8'>
+          {/* Banner promocional red de trabajo */}
           <div className='banner text-center bg-[url("/assets/Banner-Home.png")] bg-no-repeat bg-cover text-white rounded-xl py-8 shadow-md '>
             <h2 className='text-3xl font-semibold'>¿Estas Buscando trabajo?</h2>
             <h4 className='text-lg mt-2'>
@@ -159,6 +166,7 @@ export default function Home() {
           </div>
         </section>
         <section id='discount-section' className='my-8'>
+          {/* Carousel de descuentos */}
           <h2 className='text-xl font-semibold mb-4'>Descuentos imperdibles</h2>
           <Carousel
             items={discountsCarousel}
@@ -168,6 +176,7 @@ export default function Home() {
           />
         </section>
         <section id='category-section' className='my-8'>
+          {/* Carousel de categorias */}
           <h2 className='text-xl font-semibold mb-4'>Para tus antojos</h2>
           <Carousel
             items={categoryCarousel}

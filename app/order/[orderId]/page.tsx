@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import ProductPurchaseTable from '@/components/features/Tables/ProductPurchaseTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import OrderChat from '@/components/features/restaurants/OrderChat'
@@ -6,12 +7,13 @@ import MainLayout from '@/components/layout/common/MainLayout'
 import { restaurants } from '@/config/data/restaurants'
 import { ROLE } from '@/config/enums'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
-import React from 'react'
 
 function OrderStatus() {
+  // Obtener datos del carrito del contexto
   const { products, total, paymentMethod, deliveryWay, restaurantId } =
     useShoppingCart()
 
+  // Obtener información del restaurante de la lista de restaurantes registrados
   const restaurantInfo = restaurants.find((restaurant) => {
     if (restaurant.id === restaurantId) {
       return restaurant
@@ -20,6 +22,7 @@ function OrderStatus() {
   return (
     <MainLayout>
       <main className='flex flex-col lg:flex-row'>
+        {/* Estado del pedido */}
         <section className='flex-1 flex flex-col mb-8 lg:mr-8 lg:mb-0'>
           <div id='order-status' className='mb-8'>
             <h2 className='text-2xl font-semibold mb-4'>
@@ -51,6 +54,7 @@ function OrderStatus() {
               </div>
             </div>
           </div>
+          {/* Chat con el restaurante */}
           <div id='chat'>
             <h3 className='text-xl font-semibold mb-2'>
               ¿Tienes algun problema?
@@ -59,6 +63,7 @@ function OrderStatus() {
           </div>
         </section>
         <section className='flex-1 lg:ml-8 '>
+          {/* Resumen de datos relacionados con el pedido */}
           <div className='shadow-md rounded-xl px-6 py-3'>
             <h2 className='text-2xl font-semibold mb-4'>Detalles del pedido</h2>
             <div id='order-details'>

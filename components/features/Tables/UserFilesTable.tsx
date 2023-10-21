@@ -15,6 +15,8 @@ function UserFilesTable({
   files: File[] | undefined
   isEditing: boolean
 }) {
+  // Si hay archivos adjuntos mostrar tabla
+  // Se controla la edición con la variable isEditing
   if (files !== undefined) {
     return (
       <table className='w-full table-fixed'>
@@ -55,6 +57,8 @@ function UserFilesTable({
       </table>
     )
   } else {
+    // Si no hay archivos adjuntos mostrar mensaje
+    // Se controla la edición con la variable isEditing
     return (
       <>
         <p>No hay archivos adjuntos</p>

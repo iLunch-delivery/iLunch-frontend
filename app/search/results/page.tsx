@@ -8,13 +8,14 @@ import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSearch } from '@/contexts/SearchContext'
-import { RestaurantInfoProps } from '@/config/interfaces'
+import type { RestaurantInfoProps } from '@/config/interfaces'
 import { restaurants } from '@/config/data/restaurants'
 
 export default function searchingResults() {
-  // Search state context
+  // Hook para actualizar el contexto de la busqueda y obtenerla
   const { search, setSearch } = useSearch()
 
+  // Variables y lógica para el responsive de los carouseles
   let itemsPerSlide = 2
 
   const is2xl = useMediaQuery('2xl')
@@ -40,7 +41,7 @@ export default function searchingResults() {
 
     // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
     restaurants.map((restaurant) => {
-      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar 
+      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar
         la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
       const search = categorySearch.trim().toLowerCase()
 
@@ -48,13 +49,12 @@ export default function searchingResults() {
       restaurant.categories.map((category) => {
         if (category.toLowerCase().includes(search)) {
           searchRestaurants.push(restaurant)
-          return
         }
       })
     })
 
-    /* En caso de haber resultados, se actualiza el context para la busqueda y poder 
-      accederla desde la página de los resultados completos*/
+    /* En caso de haber resultados, se actualiza el context para la busqueda y poder
+      accederla desde la página de los resultados completos */
     if (searchRestaurants.length > 0) {
       setSearch(searchRestaurants)
     } else {
@@ -67,6 +67,8 @@ export default function searchingResults() {
       <main>
         <section className='grid md:grid-cols-2 gap-12'>
           <section>
+            {/* Información de los resultados de busqueda */}
+            {/* Se itera sobre los resultados de la busqueda para mostrar cada restaurante */}
             <div id='purchaseSummary'>
               {search.length > 0 ? (
                 <h2 className='text-2xl font-semibold'>
@@ -95,6 +97,7 @@ export default function searchingResults() {
               })}
             </div>
           </section>
+          {/* Recomendado del día */}
           <section>
             <div id='recommended-section' className='my-4'>
               <div
@@ -129,6 +132,7 @@ export default function searchingResults() {
                 </Link>
               </div>
             </div>
+            {/* Carrusel de antojos pequeño */}
             <div id='category-section' className='h-80'>
               <h2
                 className='text-2xl font-semibold h-'

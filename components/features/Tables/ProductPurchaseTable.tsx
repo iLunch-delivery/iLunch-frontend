@@ -8,6 +8,7 @@ function ProductPurchaseTable({
   products: ProductPurchaseProps[]
   total: number
 }) {
+  // Retornar tabla con productos seleccionados y total a pagar
   return (
     <table className='w-full'>
       <tbody>

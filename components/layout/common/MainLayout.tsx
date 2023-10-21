@@ -8,6 +8,7 @@ export default function MainLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Layout principal de la aplicación con header, sidebar y footer
   return (
     <>
       <SidebarProvider>

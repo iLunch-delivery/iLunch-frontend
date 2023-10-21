@@ -21,14 +21,12 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head></head>
-
       <body className={raleway.className}>
+        {/* Contextos generales de la aplicación */}
         <ShoppingCartProvider>
           <UserInfoProvider>
             <SearchProvider>
-              <JobsReceivedProvider>
-                {children}
-              </JobsReceivedProvider>
+              <JobsReceivedProvider>{children}</JobsReceivedProvider>
             </SearchProvider>
           </UserInfoProvider>
         </ShoppingCartProvider>

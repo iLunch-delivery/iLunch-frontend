@@ -28,7 +28,7 @@ function Header() {
   // Search results states
   const { setSearch } = useSearch()
   const [inputSearch, setInputSearch] = useState('')
-  
+
   // Search Modal state
   const [isModalOpen, setIsModalOpen] = useState(false)
 
