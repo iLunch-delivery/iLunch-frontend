@@ -12,7 +12,6 @@ import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
 import { ROLE } from '@/config/enums'
 
-{ /*Cuando un usuario se logea es necesario que se recupere su información en el contexto */ }
 export default function Login() {
   const router = useRouter()
   const [inputEmail, setInputEmail] = useState('')
@@ -54,8 +53,8 @@ export default function Login() {
     }
   }
   return (
-    <main className='flex h-full w-full p-0'> 
-      <section className='form-section bg-blue-700 w-1/2 flex flex-col flex-1 items-center justify-around py-2'> {/* Se cre la sección del formulario para logearse*/}
+    <main className='flex h-full w-full p-0'>
+      <section className='form-section bg-blue-700 w-1/2 flex flex-col flex-1 items-center justify-around py-2'> {/* Se crea la sección del formulario para logearse */ }
         <Image src={logo} alt='iLunch Logo' className='h-24 w-auto' />
         <form
           className=' flex flex-col w-1/2'
