@@ -35,7 +35,8 @@ function ItemsCarousel({
   itemsPerSlide,
   imageHeight,
   imageWidth,
-  height
+  height,
+  itemSearch
 }: CarouselProps) {
   // Lógica para dividir los elementos en slides
   const slides = Array<CarouselItemProps[]>()
@@ -62,6 +63,11 @@ function ItemsCarousel({
                   <div
                     key={`item-${subindex}`}
                     className='h-full my-4 flex flex-col justify-center items-center cursor-pointer hover:scale-110'
+                    onClick={() => {
+                      item.title != null
+                      ? itemSearch?.(item.title)
+                      : null
+                    }}
                   >
                     <img
                       src={item.imageUrl}

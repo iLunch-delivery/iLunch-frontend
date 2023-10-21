@@ -7,12 +7,15 @@ import {
   recommendedCarousel
 } from '@/config/data/carousel'
 import { useUserInfo } from '@/contexts/UserInfoContext'
+import { useSearch } from '@/contexts/SearchContext'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import type { RestaurantInfoProps } from '@/config/interfaces'
+import { restaurants } from '@/config/data/restaurants'
 
 export default function Home() {
   // Contexto para obtener el estado de la sesión
@@ -21,7 +24,10 @@ export default function Home() {
   // Hook para redireccionar
   const router = useRouter()
 
-  // Variables y lógica para el responsive
+  // Hook para actualizar el contexto de la busqueda
+  const { setSearch } = useSearch()
+
+  // Variables y lógica para el responsive de los carouseles
   let cardsPerSlide = 3
   let categoriesPerSlide = 3
 
@@ -53,6 +59,34 @@ export default function Home() {
       router.push('/login')
     }
   }, [])
+
+  // Search handler
+  const handleSearch = (categorySearch: string) => {
+    const searchRestaurants = Array<RestaurantInfoProps>()
+
+    // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
+    restaurants.map((restaurant) => {
+      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar
+        la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
+      const search = categorySearch.trim().toLowerCase()
+
+      // Para cada restaurante se itera sobre sus categorias de comida
+      restaurant.categories.map((category) => {
+        if (category.toLowerCase().includes(search)) {
+          searchRestaurants.push(restaurant)
+        }
+      })
+    })
+
+    /* En caso de haber resultados, se actualiza el context para la busqueda y poder
+      accederla desde la página de los resultados completos */
+    if (searchRestaurants.length > 0) {
+      setSearch(searchRestaurants)
+      router.push('/search/results')
+    } else {
+      alert('No se han encontrado resultados')
+    }
+  }
 
   return (
     <MainLayout>
@@ -150,6 +184,7 @@ export default function Home() {
             imageWidth={24}
             imageHeight={24}
             height={48}
+            itemSearch={handleSearch}
           />
         </section>
       </main>

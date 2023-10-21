@@ -14,6 +14,7 @@ export interface CarouselProps {
   imageHeight: number
   imageWidth?: number
   height?: number
+  itemSearch?: (categorySearch: string) => void
 }
 
 // Interfaz de propiedades del componente de tarjetas

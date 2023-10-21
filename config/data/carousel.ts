@@ -73,13 +73,3 @@ export const popularProductsCarousel = [
     subtitle: 'COP $8.500'
   }
 ]
-
-// Datos del carrusel de categorías 2
-export const categoryCarouselTwo = [
-  { imageUrl: '/assets/category_icons/category(1).png', title: 'Category 1' },
-  { imageUrl: '/assets/category_icons/category(2).png', title: 'Category 2' },
-  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 3' },
-  { imageUrl: '/assets/category_icons/category(4).png', title: 'Category 4' },
-  { imageUrl: '/assets/category_icons/category(5).png', title: 'Category 5' },
-  { imageUrl: '/assets/category_icons/category(3).png', title: 'Category 6' }
-]
