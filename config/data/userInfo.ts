@@ -1,21 +1,4 @@
-import { ID_TYPES } from '../enums'
-
-export const userInfoBase = {
-  name: 'John Doe',
-  email: 'fulanitodetal@gmail.com',
-  phone: 1234567890,
-  address: '1234 Main St',
-  city: 'Anytown',
-  state: 'CA',
-  zip: 12345,
-  country: 'United States',
-  idType: ID_TYPES.Cedula,
-  idNumber: 12345678,
-  speciality: 'Cocina Colombiana',
-  role: 'aspirante',
-  isLogged: false
-}
-
+// Archivo de prueba para la vista de perfil de usuario
 export const userFiles = [
   {
     name: 'Hoja de vida',

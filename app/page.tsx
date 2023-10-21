@@ -15,9 +15,13 @@ import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export default function Home() {
+  // Contexto para obtener el estado de la sesión
   const { isLogged } = useUserInfo()
+
+  // Hook para redireccionar
   const router = useRouter()
 
+  // Variables y lógica para el responsive
   let cardsPerSlide = 3
   let categoriesPerSlide = 3
 
@@ -43,6 +47,7 @@ export default function Home() {
     categoriesPerSlide = 1
   }
 
+  // Hook para redireccionar si no hay sesión
   useEffect(() => {
     if (!isLogged) {
       router.push('/login')
@@ -54,6 +59,7 @@ export default function Home() {
       <main className='flex-1'>
         <section id='recommended-section'>
           <h2 className='text-xl font-semibold mb-4'>Recomendados para ti</h2>
+          {/* Carousel de destacados */}
           <Carousel
             items={recommendedCarousel}
             itemsPerSlide={cardsPerSlide}
@@ -65,6 +71,7 @@ export default function Home() {
           id='near-by-section'
           className='my-8 md:block lg:flex flex-wrap'
         >
+          {/* Mapa con restaurantes cercano e información del restuarante seleccionado */}
           <h2 className='flex-shrink-0 flex-grow-0 basis-full mb-4 text-xl font-semibold'>
             Cerca de ti
           </h2>
@@ -107,6 +114,7 @@ export default function Home() {
           </div>
         </section>
         <section id='banner-section' className='my-8'>
+          {/* Banner promocional red de trabajo */}
           <div className='banner text-center bg-[url("/assets/Banner-Home.png")] bg-no-repeat bg-cover text-white rounded-xl py-8 shadow-md '>
             <h2 className='text-3xl font-semibold'>¿Estas Buscando trabajo?</h2>
             <h4 className='text-lg mt-2'>
@@ -124,6 +132,7 @@ export default function Home() {
           </div>
         </section>
         <section id='discount-section' className='my-8'>
+          {/* Carousel de descuentos */}
           <h2 className='text-xl font-semibold mb-4'>Descuentos imperdibles</h2>
           <Carousel
             items={discountsCarousel}
@@ -133,6 +142,7 @@ export default function Home() {
           />
         </section>
         <section id='category-section' className='my-8'>
+          {/* Carousel de categorias */}
           <h2 className='text-xl font-semibold mb-4'>Para tus antojos</h2>
           <Carousel
             items={categoryCarousel}

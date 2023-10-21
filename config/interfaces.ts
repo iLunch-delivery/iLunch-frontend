@@ -1,11 +1,13 @@
 import type { RESTAURANT_AVAILABILITY } from './enums'
 
+// Interfaz de propiedades para los items del carrusel
 export interface CarouselItemProps {
   imageUrl: string
   title?: string
   subtitle?: string
 }
 
+// Interfaz de propiedades para el componente de carrusel
 export interface CarouselProps {
   items: CarouselItemProps[]
   itemsPerSlide: number
@@ -14,6 +16,7 @@ export interface CarouselProps {
   height?: number
 }
 
+// Interfaz de propiedades del componente de tarjetas
 export interface DetailProps {
   id?: number
   restaurantId?: number
@@ -26,7 +29,10 @@ export interface DetailProps {
   action?: () => void
 }
 
-export interface DetailPropsOffer {
+// Interfaz de propiedades para el componente de oferta laboral
+export interface JobOfferProps {
+  id?: number
+  restaurantId?: number
   imageURL: string
   title: string
   subtitle?: DetailSubtitleProps
@@ -39,16 +45,19 @@ export interface DetailPropsOffer {
   action2?: () => void
 }
 
+// Interfaz de propiedades para el componente de tarjetas de producto
 export interface DetailSubtitleProps {
   text: string
   iconType?: string
 }
 
+// Interfaz de propiedades para el componente de botón de tarjeta
 export interface DetailButtonProps {
   text: string
   href?: string
 }
 
+// Interfaz de propiedades para el producto agregado al carrito
 export interface ProductPurchaseProps {
   imageURL: string
   name: string
@@ -56,6 +65,7 @@ export interface ProductPurchaseProps {
   amount: number
 }
 
+// Interfaz de propiedades para el platillo de un restaurante
 export interface DishProps {
   imageURL: string
   title: string
@@ -70,6 +80,7 @@ export interface DishProps {
   }
 }
 
+// Interfaz de propiedades para el select de opciones
 export interface SelectOptionProps {
   imageURL: string
   name: string
@@ -77,6 +88,7 @@ export interface SelectOptionProps {
   action: () => void
 }
 
+// Interfaz de propiedades para un usuario
 export interface UserInfo {
   name: string
   email: string
@@ -92,6 +104,7 @@ export interface UserInfo {
   isLogged: boolean
 }
 
+// Interfaz de propiedades para un archivo
 export interface File {
   name: string
   description: string
@@ -99,22 +112,32 @@ export interface File {
   weight: string
 }
 
+// Interfaz de propiedades para el componente despelgable
 export interface DropdownProps {
   options: string[]
   handleSelectOption: (selection: string) => void
   defaultValue: string
 }
 
+// Interfaz de propiedades para la barra lateral de navegación
 export interface SidebarContextInterface {
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
 }
 
+// Interfaz de propiedades para el contexto de la busqueda
 export interface SearchContextInterface {
-  search: Array<RestaurantInfoProps>
-  setSearch: (search: Array<RestaurantInfoProps>) => void
+  search: RestaurantInfoProps[]
+  setSearch: (search: RestaurantInfoProps[]) => void
 }
 
+// Interfaz de propiedades para las ofertas laborales recibidas
+export interface JobsReceivedContextInterface {
+  jobsReceived: JobReceivedInfoProps[]
+  setJobsReceived: (jobsReceived: JobReceivedInfoProps[]) => void
+}
+
+// Interfaz de propiedades para el contexto de la información del usuario
 export interface UserInfoContextInterface {
   name: string
   email: string
@@ -136,6 +159,7 @@ export interface UserInfoContextInterface {
   setIsLogged: (isLogged: boolean) => void
 }
 
+// Interfaz de propiedades para el contexto del carrito de compras
 export interface ShoppingCartInterface {
   products: ProductPurchaseProps[]
   setProducts: (products: ProductPurchaseProps[]) => void
@@ -149,6 +173,7 @@ export interface ShoppingCartInterface {
   setRestaurantId: (restaurantId: number) => void
 }
 
+// Interfaz de propiedades para la tarjeta de platillo de un restaurante
 export interface RestaurantCardProps {
   imageURL: string
   id: number
@@ -158,6 +183,7 @@ export interface RestaurantCardProps {
   distance: number
 }
 
+// Interfaz de propiedades para un restaurante
 export interface RestaurantInfoProps {
   id: number
   name: string
@@ -179,7 +205,8 @@ export interface RestaurantInfoProps {
   distance: number
 }
 
-export interface jobInfoProps {
+// Interfaz de propiedades para una oferta laboral
+export interface JobInfoProps {
   id: number
   restaurantId: number
   imageURL: string
@@ -200,5 +227,33 @@ export interface jobInfoProps {
   button: {
     text: string
     href: string
+  }
+}
+
+// Interfaz de propiedades para una oferta laboral recibida
+export interface JobReceivedInfoProps {
+  id: number
+  restaurantId: number
+  imageURL: string
+  title: string
+  subtitle: {
+    text: string
+    iconType: string
+  }
+  offerTime: {
+    text: string
+    iconType: string
+  }
+  offerSalary: {
+    text: string
+    iconType: string
+  }
+  description: string
+  button: {
+    text: string
+    href: string
+  }
+  button2: {
+    text: string
   }
 }

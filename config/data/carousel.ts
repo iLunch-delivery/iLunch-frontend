@@ -1,3 +1,4 @@
+// Datos del carrusel de recomendados
 export const recommendedCarousel = [
   { imageUrl: '/assets/recomended.png' },
   { imageUrl: '/assets/recomended.png' },
@@ -7,6 +8,7 @@ export const recommendedCarousel = [
   { imageUrl: '/assets/recomended.png' }
 ]
 
+// Datos del carrusel de categorías
 export const categoryCarousel = [
   { imageUrl: '/assets/category_icons/category(1).png', title: 'Postres' },
   { imageUrl: '/assets/category_icons/category(2).png', title: 'Bebidas' },
@@ -18,6 +20,7 @@ export const categoryCarousel = [
   { imageUrl: '/assets/category_icons/category(8).png', title: 'Oriental' }
 ]
 
+// Datos del carrusel de descuentos
 export const discountsCarousel = [
   { imageUrl: '/assets/discount.png' },
   { imageUrl: '/assets/discount.png' },
@@ -27,6 +30,7 @@ export const discountsCarousel = [
   { imageUrl: '/assets/discount.png' }
 ]
 
+// Datos del carrusel de productos populares
 export const popularProductsCarousel = [
   {
     imageUrl: '/assets/restaurant/menu-product-1.png',
@@ -70,6 +74,7 @@ export const popularProductsCarousel = [
   }
 ]
 
+// Datos del carrusel de categorías 2
 export const categoryCarouselTwo = [
   { imageUrl: '/assets/category_icons/category(1).png', title: 'Category 1' },
   { imageUrl: '/assets/category_icons/category(2).png', title: 'Category 2' },
