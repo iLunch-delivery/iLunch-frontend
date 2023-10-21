@@ -26,7 +26,9 @@ export interface DetailProps {
   action?: () => void
 }
 
-export interface DetailPropsOffer {
+export interface JobOfferProps {
+  id?: number
+  restaurantId?: number
   imageURL: string
   title: string
   subtitle?: DetailSubtitleProps
@@ -115,6 +117,11 @@ export interface SearchContextInterface {
   setSearch: (search: Array<RestaurantInfoProps>) => void
 }
 
+export interface JobsReceivedContextInterface {
+  jobsReceived: Array<JobReceivedInfoProps>
+  setJobsReceived: (jobsReceived: Array<JobReceivedInfoProps>) => void
+}
+
 export interface UserInfoContextInterface {
   name: string
   email: string
@@ -179,7 +186,7 @@ export interface RestaurantInfoProps {
   distance: number
 }
 
-export interface jobInfoProps {
+export interface JobInfoProps {
   id: number
   restaurantId: number
   imageURL: string
@@ -200,5 +207,32 @@ export interface jobInfoProps {
   button: {
     text: string
     href: string
+  }
+}
+
+export interface JobReceivedInfoProps {
+  id: number
+  restaurantId: number
+  imageURL: string
+  title: string
+  subtitle: {
+    text: string
+    iconType: string
+  }
+  offerTime: {
+    text: string
+    iconType: string
+  }
+  offerSalary: {
+    text: string
+    iconType: string
+  }
+  description: string
+  button: {
+    text: string
+    href: string
+  }
+  button2: {
+    text: string
   }
 }
