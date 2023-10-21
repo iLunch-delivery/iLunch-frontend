@@ -3,6 +3,7 @@
 import type { UserInfoContextInterface } from '@/config/interfaces'
 import { createContext, useContext, useState } from 'react'
 
+// Contexto para los datos del usuario
 const UserInfoContext = createContext<UserInfoContextInterface>({
   name: '',
   email: '',
@@ -24,6 +25,7 @@ const UserInfoContext = createContext<UserInfoContextInterface>({
   setIsLogged: () => {}
 })
 
+// Proveedor de datos del usuario
 export const UserInfoProvider = ({
   children
 }: {
@@ -67,6 +69,7 @@ export const UserInfoProvider = ({
   )
 }
 
+// Hook para obtener los datos del usuario
 export const useUserInfo = () => {
   return useContext(UserInfoContext)
 }

@@ -25,10 +25,10 @@ function Header() {
   // Sidebar state
   const { isOpen, setIsOpen } = useChangeSidebar()
 
-  // Search states
-  const { search, setSearch } = useSearch()
+  // Search results states
+  const { setSearch } = useSearch()
   const [inputSearch, setInputSearch] = useState('')
-  
+
   // Search Modal state
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -40,15 +40,22 @@ function Header() {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const searchRestaurants = Array<RestaurantInfoProps>()
+
+    // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
     restaurants.map((restaurant) => {
+      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar 
+        la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
       const restaurantSpeciality = restaurant.speciality.toLowerCase()
       const search = inputSearch.trim().toLowerCase()
 
+      // Primero se busca coincidencia en base a la especilidad del restaurante
       if (restaurantSpeciality.includes(search)) {
         searchRestaurants.push(restaurant)
         return
       }
 
+      /* También para cada restaurante se itera sobre sus categorias
+        de comida y platillos populares, para maximizar la búsqueda */
       restaurant.categories.map((category) => {
         if (category.toLowerCase().includes(search)) {
           searchRestaurants.push(restaurant)
@@ -64,6 +71,8 @@ function Header() {
       })
     })
 
+    /* En caso de haber resultados, se actualiza el context para la busqueda y poder 
+      accederla desde el modal y la página de los resultados completos*/
     if (searchRestaurants.length > 0) {
       setSearch(searchRestaurants)
       handleModalOpen()
@@ -78,6 +87,7 @@ function Header() {
   }
 
   // Shopping Cart handler
+  // Para redireccionar al carrito de compras o advertir que se encuentra vacio
   const handleCartNavigation = () => {
     if (products.length > 0) {
       router.push(`/shopping_cart/${idNumber}`)
@@ -86,6 +96,7 @@ function Header() {
     }
   }
 
+  // Para cerrar la sidebar al cambiar de ruta
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
@@ -128,7 +139,6 @@ function Header() {
               onChange={(e) => {
                 setInputSearch(e.target.value)
               }}
-              //onClick={handleModalOpen}
             />
           </form>
         </div>

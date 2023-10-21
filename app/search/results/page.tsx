@@ -1,18 +1,21 @@
 'use client'
 
 import Carousel from '@/components/common/Carousel'
-import { categoryCarouselTwo } from '@/config/data/carousel'
+import { categoryCarousel } from '@/config/data/carousel'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import React from 'react'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSearch } from '@/contexts/SearchContext'
+import type { RestaurantInfoProps } from '@/config/interfaces'
+import { restaurants } from '@/config/data/restaurants'
 
 export default function searchingResults() {
-  // Search state context
-  const { search } = useSearch()
+  // Hook para actualizar el contexto de la busqueda y obtenerla
+  const { search, setSearch } = useSearch()
 
+  // Variables y lógica para el responsive de los carouseles
   let itemsPerSlide = 2
 
   const is2xl = useMediaQuery('2xl')
@@ -32,15 +35,50 @@ export default function searchingResults() {
     itemsPerSlide = 1
   }
 
+  // Search handler
+  const handleSearch = (categorySearch: string) => {
+    const searchRestaurants = Array<RestaurantInfoProps>()
+
+    // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
+    restaurants.map((restaurant) => {
+      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar
+        la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
+      const search = categorySearch.trim().toLowerCase()
+
+      // Para cada restaurante se itera sobre sus categorias de comida
+      restaurant.categories.map((category) => {
+        if (category.toLowerCase().includes(search)) {
+          searchRestaurants.push(restaurant)
+        }
+      })
+    })
+
+    /* En caso de haber resultados, se actualiza el context para la busqueda y poder
+      accederla desde la página de los resultados completos */
+    if (searchRestaurants.length > 0) {
+      setSearch(searchRestaurants)
+    } else {
+      alert('No se han encontrado resultados')
+    }
+  }
+
   return (
     <MainLayout>
       <main>
         <section className='grid md:grid-cols-2 gap-12'>
           <section>
+            {/* Información de los resultados de busqueda */}
+            {/* Se itera sobre los resultados de la busqueda para mostrar cada restaurante */}
             <div id='purchaseSummary'>
-              <h2 className='text-2xl font-semibold'>
-                Resultados de tu busqueda
-              </h2>
+              {search.length > 0 ? (
+                <h2 className='text-2xl font-semibold'>
+                  Resultados de tu busqueda
+                </h2>
+              ) : (
+                <h2 className='text-2xl font-semibold text-red-700 mb-4'>
+                  No se han encontrado resultados
+                </h2>
+              )}
               {search.map((restaurant, index) => {
                 return (
                   <div key={`restaurant-${index}`}>
@@ -59,6 +97,7 @@ export default function searchingResults() {
               })}
             </div>
           </section>
+          {/* Recomendado del día */}
           <section>
             <div id='recommended-section' className='my-4'>
               <div
@@ -93,6 +132,7 @@ export default function searchingResults() {
                 </Link>
               </div>
             </div>
+            {/* Carrusel de antojos pequeño */}
             <div id='category-section' className='h-80'>
               <h2
                 className='text-2xl font-semibold h-'
@@ -107,11 +147,12 @@ export default function searchingResults() {
                 Para tus antojos
               </h2>
               <Carousel
-                items={categoryCarouselTwo}
+                items={categoryCarousel}
                 itemsPerSlide={itemsPerSlide}
                 imageWidth={36}
                 imageHeight={36}
                 height={48}
+                itemSearch={handleSearch}
               />
             </div>
           </section>

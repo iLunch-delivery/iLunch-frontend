@@ -1,10 +1,10 @@
 'use client';
 
-import { Modal } from 'flowbite-react';
 import React from 'react'
 import RestaurantOptions from '@/components/features/restaurants/RestaurantOptions'
 import Link from 'next/link'
 import { useSearch } from '@/contexts/SearchContext'
+import { Modal } from 'flowbite-react';
 
 function SearchModal({
   isOpen,
@@ -15,6 +15,7 @@ function SearchModal({
 }) {
   // Search state context
   const { search } = useSearch()
+  // Se limita la busqueda para mostrar un máximo de 2 resultados
   const shortSearch = search.slice(0, 2)
 
   return(
@@ -23,24 +24,28 @@ function SearchModal({
         Resultados de tu busqueda
       </Modal.Header>
       <Modal.Body>
-        {shortSearch.map((restaurant, index) => {
-          return (
-            <div key={`restaurant-${index}`}>
-              <RestaurantOptions
-                key={`restaurant-${index}`}
-                imageURL={restaurant.logoURL}
-                id={restaurant.id}
-                name={restaurant.name}
-                open={restaurant.open}
-                availability={restaurant.availability}
-                distance={restaurant.distance}
-              />
-              <hr className='border-gray-400'></hr>
-            </div>
-          )
-          })}
+        { // Se itera sobre los resultados de la busqueda para mostrar cada restaurante
+          shortSearch.map((restaurant, index) => {
+            return (
+              <div key={`restaurant-${index}`}>
+                <RestaurantOptions
+                  key={`restaurant-${index}`}
+                  imageURL={restaurant.logoURL}
+                  id={restaurant.id}
+                  name={restaurant.name}
+                  open={restaurant.open}
+                  availability={restaurant.availability}
+                  distance={restaurant.distance}
+                />
+                <hr className='border-gray-400'></hr>
+              </div>
+            )
+            })
+          }
       </Modal.Body>
       <Modal.Footer>
+        { /* Se da opción para redirigir a la página donde se pueden visualizar 
+          todos los resultados de la búsqueda */ }
         <Link 
           className='w-full text-center text-gray-500 rounded'
           href='/search/results'

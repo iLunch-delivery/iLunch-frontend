@@ -11,6 +11,7 @@ import { userData } from '@/config/data/users'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
 import { ROLE } from '@/config/enums'
+import Link from 'next/link'
 
 export default function Login() {
   const router = useRouter()
@@ -95,13 +96,16 @@ export default function Login() {
             />
             Ingresa con google {/* El inicio de sesión con google será implemetando después */}
           </button>
-          <div className=' text-white flex flex-col mt-24 items-center'>
-            <p className='flex text-center'>¿Aún no estás registrado?</p>
-            <button className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 sm:w-full lg:w-1/2 shadow-lg '>
-              ¡Regístrate!
-            </button>
-          </div>
         </form>
+        <div className=' text-white flex flex-col items-center'>
+          <p className='flex text-center'>¿Aún no estás registrado?</p>
+          <Link 
+            className=' mt-3 p-2 text-white rounded-full border-2 self-center bg-orange-600 border-orange-600 sm:w-full lg:w-1/2 shadow-lg '
+            href='/register/user'
+          >
+            ¡Regístrate!
+          </Link>
+        </div>
       </section>
       <section className='banner-section w-1/2 flex-col items-center justify-end flex-1 hidden md:flex'>  {/* Sección publicitaria de la app. La appa no existe en realidad. No se da prioridad en baja resoluciones debbido a que lo importante es logearse */}
         <Image className='h-2/3 w-auto' src={mobile} alt='Mobile App' />
