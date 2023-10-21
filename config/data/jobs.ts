@@ -67,7 +67,7 @@ export const jobReceivedOffers = [
     offerTime: { text: 'Tiempo completo', iconType: 'clock' },
     offerSalary: { text: '$1.500.000', iconType: 'price' },
     button: { text: 'Aceptar', href: '/jobs/details/1' },
-    button2: { text: 'Rechazar', href: '#' }
+    button2: { text: 'Rechazar' }
   },
 
   {
@@ -81,7 +81,7 @@ export const jobReceivedOffers = [
     offerTime: { text: 'Tiempo completo', iconType: 'clock' },
     offerSalary: { text: '$1.500.000', iconType: 'price' },
     button: { text: 'Aceptar', href: '/jobs/details/2' },
-    button2: { text: 'Rechazar', href: '#' }
+    button2: { text: 'Rechazar' }
   },
 
   {
@@ -95,6 +95,6 @@ export const jobReceivedOffers = [
     offerTime: { text: 'Tiempo completo', iconType: 'clock' },
     offerSalary: { text: '$1.500.000', iconType: 'price' },
     button: { text: 'Aceptar', href: '/jobs/details/3' },
-    button2: { text: 'Rechazar', href: '#' }
+    button2: { text: 'Rechazar' }
   }
 ]

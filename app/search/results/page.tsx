@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSearch } from '@/contexts/SearchContext'
 
+{/* Más resultados de la busqueda. Además muestra un recomendado de la semana y un carrusel de antojos */}
 export default function searchingResults() {
   // Search state context
   const { search } = useSearch()
@@ -37,6 +38,8 @@ export default function searchingResults() {
       <main>
         <section className='grid md:grid-cols-2 gap-12'>
           <section>
+              {/* Información de los resultados de busqueda */}
+              {/* Se itera sobre los resultados de la busqueda para mostrar cada restaurante */}
             <div id='purchaseSummary'>
               <h2 className='text-2xl font-semibold'>
                 Resultados de tu busqueda
@@ -59,6 +62,7 @@ export default function searchingResults() {
               })}
             </div>
           </section>
+          {/* Recomendado del día */}
           <section>
             <div id='recommended-section' className='my-4'>
               <div
@@ -93,6 +97,7 @@ export default function searchingResults() {
                 </Link>
               </div>
             </div>
+            {/* Carrusel de antojos pequeño */}
             <div id='category-section' className='h-80'>
               <h2
                 className='text-2xl font-semibold h-'
@@ -106,7 +111,7 @@ export default function searchingResults() {
               >
                 Para tus antojos
               </h2>
-              <Carousel
+              <Carousel    
                 items={categoryCarouselTwo}
                 itemsPerSlide={itemsPerSlide}
                 imageWidth={36}
