@@ -4,7 +4,7 @@ import type {
   ProductPurchaseProps,
   ShoppingCartInterface
 } from '@/config/interfaces'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const ShoppingCartContext = createContext<ShoppingCartInterface>({
   products: [],
@@ -16,7 +16,8 @@ const ShoppingCartContext = createContext<ShoppingCartInterface>({
   paymentMethod: { imageURL: '', name: '' },
   setPaymentMethod: () => {},
   restaurantId: 0,
-  setRestaurantId: () => {}
+  setRestaurantId: () => {},
+  clearContext: () => {}
 })
 
 export const ShoppingCartProvider = ({
@@ -24,11 +25,61 @@ export const ShoppingCartProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [products, setProducts] = useState<ProductPurchaseProps[]>([])
-  const [total, setTotal] = useState(0)
-  const [deliveryWay, setDeliveryWay] = useState({ imageURL: '', name: '' })
-  const [paymentMethod, setPaymentMethod] = useState({ imageURL: '', name: '' })
-  const [restaurantId, setRestaurantId] = useState(0)
+  const persistShoppingCart = localStorage.getItem('shoppingCart')
+  const [products, setProducts] = useState<ProductPurchaseProps[]>(() => {
+    if (persistShoppingCart !== null) {
+      const shoppingCart = JSON.parse(persistShoppingCart)
+      return shoppingCart.products
+    }
+    return Array<ProductPurchaseProps>()
+  })
+  const [total, setTotal] = useState(() => {
+    if (persistShoppingCart !== null) {
+      const shoppingCart = JSON.parse(persistShoppingCart)
+      return shoppingCart.total
+    }
+    return 0
+  })
+  const [deliveryWay, setDeliveryWay] = useState(() => {
+    if (persistShoppingCart !== null) {
+      const shoppingCart = JSON.parse(persistShoppingCart)
+      return shoppingCart.deliveryWay
+    }
+    return { imageURL: '', name: '' }
+  })
+  const [paymentMethod, setPaymentMethod] = useState(() => {
+    if (persistShoppingCart !== null) {
+      const shoppingCart = JSON.parse(persistShoppingCart)
+      return shoppingCart.paymentMethod
+    }
+    return { imageURL: '', name: '' }
+  })
+  const [restaurantId, setRestaurantId] = useState(() => {
+    if (persistShoppingCart !== null) {
+      const shoppingCart = JSON.parse(persistShoppingCart)
+      return shoppingCart.restaurantId
+    }
+    return 0
+  })
+
+  const clearContext = () => {
+    setProducts([])
+    setTotal(0)
+  }
+
+  useEffect(() => {
+    localStorage.setItem(
+      'shoppingCart',
+      JSON.stringify({
+        products,
+        total,
+        deliveryWay,
+        paymentMethod,
+        restaurantId
+      })
+    )
+  }, [products, total, deliveryWay, paymentMethod, restaurantId])
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -41,7 +92,8 @@ export const ShoppingCartProvider = ({
         paymentMethod,
         setPaymentMethod,
         restaurantId,
-        setRestaurantId
+        setRestaurantId,
+        clearContext
       }}
     >
       {children}

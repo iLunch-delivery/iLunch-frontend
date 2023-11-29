@@ -172,6 +172,7 @@ export interface ShoppingCartInterface {
   setPaymentMethod: (paymentMethod: { imageURL: string; name: string }) => void
   restaurantId: number
   setRestaurantId: (restaurantId: number) => void
+  clearContext: () => void
 }
 
 // Interfaz de propiedades para la tarjeta de platillo de un restaurante

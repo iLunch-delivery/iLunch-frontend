@@ -7,11 +7,11 @@ import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
 import apple from '@/public/assets/Apple - I.png'
 import google from '@/public/assets/google-logo.svg'
-import { userData } from '@/config/data/users'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
 import { ROLE } from '@/config/enums'
 import Link from 'next/link'
+import apiRoutes from '@/config/apiRoutes'
 
 export default function Login() {
   const router = useRouter()
@@ -39,11 +39,16 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const userInfo = userData.find((user) => {
-      if (user.email === inputEmail && user.password === password) {
-        return user
+
+    const response = await fetch(apiRoutes.login, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
+
+    const userInfo = await response.json()
+
     if (userInfo != null) {
       setIsLogged(true)
       setAddress(userInfo.address)
