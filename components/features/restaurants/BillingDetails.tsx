@@ -2,7 +2,6 @@
 import SelectOption from '@/components/common/SelectOption'
 import { billingOptions } from '@/config/data/restaurants'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 function BillingDetails({
@@ -13,7 +12,8 @@ function BillingDetails({
   userInfo: { name: string; email: string; phone: number; address: string }
 }) {
   const router = useRouter()
-  const { deliveryWay, paymentMethod, setPaymentMethod } = useShoppingCart()
+  const { deliveryWay, paymentMethod, setPaymentMethod, clearContext } =
+    useShoppingCart()
 
   const handlePayment = () => {
     if (paymentMethod.imageURL === '' || paymentMethod.name === '') {
@@ -21,6 +21,8 @@ function BillingDetails({
     } else if (deliveryWay.name === '' || deliveryWay.imageURL === '') {
       alert('Debes seleccionar un método de envío')
     } else {
+      clearContext()
+
       router.push('/order/1')
     }
   }

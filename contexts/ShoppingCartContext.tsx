@@ -16,7 +16,8 @@ const ShoppingCartContext = createContext<ShoppingCartInterface>({
   paymentMethod: { imageURL: '', name: '' },
   setPaymentMethod: () => {},
   restaurantId: 0,
-  setRestaurantId: () => {}
+  setRestaurantId: () => {},
+  clearContext: () => {}
 })
 
 export const ShoppingCartProvider = ({
@@ -53,7 +54,18 @@ export const ShoppingCartProvider = ({
     }
     return { imageURL: '', name: '' }
   })
-  const [restaurantId, setRestaurantId] = useState(0)
+  const [restaurantId, setRestaurantId] = useState(() => {
+    if (persistShoppingCart !== null) {
+      const shoppingCart = JSON.parse(persistShoppingCart)
+      return shoppingCart.restaurantId
+    }
+    return 0
+  })
+
+  const clearContext = () => {
+    setProducts([])
+    setTotal(0)
+  }
 
   useEffect(() => {
     localStorage.setItem(
@@ -80,7 +92,8 @@ export const ShoppingCartProvider = ({
         paymentMethod,
         setPaymentMethod,
         restaurantId,
-        setRestaurantId
+        setRestaurantId,
+        clearContext
       }}
     >
       {children}
