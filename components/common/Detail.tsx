@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import type { DetailProps, DetailSubtitleProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -53,7 +53,7 @@ function Detail({
           ) : null}
           <p className='text-xs text-slate-500 font-normal'>{description}</p>
         </div>
-        {button != null ? 
+        {button != null ? (
           button.href != null ? (
             <div>
               <Link
@@ -75,7 +75,7 @@ function Detail({
               </button>
             </div>
           )
-        : null}
+        ) : null}
       </div>
     </div>
   )
