@@ -22,7 +22,8 @@ const UserInfoContext = createContext<UserInfoContextInterface>({
   setIdNumber: () => {},
   setSpeciality: () => {},
   setRole: () => {},
-  setIsLogged: () => {}
+  setIsLogged: () => {},
+  clearContext: () => {}
 })
 
 // Proveedor de datos del usuario
@@ -96,6 +97,18 @@ export const UserInfoProvider = ({
     return false
   })
 
+  const clearContext = () => {
+    setName('')
+    setEmail('')
+    setPhone(0)
+    setAddress('')
+    setIdType('')
+    setIdNumber(0)
+    setSpeciality('')
+    setRole('')
+    setIsLogged(false)
+  }
+
   useEffect(() => {
     localStorage.setItem(
       'user',
@@ -143,7 +156,8 @@ export const UserInfoProvider = ({
         setIsLogged,
         setPhone,
         setRole,
-        setSpeciality
+        setSpeciality,
+        clearContext
       }}
     >
       {children}

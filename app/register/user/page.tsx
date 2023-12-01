@@ -5,34 +5,19 @@ import React from 'react'
 import logo from '@/public/assets/iLunch-logo.png'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useUserInfo } from '@/contexts/UserInfoContext'
-import { ROLE } from '@/config/enums'
+import apiRoutes from '@/config/apiRoutes'
 
 export default function RegisterUser() {
   const router = useRouter()
-  const { setName, setEmail, setIsLogged, setRole, setPhone } = useUserInfo()
 
-  const setUserInfo = (userData: {
-    name: FormDataEntryValue | null
-    lastname: FormDataEntryValue | null
-    email: FormDataEntryValue | null
-    password: FormDataEntryValue | null
-    phone: FormDataEntryValue | null
-  }) => {
-    setEmail(userData.email as string)
-    setName(userData.name as string)
-    setPhone(userData.phone as unknown as number)
-    setIsLogged(true)
-    setRole(ROLE.costumer)
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
 
     const userData = {
       name: formData.get('nombre'),
       lastname: formData.get('apellido'),
+      address: formData.get('direccion'),
       email: formData.get('correo'),
       password: formData.get('contraseña'),
       phone: formData.get('telefono')
@@ -45,13 +30,26 @@ export default function RegisterUser() {
       userData.name === '' ||
       userData.lastname === '' ||
       userData.email === '' ||
+      userData.address === '' ||
       userData.password === '' ||
       userData.phone === ''
     ) {
       alert('Debes ingresar todos los datos')
       return
     }
-    setUserInfo(userData)
+    const response = await fetch(apiRoutes.register, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    const responseJson = await response.json()
+    if (response.status !== 201) {
+      alert(responseJson.message)
+      return
+    }
+    console.log(responseJson)
     alert('Registro exitoso')
     router.push('/login')
   }
@@ -76,7 +74,7 @@ export default function RegisterUser() {
         <form
           className='flex flex-col w-4/5 mb-20 text-white'
           onSubmit={(e) => {
-            handleSubmit(e)
+            void handleSubmit(e)
           }}
         >
           {' '}
@@ -93,6 +91,13 @@ export default function RegisterUser() {
             id='apellido'
             name='apellido'
             placeholder='Apellido'
+            className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full'
+          />
+          <input
+            type='text'
+            id='direccion'
+            name='direccion'
+            placeholder='Dirección'
             className=' focus:ring-0 focus:ring-offset-0 border-transparent focus:border-transparent bg-transparent border-0 border-b-2 border-white placeholder-neutral-300 mt-1 outline-0 w-full'
           />
           <input

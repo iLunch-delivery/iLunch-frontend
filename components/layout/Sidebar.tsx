@@ -6,17 +6,17 @@ import {
   faMapLocationDot,
   faCartShopping,
   faSuitcase,
-  faHeadset,
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUserInfo } from '@/contexts/UserInfoContext'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 function Sidebar() {
+  const router = useRouter()
   const { isOpen } = useChangeSidebar()
-  const { name } = useUserInfo()
+  const { name, clearContext } = useUserInfo()
   const pathname = usePathname()
 
   return (
@@ -90,7 +90,13 @@ function Sidebar() {
           </div>
           <div>
             <hr className='solid  mb-2' />
-            <div className='flex text-red-600 justify-center items-center cursor-pointer'>
+            <div
+              className='flex text-red-600 justify-center items-center cursor-pointer'
+              onClick={() => {
+                clearContext()
+                router.push('/login')
+              }}
+            >
               <FontAwesomeIcon icon={faXmark} className='mr-4' />
               <p>Cerrar sesión</p>
             </div>

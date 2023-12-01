@@ -158,6 +158,7 @@ export interface UserInfoContextInterface {
   setSpeciality: (speciality: string) => void
   setRole: (role: string) => void
   setIsLogged: (isLogged: boolean) => void
+  clearContext: () => void
 }
 
 // Interfaz de propiedades para el contexto del carrito de compras
