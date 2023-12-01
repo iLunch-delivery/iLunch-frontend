@@ -50,7 +50,6 @@ export default function Login() {
           }
         }
       )
-      console.log(response)
       const userInfo = await response.json()
       console.log(userInfo)
       if (userInfo != null) {
