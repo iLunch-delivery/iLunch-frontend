@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '@/public/assets/iLunch-logo.png'
 import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
@@ -18,6 +18,7 @@ export default function Login() {
   const [inputEmail, setInputEmail] = useState('')
   const [password, setPassword] = useState('')
   const {
+    isLogged,
     setIsLogged,
     setAddress,
     setEmail,
@@ -28,6 +29,13 @@ export default function Login() {
     setRole,
     setSpeciality
   } = useUserInfo()
+
+  useEffect(() => {
+    if (isLogged) {
+      alert('Ya has iniciado sesión')
+      router.push('/')
+    }
+  })
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
