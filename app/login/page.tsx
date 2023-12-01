@@ -32,30 +32,37 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response = await fetch(apiRoutes.login, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
+    try {
+      const response = await fetch(
+        `${apiRoutes.login}${inputEmail}/${password}/`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+      console.log(response)
+      const userInfo = await response.json()
+      console.log(userInfo)
+      if (userInfo != null) {
+        setIsLogged(true)
+        setAddress(userInfo.address)
+        setEmail(userInfo.email)
+        setIdNumber(userInfo.idNumber)
+        setIdType(userInfo.idType)
+        setName(userInfo.name)
+        setPhone(userInfo.phone)
+        setRole(userInfo.role)
+        if (userInfo.role === ROLE.worker) {
+          setSpeciality(userInfo.speciality)
+        }
+        router.push('/')
+      } else {
+        alert('Login Failed')
       }
-    })
-
-    const userInfo = await response.json()
-
-    if (userInfo != null) {
-      setIsLogged(true)
-      setAddress(userInfo.address)
-      setEmail(userInfo.email)
-      setIdNumber(userInfo.idNumber)
-      setIdType(userInfo.idType)
-      setName(userInfo.name)
-      setPhone(userInfo.phone)
-      setRole(userInfo.role)
-      if (userInfo.role === ROLE.worker) {
-        setSpeciality(userInfo.speciality)
-      }
-      router.push('/')
-    } else {
-      alert('Login Failed')
+    } catch (error) {
+      console.log(error)
     }
   }
   return (
