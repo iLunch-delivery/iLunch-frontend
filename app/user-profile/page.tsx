@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 'use client'
 import UserFilesTable from '@/components/features/Tables/UserFilesTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import MainLayout from '@/components/layout/common/MainLayout'
-import { userFiles } from '@/config/data/userInfo'
+import apiRoutes from '@/config/apiRoutes'
 import type { File } from '@/config/interfaces'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import {
@@ -26,13 +27,41 @@ function UserProfile() {
 
   // Guardar los archivos del usuario en el estado
   useEffect(() => {
-    setUserFiles(userFiles)
+    fetch(`${apiRoutes.getUserFiles}${idType}/${idNumber}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (response) => {
+        return await response.json()
+      })
+      .then((data) => {
+        setUserFiles(data)
+      })
   }, [])
 
   // Función para editar el perfil
-  const handleEdit = () => {
+  const handleEdit = async () => {
     if (isEditing) {
       // Safe Data
+      const response = await fetch(apiRoutes.updateProfile, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          address,
+          phone,
+          idNumber,
+          idType,
+          speciality
+        })
+      })
+      const responseJson = await response.json()
+      console.log(responseJson)
       console.log(name, email, address, phone, idNumber, idType, speciality)
     }
     setIsEditing(!isEditing)
@@ -44,7 +73,7 @@ function UserProfile() {
         <button
           className='absolute top-16 right-8 rounded-full bg-[#FB5A3E] text-lg py-2 px-9 w-fit text-white'
           onClick={() => {
-            handleEdit()
+            void handleEdit()
           }}
         >
           {isEditing ? 'Guardar cambios' : 'Editar perfil'}

@@ -134,8 +134,8 @@ export interface SearchContextInterface {
 
 // Interfaz de propiedades para las ofertas laborales recibidas
 export interface JobsReceivedContextInterface {
-  jobsReceived: JobReceivedInfoProps[]
-  setJobsReceived: (jobsReceived: JobReceivedInfoProps[]) => void
+  jobsReceived: JobOfferInfoProps[]
+  setJobsReceived: (jobsReceived: JobOfferInfoProps[]) => void
 }
 
 // Interfaz de propiedades para el contexto de la información del usuario
@@ -158,6 +158,7 @@ export interface UserInfoContextInterface {
   setSpeciality: (speciality: string) => void
   setRole: (role: string) => void
   setIsLogged: (isLogged: boolean) => void
+  clearContext: () => void
 }
 
 // Interfaz de propiedades para el contexto del carrito de compras
@@ -258,4 +259,14 @@ export interface JobReceivedInfoProps {
   button2: {
     text: string
   }
+}
+
+export interface JobOfferInfoProps {
+  _id: number
+  restaurantId: number
+  imageURL: string
+  title: string
+  description: string
+  offerTime: string
+  offerSalary: string
 }

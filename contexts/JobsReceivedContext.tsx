@@ -1,11 +1,13 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import type { JobsReceivedContextInterface } from '@/config/interfaces'
-import { jobReceivedOffers } from '@/config/data/jobs'
+import type {
+  JobOfferInfoProps,
+  JobsReceivedContextInterface
+} from '@/config/interfaces'
 
 const JobsReceivedContext = createContext<JobsReceivedContextInterface>({
-  jobsReceived: jobReceivedOffers,
+  jobsReceived: [],
   setJobsReceived: () => {}
 })
 
@@ -14,15 +16,7 @@ export const JobsReceivedProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [jobsReceived, setJobsReceived] = useState(() => {
-    const persistJobsReceived = localStorage.getItem('jobsReceived')
-    if (persistJobsReceived !== null) {
-      const jobsReceived = JSON.parse(persistJobsReceived)
-      return jobsReceived
-    }
-    return jobReceivedOffers
-  })
-
+  const [jobsReceived, setJobsReceived] = useState<JobOfferInfoProps[]>([])
   useEffect(() => {
     localStorage.setItem('jobsReceived', JSON.stringify(jobsReceived))
   }, [jobsReceived])

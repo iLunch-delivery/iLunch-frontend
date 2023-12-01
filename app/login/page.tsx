@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '@/public/assets/iLunch-logo.png'
 import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
@@ -18,6 +18,7 @@ export default function Login() {
   const [inputEmail, setInputEmail] = useState('')
   const [password, setPassword] = useState('')
   const {
+    isLogged,
     setIsLogged,
     setAddress,
     setEmail,
@@ -29,33 +30,46 @@ export default function Login() {
     setSpeciality
   } = useUserInfo()
 
+  useEffect(() => {
+    if (isLogged) {
+      alert('Ya has iniciado sesión')
+      router.push('/')
+    }
+  })
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response = await fetch(apiRoutes.login, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
+    try {
+      const response = await fetch(
+        `${apiRoutes.login}${inputEmail}/${password}/`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+      const userInfo = await response.json()
+      console.log(userInfo)
+      if (userInfo != null) {
+        setIsLogged(true)
+        setAddress(userInfo.address)
+        setEmail(userInfo.email)
+        setIdNumber(userInfo.idNumber)
+        setIdType(userInfo.idType)
+        setName(userInfo.name)
+        setPhone(userInfo.phone)
+        setRole(userInfo.role)
+        if (userInfo.role === ROLE.worker) {
+          setSpeciality(userInfo.speciality)
+        }
+        router.push('/')
+      } else {
+        alert('Login Failed')
       }
-    })
-
-    const userInfo = await response.json()
-
-    if (userInfo != null) {
-      setIsLogged(true)
-      setAddress(userInfo.address)
-      setEmail(userInfo.email)
-      setIdNumber(userInfo.idNumber)
-      setIdType(userInfo.idType)
-      setName(userInfo.name)
-      setPhone(userInfo.phone)
-      setRole(userInfo.role)
-      if (userInfo.role === ROLE.worker) {
-        setSpeciality(userInfo.speciality)
-      }
-      router.push('/')
-    } else {
-      alert('Login Failed')
+    } catch (error) {
+      console.log(error)
     }
   }
   return (
