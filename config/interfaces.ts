@@ -260,3 +260,13 @@ export interface JobReceivedInfoProps {
     text: string
   }
 }
+
+export interface JobOfferInfoProps {
+  id: number
+  restaurantId: number
+  imageURL: string
+  title: string
+  description: string
+  offerTime: string
+  offerSalary: string
+}
