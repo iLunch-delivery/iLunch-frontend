@@ -76,18 +76,22 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
               </div>
             </div>
             <div className='grid grid-cols-2 gap-5'>
-              <button 
+              <button
                 className='px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
                 onClick={() => {
-                  alert('Se ha notificado al restaurante que has aceptado la oferta.\nEspera a ser contactado de vuelta por el restaurante.')
+                  alert(
+                    'Se ha notificado al restaurante que has aceptado la oferta.\nEspera a ser contactado de vuelta por el restaurante.'
+                  )
                 }}
               >
                 Aceptar
               </button>
-              <button 
+              <button
                 className='px-4 py-1 bg-red-600 text-xs text-white rounded-full border border-red-600 hover:bg-red-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2'
                 onClick={() => {
-                  alert('Se ha notificado al restaurante que has rechazado la oferta.')
+                  alert(
+                    'Se ha notificado al restaurante que has rechazado la oferta.'
+                  )
                 }}
               >
                 Rechazar
@@ -107,9 +111,11 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
             placeholder='Cuentanos tus dudas y nos pondremos en contacto contigo pronto'
           ></textarea>
           <div className='flex flex-row justify-end'>
-            <button 
+            <button
               className='px-4 py-1 bg-orange-600 text-xs text-white rounded-full border border-orange-600 hover:bg-orange-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2'
-              onClick={() => {alert('Tu pregunta ha sido enviada al restaurante.')}}
+              onClick={() => {
+                alert('Tu pregunta ha sido enviada al restaurante.')
+              }}
             >
               Enviar
             </button>

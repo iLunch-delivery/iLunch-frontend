@@ -134,8 +134,8 @@ export interface SearchContextInterface {
 
 // Interfaz de propiedades para las ofertas laborales recibidas
 export interface JobsReceivedContextInterface {
-  jobsReceived: JobReceivedInfoProps[]
-  setJobsReceived: (jobsReceived: JobReceivedInfoProps[]) => void
+  jobsReceived: JobOfferInfoProps[]
+  setJobsReceived: (jobsReceived: JobOfferInfoProps[]) => void
 }
 
 // Interfaz de propiedades para el contexto de la información del usuario
@@ -262,7 +262,7 @@ export interface JobReceivedInfoProps {
 }
 
 export interface JobOfferInfoProps {
-  id: number
+  _id: number
   restaurantId: number
   imageURL: string
   title: string
