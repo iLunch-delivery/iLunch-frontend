@@ -33,7 +33,7 @@ function Sidebar() {
           <div className='flex flex-col items-center'>
             <FontAwesomeIcon
               icon={faCircleUser}
-              className='h-16 sm:h-32 lg:h-48 text-gray-500'
+              className='!h-16 sm:h-32 lg:h-48 text-gray-500'
             />
             <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />

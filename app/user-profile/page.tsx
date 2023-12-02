@@ -22,8 +22,20 @@ function UserProfile() {
   const [files, setUserFiles] = useState<File[] | undefined>()
 
   // Obtener datos del usuario del contexto
-  const { name, role, email, address, phone, idNumber, idType, speciality } =
-    useUserInfo()
+  const {
+    name,
+    role,
+    email,
+    address,
+    phone,
+    idNumber,
+    idType,
+    speciality,
+    setName,
+    setAddress,
+    setPhone,
+    setSpeciality
+  } = useUserInfo()
 
   // Guardar los archivos del usuario en el estado
   useEffect(() => {
@@ -46,7 +58,7 @@ function UserProfile() {
     if (isEditing) {
       // Safe Data
       const response = await fetch(apiRoutes.updateProfile, {
-        method: 'PATCH',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -61,8 +73,15 @@ function UserProfile() {
         })
       })
       const responseJson = await response.json()
-      console.log(responseJson)
-      console.log(name, email, address, phone, idNumber, idType, speciality)
+      if (response.status !== 200) {
+        alert(responseJson.message)
+        return
+      }
+      setName(responseJson.name)
+      setAddress(responseJson.address)
+      setPhone(responseJson.phone)
+      setSpeciality(responseJson.speciality)
+      alert('Datos actualizados con éxito')
     }
     setIsEditing(!isEditing)
   }
@@ -86,7 +105,7 @@ function UserProfile() {
           <div className='flex'>
             <FontAwesomeIcon
               icon={faCircleUser}
-              className='h-48 text-gray-500 bg-slate-50 rounded-full my-4'
+              className='!h-48 text-gray-500 bg-slate-50 rounded-full my-4'
             />
             {isEditing && (
               <div className='flex flex-col justify-center ml-4'>
@@ -101,7 +120,18 @@ function UserProfile() {
               </div>
             )}
           </div>
-          <h1 className='text-4xl font-semibold my-2'>{name}</h1>
+          {isEditing ? (
+            <input
+              className='w-fit rounded-full bg-transparent border-none text-center text-4xl font-semibold'
+              type='text'
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value)
+              }}
+            />
+          ) : (
+            <h1 className='text-4xl font-semibold my-2'>{name}</h1>
+          )}
         </section>
 
         {/* Información del usuario */}
