@@ -73,7 +73,7 @@ function RestaurantDetails({
         <div className='rounded-lg border shadow-md'>
           <div className='p-6'>
             <h1 className='text-lg font-semibold'>Encuentranos</h1>
-            <p className='text-sm '>{restaurantInfo?.adress}</p>
+            <p className='text-sm '>{restaurantInfo?.address}</p>
             <p className='text-sm '>
               {restaurantInfo?.city}, {restaurantInfo?.state},{' '}
               {restaurantInfo?.country}

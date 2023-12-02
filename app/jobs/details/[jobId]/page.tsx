@@ -35,10 +35,9 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
       })
   }, [])
 
-  // TODO: conectar con el endpoint de restaurantes para recibir la info del restaurante
   useEffect(() => {
     if (jobInfo !== null) {
-      fetch(`${apiRoutes.}${jobInfo.restaurantId}`, {
+      fetch(`${apiRoutes.getRestaurant}${jobInfo?.restaurantId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -49,6 +48,9 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
         })
         .then((data) => {
           setRestaurantInfo(data)
+        })
+        .catch((error) => {
+          console.log(error)
         })
     }
   }, [jobInfo])
@@ -85,14 +87,14 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
             <div className='grid grid-cols-1 sm:grid-cols-2'>
               <div>
                 <FontAwesomeIcon icon={faClock} style={{ color: '#b9b9b9' }} />
-                <span className='p-1 me-4'>{jobInfo?.offerTime.text}</span>
+                <span className='p-1 me-4'>{jobInfo?.offerTime}</span>
               </div>
               <div>
                 <FontAwesomeIcon
                   icon={faMoneyCheckDollar}
                   style={{ color: '#b9b9b9' }}
                 />
-                <span className='p-1 me-4'>{jobInfo?.offerSalary.text}</span>
+                <span className='p-1 me-4'>{jobInfo?.offerSalary}</span>
               </div>
             </div>
             <div className='grid grid-cols-2 gap-5'>

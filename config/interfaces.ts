@@ -188,7 +188,7 @@ export interface RestaurantCardProps {
 
 // Interfaz de propiedades para un restaurante
 export interface RestaurantInfoProps {
-  id: number
+  _id: number
   name: string
   description: string
   adress: string
@@ -200,6 +200,7 @@ export interface RestaurantInfoProps {
   rating: number
   popularDishes: string[]
   deliveryTime: number
+  homeDeliveryPrice: number
   promotions: string[]
   logoURL: string
   bannerURL: string

@@ -8,7 +8,10 @@ const apiRoutes = {
   listAllJobs: `${apiUrl}/jobs/list/all/`,
   recivedOffers: `${apiUrl}/jobs/list/user/`,
   createJob: `${apiUrl}/jobs/new/`,
-  getJob: `${apiUrl}/jobs/info/`
+  getJob: `${apiUrl}/jobs/info/`,
+  getRestaurant: `${apiUrl}/restaurants/`,
+  getSearch: `${apiUrl}/restaurants/?search=`,
+  getShoppingCart: `${apiUrl}/shopping-cart/`,
 }
 
 export default apiRoutes
