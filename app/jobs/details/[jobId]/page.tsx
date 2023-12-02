@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -13,25 +14,44 @@ import { jobReceivedOffers } from '@/config/data/jobs'
 import type { RestaurantInfoProps, JobInfoProps } from '@/config/interfaces'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
+import apiRoutes from '@/config/apiRoutes'
 
 export default function JobOffer({ params }: { params: { jobId: string } }) {
   const [jobInfo, setJobInfo] = useState<JobInfoProps>()
   const [restaurantInfo, setRestaurantInfo] = useState<RestaurantInfoProps>()
 
   useEffect(() => {
-    const jobInfo = jobReceivedOffers.find((job) => {
-      if (job.id === Number(params.jobId)) {
-        return job
+    fetch(`${apiRoutes.getJob}${params.jobId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
-    setJobInfo(jobInfo)
-    const restaurantInfo = restaurants.find((restaurant) => {
-      if (restaurant.id === Number(jobInfo?.restaurantId)) {
-        return restaurant
-      }
-    })
-    setRestaurantInfo(restaurantInfo)
+      .then(async (response) => {
+        return await response.json()
+      })
+      .then((data) => {
+        setJobInfo(data)
+      })
   }, [])
+
+  // TODO: conectar con el endpoint de restaurantes para recibir la info del restaurante
+  useEffect(() => {
+    if (jobInfo !== null) {
+      fetch(`${apiRoutes.}${jobInfo.restaurantId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(async (response) => {
+          return await response.json()
+        })
+        .then((data) => {
+          setRestaurantInfo(data)
+        })
+    }
+  }, [jobInfo])
 
   return (
     <MainLayout>

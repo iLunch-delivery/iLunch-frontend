@@ -12,11 +12,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { ROLE } from '@/config/enums'
 
 function Sidebar() {
   const router = useRouter()
   const { isOpen } = useChangeSidebar()
-  const { name, clearContext } = useUserInfo()
+  const { name, role, clearContext } = useUserInfo()
   const pathname = usePathname()
 
   return (
@@ -33,7 +34,7 @@ function Sidebar() {
           <div className='flex flex-col items-center'>
             <FontAwesomeIcon
               icon={faCircleUser}
-              className='h-16 sm:h-32 lg:h-48 text-gray-500'
+              className='!h-16 sm:h-32 lg:h-48 text-gray-500'
             />
             <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />
@@ -80,7 +81,9 @@ function Sidebar() {
                     flex m-2 cursor-pointer
                     ${pathname === '/jobs/list' ? 'text-blue-600' : ''}
                   `}
-                  href='/jobs/list'
+                  href={
+                    role === ROLE.worker ? '/jobs/list' : '/register/candidate'
+                  }
                 >
                   <FontAwesomeIcon icon={faSuitcase} className='mr-4' />
                   <p>Red de trabajo</p>
