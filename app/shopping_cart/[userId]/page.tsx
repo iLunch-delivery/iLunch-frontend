@@ -8,7 +8,7 @@ import MainLayout from '@/components/layout/common/MainLayout'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import apiRoutes from '@/config/apiRoutes'
-import type { ShoppingCartInfoProps, ProductPurchaseInfoProps, ProductPurchaseIdProps } from '@/config/interfaces'
+import type { ShoppingCartInfoProps, ProductPurchaseIdProps } from '@/config/interfaces'
 import Link from 'next/link'
 
 export default function ShoppingCart({

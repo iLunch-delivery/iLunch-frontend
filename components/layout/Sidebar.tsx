@@ -17,7 +17,7 @@ import { ROLE } from '@/config/enums'
 function Sidebar() {
   const router = useRouter()
   const { isOpen } = useChangeSidebar()
-  const { name, role, clearContext } = useUserInfo()
+  const { idNumber, name, role, clearContext } = useUserInfo()
   const pathname = usePathname()
 
   return (
@@ -67,9 +67,9 @@ function Sidebar() {
                 <Link
                   className={`
                     flex m-2 cursor-pointer
-                    ${pathname === '/order/active' ? 'text-blue-600' : ''}
+                    ${pathname === `/order/${idNumber}` ? 'text-blue-600' : ''}
                   `}
-                  href='/order/active'
+                  href={`/order/${idNumber}`}
                 >
                   <FontAwesomeIcon icon={faCartShopping} className='mr-4' />
                   <p>Pedidos activos</p>

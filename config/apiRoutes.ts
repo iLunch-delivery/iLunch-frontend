@@ -12,9 +12,11 @@ const apiRoutes = {
   getRestaurant: `${apiUrl}/restaurants/`,
   getSearch: `${apiUrl}/restaurants/?search=`,
   getShoppingCart: `${apiUrl}/shopping-cart/`,
+  updateShoppingCart: `update`,
   addShoppingCartProduct: `add_product`,
   deleteShoppingCartProduct: `delete_product`,
   updateShoppingCartProduct: `update_product`,
+  order: `order`,
 }
 
 export default apiRoutes

@@ -1,6 +1,6 @@
 'use client'
 import SelectOption from '@/components/common/SelectOption'
-import { billingOptions } from '@/config/data/restaurants'
+import { BILLING_OPTIONS } from '@/config/data/constants'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
@@ -31,7 +31,7 @@ function BillingDetails({
       alert('Debes seleccionar un método de envío!')
     } else {
       try {
-        const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/update`, {
+        const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.updateShoppingCart}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ function BillingDetails({
       <div id='paymentMethod'>
         <h3 className='text-md font-bold'>Forma de pago</h3>
         <div className='py-4 flex justify-evenly items-center'>
-          {billingOptions.map((option, index) => {
+          {BILLING_OPTIONS.map((option, index) => {
             return (
               <SelectOption
                 key={`receive_option-${index}`}
