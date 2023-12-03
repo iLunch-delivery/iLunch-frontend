@@ -219,14 +219,8 @@ export interface JobInfoProps {
     text: string
     iconType: string
   }
-  offerTime: {
-    text: string
-    iconType: string
-  }
-  offerSalary: {
-    text: string
-    iconType: string
-  }
+  offerTime: string
+  offerSalary: string
   description: string
   button: {
     text: string
