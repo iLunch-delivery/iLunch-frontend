@@ -49,7 +49,7 @@ export default function Restaurant({
   }, [])
 
   const handleAddProduct = async (product: ProductInfoProps) => {
-    const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.addProduct}/${product._id}`, {
+    const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.addShoppingCartProduct}/${product._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

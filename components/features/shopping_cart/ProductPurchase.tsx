@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { ProductPurchaseProps } from '@/config/interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -40,7 +40,7 @@ function ProductPurchase({
   deleteAction
 }: ProductPurchaseProps) {
   const [isEditing, setIsEditing] = useState(false)
-  const [newUnits, setNewUnits] = useState(0)
+  const [newUnits, setNewUnits] = useState(units)
 
   const handleEdit = () => {
     if(isEditing) {
@@ -78,21 +78,23 @@ function ProductPurchase({
           </div>
         </div>
       </div>
+      <div 
+        className={`flex basis-16 space-x-4 items-center justify-around ${isEditing ? '' : 'hidden'}`}
+      >
+        <label htmlFor='units'>Unidades</label>
+        <input 
+          type='number'
+          className='w-16'
+          min="1"
+          max="99"
+          value={newUnits}
+          onChange={(e) => {
+            setNewUnits(Number(e.target.value))
+          }}
+          disabled={!isEditing}
+        />
+      </div>
       <div className='flex basis-16 items-center justify-around'>
-        <div>
-          <label htmlFor='units'>Unidades</label>
-          <input 
-            type='number'
-            className='w-16'
-            min="1"
-            max="99"
-            value={newUnits}
-            onChange={(e) => {
-              setNewUnits(Number(e.target.value))
-            }}
-            disabled={!isEditing}
-          />
-        </div>
         <button 
           className='hover:scale-125'
           onClick={handleEdit}

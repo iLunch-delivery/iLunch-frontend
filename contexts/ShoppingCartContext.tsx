@@ -50,7 +50,7 @@ export const ShoppingCartProvider = ({
         additionalComments
       })
     )
-  }, [deliveryWay, paymentMethod])
+  }, [deliveryWay, paymentMethod, additionalComments])
 
   return (
     <ShoppingCartContext.Provider

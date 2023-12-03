@@ -210,6 +210,7 @@ export interface ShoppingCartInfoProps {
   homeDeliveryPrice: number
   totalProductsPrice: number
   platformFee: number
+  orderSent: boolean
 }
 
 // Interfaz de propiedades para la tarjeta de platillo de un restaurante

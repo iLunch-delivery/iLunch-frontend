@@ -22,7 +22,7 @@ function BillingDetails({
   // User id
   const { idNumber } = useUserInfo()
   const router = useRouter()
-  const { deliveryWay, paymentMethod, additionalComments, setPaymentMethod } = useShoppingCart()
+  const { deliveryWay, paymentMethod, setPaymentMethod, additionalComments } = useShoppingCart()
 
   const handlePayment = async () => {
     if (paymentMethod === "") {
@@ -39,7 +39,8 @@ function BillingDetails({
           body: JSON.stringify({
             deliveryWay: deliveryWay,
             paymentMethod: paymentMethod,
-            additionalComments: additionalComments
+            additionalComments: additionalComments,
+            orderSent: true,
           })
         })
     

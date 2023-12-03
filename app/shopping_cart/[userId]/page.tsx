@@ -18,10 +18,10 @@ export default function ShoppingCart({
 }) {
   const [shoppingCartInfo, setShoppingCartInfo] = useState<ShoppingCartInfoProps>()
   const [errorMessage, setErrorMessage] = useState("")
-  const { deliveryWay, additionalComments, setDeliveryWay, setPaymentMethod, setAdditionalComments } = useShoppingCart()
+  const { deliveryWay, setDeliveryWay, additionalComments, setAdditionalComments } = useShoppingCart()
   const { name, email, phone, address } = useUserInfo()
 
-  useEffect(() => {
+  const handleGetShoppingCart = () => {
     fetch(`${apiRoutes.getShoppingCart}${params.userId}`, {
       method: 'GET',
       headers: {
@@ -32,43 +32,69 @@ export default function ShoppingCart({
       const responseJSON = await response.json()
       if (response.status != 200) {
         setErrorMessage(responseJSON.message)
-        return
+      } else {
+        return responseJSON
       }
-      return responseJSON
     })
     .then((data) => {
+      if (data == null) return
+      if (data.orderSent) {
+        setErrorMessage('Tu orden ya ha sido enviada: No puedes editar tu carrito hasta que finalice.')
+        return
+      }
       setShoppingCartInfo(data)
-      setDeliveryWay(data.deliveryWay)
-      setPaymentMethod(data.paymentMethod)
     })
     .catch((error) => {
       alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
     })
+  }
+
+  useEffect(() => {
+    handleGetShoppingCart()
   }, [])
 
   const handleCommentsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     // Access textarea value
     setAdditionalComments(event.target.value);
-    console.log(event.target.value);
   };
 
-  const handleEditProductUnits = (_id: ProductPurchaseIdProps, units: number) => {
+  const handleEditProductUnits = async (_id: ProductPurchaseIdProps, units: number) => {
+    if (confirm('¿Estás seguro de que quieres actualizar las unidades para este producto del carrito?')) {
+      try {
+        const response = await fetch(`${apiRoutes.getShoppingCart}${_id.userId}/${apiRoutes.updateShoppingCartProduct}/${_id.productId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            units: units
+          })
+        })
 
+        const responseJSON = await response.json()
+        alert(responseJSON.message)
+        handleGetShoppingCart()
+      } catch (error) { 
+        alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+      }
+    }
   }
 
   const handleDeleteProduct = async (_id: ProductPurchaseIdProps) => {
     if (confirm('¿Estás seguro de que quieres eliminar este producto del carrito?')) {
-      const response = await fetch(`${apiRoutes.getShoppingCart}${_id.userId}/${apiRoutes.deleteProduct}/${_id.productId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
+      try {
+        const response = await fetch(`${apiRoutes.getShoppingCart}${_id.userId}/${apiRoutes.deleteShoppingCartProduct}/${_id.productId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
 
-      if (response.status == 200) {
-        alert('Producto eliminado del carrito')
-      } else {
-        alert('Ha habido un error. Por favor intenta más tarde.')
+        const responseJSON = await response.json()
+        alert(responseJSON.message)
+        handleGetShoppingCart()
+      } catch (error) {
+        alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
       }
     }
   }
@@ -88,7 +114,7 @@ export default function ShoppingCart({
 
   return (
     <MainLayout>
-      <main className='grid md:grid-cols-2 gap-12'>
+      <main className='grid lg:grid-cols-2 gap-12'>
         <section id='purchaseSummary'>
           <div id='productSummary'>
             <h2 className='text-2xl font-semibold'>Resumen de compra</h2>
@@ -123,7 +149,7 @@ export default function ShoppingCart({
                     key={`receive_option-${index}`}
                     imageURL={option.imageURL}
                     name={option.name}
-                    selected={shoppingCartInfo?.deliveryWay === option.type}
+                    selected={deliveryWay === option.type}
                     action={() => {
                       setDeliveryWay(option.type)
                     }}

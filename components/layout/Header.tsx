@@ -13,7 +13,6 @@ import SearchModal from './SearchModal'
 import Link from 'next/link'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { usePathname, useRouter } from 'next/navigation'
-import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 import { restaurants } from '@/config/data/restaurants'
 import { RestaurantInfoProps } from '@/config/interfaces'
 
@@ -33,8 +32,14 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Shopping Cart states
-  const { products } = useShoppingCart()
-  const { idNumber } = useUserInfo()
+  const { idNumber, isLogged } = useUserInfo()
+
+  // Hook para redireccionar si no hay sesión
+  useEffect(() => {
+    if (!isLogged) {
+      router.push('/login')
+    }
+  }, [])
 
   // Search Input Form handler
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,11 +94,7 @@ function Header() {
   // Shopping Cart handler
   // Para redireccionar al carrito de compras o advertir que se encuentra vacio
   const handleCartNavigation = () => {
-    if (products.length > 0) {
-      router.push(`/shopping_cart/${idNumber}`)
-    } else {
-      alert('El carrito está vacío')
-    }
+    router.push(`/shopping_cart/${idNumber}`)
   }
 
   // Para cerrar la sidebar al cambiar de ruta
