@@ -7,57 +7,65 @@ import Carousel from '@/components/common/Carousel'
 import { popularProductsCarousel } from '@/config/data/carousel'
 
 import Detail from '@/components/common/Detail'
-import { menus } from '@/config/data/menus'
-
 import { useEffect, useState } from 'react'
-import type { DishProps, RestaurantInfoProps } from '@/config/interfaces'
-import { restaurants } from '@/config/data/restaurants'
+import type { RestaurantInfoProps, ProductInfoProps } from '@/config/interfaces'
 import RestaurantDetails from '@/components/features/restaurants/RestaurantDetails'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
-import { useShoppingCart } from '@/contexts/ShoppingCartContext'
+import apiRoutes from '@/config/apiRoutes'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 
 export default function Restaurant({
   params
 }: {
-  params: { restaurantId: string }
+  params: { restaurantId: Number }
 }) {
-  const [menu, setMenu] = useState<DishProps[]>()
+  // User id
+  const { idNumber } = useUserInfo()
   const [restaurantInfo, setRestaurantInfo] = useState<RestaurantInfoProps>()
-  const { products, setProducts, total, setTotal, setRestaurantId } =
-    useShoppingCart()
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const handleAddProduct = (product: DishProps) => {
-    setProducts([
-      {
-        name: product.title,
-        price: product.price,
-        amount: 1,
-        imageURL: product.imageURL
-      },
-      ...products
-    ])
-    setTotal(total + product.price)
-    setRestaurantId(Number(params.restaurantId))
-    alert('Producto agregado al carrito')
-  }
   useEffect(() => {
-    const menu =
-      menus.find((menu) => {
-        if (menu.restaurantId === Number(params.restaurantId)) {
-          return menu
-        }
-      })?.menu ?? []
-    setMenu(menu)
-
-    const restaurantInfo = restaurants.find((restaurant) => {
-      if (restaurant.id === Number(params.restaurantId)) {
-        return restaurant
+    fetch(`${apiRoutes.getRestaurant}${params.restaurantId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
-    setRestaurantInfo(restaurantInfo)
+    .then(async (response) => {
+      const responseJSON = await response.json()
+      if (response.status != 200) {
+        setErrorMessage(responseJSON.message)
+      }
+      return responseJSON
+    })
+    .then((data) => {
+      setRestaurantInfo(data)
+    })
+    .catch((error) => {
+      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+    })
   }, [])
+
+  const handleAddProduct = async (product: ProductInfoProps) => {
+    const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.addProduct}/${product._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        restaurantId: Number(params.restaurantId), 
+        ...product
+      })
+    })
+
+    if (response.status == 200) {
+      alert('Producto agregado al carrito')
+    } else {
+      alert('Ha habido un error. Por favor intenta más tarde.')
+    }
+  }
 
   let itemsPerSlide = 5
 
@@ -76,6 +84,19 @@ export default function Restaurant({
     itemsPerSlide = 2
   } else {
     itemsPerSlide = 1
+  }
+
+  if (errorMessage !== "") {
+    return(
+      <div className='flex flex-col items-center justify-center h-screen'>
+        <h1 className='text-3xl font-semibold text-center'>{errorMessage}</h1>
+        <Link href='/'>
+          <button className='px-4 py-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-600'>
+            Volver al inicio
+          </button>
+        </Link>
+      </div>
+    )
   }
 
   return (
@@ -124,15 +145,20 @@ export default function Restaurant({
         <section id='menu'>
           <h2 className='text-2xl font-semibold'>Menú</h2>
           <div className='grid grid-cols-1 gap-x-12 justify-items-start sm:grid-cols-2'>
-            {menu?.map((product, index) => {
+            {restaurantInfo?.menu?.map((product, index) => {
               return (
                 <Detail
                   key={`dish-${index}`}
                   imageURL={product?.imageURL ?? ''}
                   title={product?.title ?? ''}
-                  subtitle={product?.subtitle ?? ''}
+                  subtitle={{
+                    text: `COP $${product?.price}` ?? '',
+                    iconType: 'price'
+                  }}
                   description={product?.description ?? ''}
-                  button={product?.button ?? ''}
+                  button={{
+                    text: 'Añadir al pedido',
+                  }}
                   price={product?.price ?? 0}
                   action={() => {
                     handleAddProduct(product)

@@ -66,8 +66,8 @@ export interface ProductPurchaseProps {
   amount: number
 }
 
-// Interfaz de propiedades para el platillo de un restaurante
-export interface DishProps {
+// Interfaz de propiedades para el componente de platillo expuesto en el menú de un restaurante
+export interface ProductDetailsProps {
   imageURL: string
   title: string
   price: number
@@ -79,6 +79,15 @@ export interface DishProps {
   button: {
     text: string
   }
+}
+
+// Interfaz de propiedades para el componente de platillo expuesto en el menú de un restaurante
+export interface ProductInfoProps {
+  _id: string
+  imageURL: string
+  title: string
+  price: number
+  description: string
 }
 
 // Interfaz de propiedades para el select de opciones
@@ -191,7 +200,7 @@ export interface RestaurantInfoProps {
   _id: number
   name: string
   description: string
-  adress: string
+  address: string
   city: string
   state: string
   categories: string[]
@@ -207,6 +216,7 @@ export interface RestaurantInfoProps {
   open: boolean
   availability: RESTAURANT_AVAILABILITY
   distance: number
+  menu: ProductInfoProps[]
 }
 
 // Interfaz de propiedades para una oferta laboral

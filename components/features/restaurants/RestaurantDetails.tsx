@@ -24,7 +24,7 @@ function RestaurantDetails({
           </div>
           <p>Restaurante de:</p>
           <ul>
-            {restaurantInfo?.categories.map((category, index) => (
+            {restaurantInfo?.categories?.map((category, index) => (
               <li key={`category-${index}`}>{category}</li>
             ))}
           </ul>
@@ -106,7 +106,7 @@ function RestaurantDetails({
                 <td className='align-top'>Platos populares</td>
                 <td>
                   <ul>
-                    {restaurantInfo?.popularDishes.map((dish, index) => (
+                    {restaurantInfo?.popularDishes?.map((dish, index) => (
                       <li key={`popular-dish-${index}`}>{dish}</li>
                     ))}
                   </ul>
@@ -120,7 +120,7 @@ function RestaurantDetails({
                 <td className='align-top'>Promociones vigentes</td>
                 <td>
                   <ul>
-                    {restaurantInfo?.promotions.map((promotion, index) => (
+                    {restaurantInfo?.promotions?.map((promotion, index) => (
                       <li key={`promotion-${index}`}>{promotion}</li>
                     ))}
                   </ul>

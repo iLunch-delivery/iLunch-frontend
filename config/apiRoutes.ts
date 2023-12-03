@@ -12,6 +12,7 @@ const apiRoutes = {
   getRestaurant: `${apiUrl}/restaurants/`,
   getSearch: `${apiUrl}/restaurants/?search=`,
   getShoppingCart: `${apiUrl}/shopping-cart/`,
+  addProduct: `add_product`,
 }
 
 export default apiRoutes
