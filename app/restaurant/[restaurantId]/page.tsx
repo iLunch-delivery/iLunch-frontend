@@ -137,9 +137,7 @@ export default function Restaurant({
           <Carousel
             items={popularProductsCarousel}
             itemsPerSlide={itemsPerSlide}
-            imageWidth={24}
-            imageHeight={24}
-            height={48}
+            imageHeight={6} //Units: rem
           />
         </section>
         <section id='menu'>

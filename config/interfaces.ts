@@ -12,8 +12,6 @@ export interface CarouselProps {
   items: CarouselItemProps[]
   itemsPerSlide: number
   imageHeight: number
-  imageWidth?: number
-  height?: number
   itemSearch?: (categorySearch: string) => void
 }
 

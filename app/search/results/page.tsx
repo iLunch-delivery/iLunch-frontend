@@ -150,9 +150,7 @@ export default function searchingResults() {
               <Carousel
                 items={categoryCarousel}
                 itemsPerSlide={itemsPerSlide}
-                imageWidth={36}
-                imageHeight={36}
-                height={48}
+                imageHeight={9} // Units: rem
                 itemSearch={handleSearch}
               />
             </div>
