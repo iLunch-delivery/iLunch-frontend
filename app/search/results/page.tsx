@@ -8,12 +8,11 @@ import MainLayout from '@/components/layout/common/MainLayout'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSearch } from '@/contexts/SearchContext'
-import type { RestaurantInfoProps } from '@/config/interfaces'
-import { restaurants } from '@/config/data/restaurants'
+import apiRoutes from '@/config/apiRoutes'
 
 export default function searchingResults() {
   // Hook para actualizar el contexto de la busqueda y obtenerla
-  const { search, setSearch } = useSearch()
+  const { searchResults, setSearchResults } = useSearch()
 
   // Variables y lógica para el responsive de los carouseles
   let itemsPerSlide = 2
@@ -37,29 +36,31 @@ export default function searchingResults() {
 
   // Search handler
   const handleSearch = (categorySearch: string) => {
-    const searchRestaurants = Array<RestaurantInfoProps>()
-
-    // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
-    restaurants.map((restaurant) => {
-      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar
-        la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
-      const search = categorySearch.trim().toLowerCase()
-
-      // Para cada restaurante se itera sobre sus categorias de comida
-      restaurant.categories.map((category) => {
-        if (category.toLowerCase().includes(search)) {
-          searchRestaurants.push(restaurant)
-        }
-      })
+    fetch(`${apiRoutes.getRestaurant}${apiRoutes.search}${categorySearch}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
-
-    /* En caso de haber resultados, se actualiza el context para la busqueda y poder
-      accederla desde la página de los resultados completos */
-    if (searchRestaurants.length > 0) {
-      setSearch(searchRestaurants)
-    } else {
-      alert('No se han encontrado resultados')
-    }
+    .then(async (response) => {
+      const responseJSON = await response.json()
+      if (response.status != 200) {
+        alert(responseJSON.message)
+      }
+      return responseJSON
+    })
+    .then((data) => {
+      if (data.length > 0) {
+        /* En caso de haber resultados, se actualiza el context para la busqueda y poder
+           accederla desde la página de los resultados completos */
+        setSearchResults(data)
+      } else {
+        alert('No se han encontrado resultados')
+      }
+    })
+    .catch((error) => {
+      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+    })
   }
 
   return (
@@ -70,7 +71,7 @@ export default function searchingResults() {
             {/* Información de los resultados de busqueda */}
             {/* Se itera sobre los resultados de la busqueda para mostrar cada restaurante */}
             <div id='purchaseSummary'>
-              {search.length > 0 ? (
+              {searchResults.length > 0 ? (
                 <h2 className='text-2xl font-semibold'>
                   Resultados de tu busqueda
                 </h2>
@@ -79,13 +80,13 @@ export default function searchingResults() {
                   No se han encontrado resultados
                 </h2>
               )}
-              {search.map((restaurant, index) => {
+              {searchResults.map((restaurant, index) => {
                 return (
                   <div key={`restaurant-${index}`}>
                     <RestaurantOptions
                       key={`product-${index}`}
                       imageURL={restaurant.logoURL}
-                      id={restaurant.id}
+                      id={restaurant._id}
                       name={restaurant.name}
                       open={restaurant.open}
                       availability={restaurant.availability}

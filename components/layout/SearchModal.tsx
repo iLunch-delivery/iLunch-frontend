@@ -14,9 +14,9 @@ function SearchModal({
   handleOpen: () => void
 }) {
   // Search state context
-  const { search } = useSearch()
+  const { searchResults } = useSearch()
   // Se limita la busqueda para mostrar un máximo de 2 resultados
-  const shortSearch = search.slice(0, 2)
+  const shortSearch = searchResults.slice(0, 2)
 
   return(
     <Modal dismissible show={isOpen} onClose={handleOpen}>
@@ -31,7 +31,7 @@ function SearchModal({
                 <RestaurantOptions
                   key={`restaurant-${index}`}
                   imageURL={restaurant.logoURL}
-                  id={restaurant.id}
+                  id={restaurant._id}
                   name={restaurant.name}
                   open={restaurant.open}
                   availability={restaurant.availability}

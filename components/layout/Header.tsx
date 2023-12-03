@@ -15,6 +15,7 @@ import { useUserInfo } from '@/contexts/UserInfoContext'
 import { usePathname, useRouter } from 'next/navigation'
 import { restaurants } from '@/config/data/restaurants'
 import { RestaurantInfoProps } from '@/config/interfaces'
+import apiRoutes from '@/config/apiRoutes'
 
 function Header() {
   // Routing states
@@ -25,7 +26,7 @@ function Header() {
   const { isOpen, setIsOpen } = useChangeSidebar()
 
   // Search results states
-  const { setSearch } = useSearch()
+  const { setSearchResults } = useSearch()
   const [inputSearch, setInputSearch] = useState('')
 
   // Search Modal state
@@ -44,46 +45,32 @@ function Header() {
   // Search Input Form handler
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const searchRestaurants = Array<RestaurantInfoProps>()
-
-    // Se itera sobre cada restaurante para buscar coincidencias con la busqueda
-    restaurants.map((restaurant) => {
-      /* Se convierten la búsqueda y los datos del restaurante a minusculas para facilitar 
-        la coincidencia. Igualmente se eliminan espacio en blanco en la búsqueda */
-      const restaurantSpeciality = restaurant.speciality.toLowerCase()
-      const search = inputSearch.trim().toLowerCase()
-
-      // Primero se busca coincidencia en base a la especilidad del restaurante
-      if (restaurantSpeciality.includes(search)) {
-        searchRestaurants.push(restaurant)
-        return
+    fetch(`${apiRoutes.getRestaurant}${apiRoutes.search}${inputSearch}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
-
-      /* También para cada restaurante se itera sobre sus categorias
-        de comida y platillos populares, para maximizar la búsqueda */
-      restaurant.categories.map((category) => {
-        if (category.toLowerCase().includes(search)) {
-          searchRestaurants.push(restaurant)
-          return
-        }
-      })
-
-      restaurant.popularDishes.map((dish) => {
-        if (dish.toLowerCase().includes(search)) {
-          searchRestaurants.push(restaurant)
-          return
-        }
-      })
     })
-
-    /* En caso de haber resultados, se actualiza el context para la busqueda y poder 
-      accederla desde el modal y la página de los resultados completos*/
-    if (searchRestaurants.length > 0) {
-      setSearch(searchRestaurants)
-      handleModalOpen()
-    } else {
-      alert('No se han encontrado resultados')
-    }
+    .then(async (response) => {
+      const responseJSON = await response.json()
+      if (response.status != 200) {
+        alert(responseJSON.message)
+      }
+      return responseJSON
+    })
+    .then((data) => {
+      if (data.length > 0) {
+        /* En caso de haber resultados, se actualiza el context para la busqueda y poder
+            accederla desde el modal y la página de los resultados completos */
+        setSearchResults(data)
+        handleModalOpen()
+      } else {
+        alert('No se han encontrado resultados')
+      }
+    })
+    .catch((error) => {
+      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+    })
   }
 
   // Search Modal handler

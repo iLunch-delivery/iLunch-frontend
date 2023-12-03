@@ -17,6 +17,7 @@ const apiRoutes = {
   deleteShoppingCartProduct: `delete_product`,
   updateShoppingCartProduct: `update_product`,
   order: `order`,
+  search: `?search=`,
 }
 
 export default apiRoutes

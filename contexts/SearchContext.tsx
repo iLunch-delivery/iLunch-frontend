@@ -3,30 +3,30 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import type {
   SearchContextInterface,
-  RestaurantInfoProps
+  RestaurantSearchResultProps
 } from '@/config/interfaces'
 
 const SearchContext = createContext<SearchContextInterface>({
-  search: Array<RestaurantInfoProps>(),
-  setSearch: () => {}
+  searchResults: Array<RestaurantSearchResultProps>(),
+  setSearchResults: () => {}
 })
 
 export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
-  const [search, setSearch] = useState(() => {
-    const persistSearch = localStorage.getItem('search')
+  const [searchResults, setSearchResults] = useState(() => {
+    const persistSearch = localStorage.getItem('searchResults')
     if (persistSearch !== null) {
-      const search = JSON.parse(persistSearch)
-      return search
+      const searchResults = JSON.parse(persistSearch)
+      return searchResults
     }
-    return Array<RestaurantInfoProps>()
+    return Array<RestaurantSearchResultProps>()
   })
 
   useEffect(() => {
-    localStorage.setItem('search', JSON.stringify(search))
-  }, [search])
+    localStorage.setItem('searchResults', JSON.stringify(searchResults))
+  }, [searchResults])
 
   return (
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider value={{ searchResults, setSearchResults }}>
       {children}
     </SearchContext.Provider>
   )

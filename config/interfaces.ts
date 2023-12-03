@@ -155,8 +155,8 @@ export interface SidebarContextInterface {
 
 // Interfaz de propiedades para el contexto de la busqueda
 export interface SearchContextInterface {
-  search: RestaurantInfoProps[]
-  setSearch: (search: RestaurantInfoProps[]) => void
+  searchResults: RestaurantSearchResultProps[]
+  setSearchResults: (search: RestaurantSearchResultProps[]) => void
 }
 
 // Interfaz de propiedades para las ofertas laborales recibidas
@@ -245,6 +245,17 @@ export interface RestaurantInfoProps {
   availability: RESTAURANT_AVAILABILITY
   distance: number
   menu: ProductInfoProps[]
+}
+
+// Interfaz de propiedades para la búsqueda de restaurantes por medio de la barra de búsqueda
+export interface RestaurantSearchResultProps {
+  _id: number
+  name: string
+  logoURL: string
+  open: boolean
+  availability: RESTAURANT_AVAILABILITY
+  distance: number
+  score: number
 }
 
 // Interfaz de propiedades para una oferta laboral
