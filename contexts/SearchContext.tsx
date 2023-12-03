@@ -1,23 +1,32 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
-import type { SearchContextInterface } from '@/config/interfaces'
-import { RestaurantInfoProps } from '@/config/interfaces'
+import { createContext, useContext, useEffect, useState } from 'react'
+import type {
+  SearchContextInterface,
+  RestaurantSearchResultProps
+} from '@/config/interfaces'
 
 const SearchContext = createContext<SearchContextInterface>({
-  search: Array<RestaurantInfoProps>(),
-  setSearch: () => {}
+  searchResults: Array<RestaurantSearchResultProps>(),
+  setSearchResults: () => {}
 })
 
-export const SearchProvider = ({
-  children
-}: {
-  children: React.ReactNode
-}) => {
-  const [search, setSearch] = useState(Array<RestaurantInfoProps>())
+export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
+  const [searchResults, setSearchResults] = useState(() => {
+    const persistSearch = localStorage.getItem('searchResults')
+    if (persistSearch !== null) {
+      const searchResults = JSON.parse(persistSearch)
+      return searchResults
+    }
+    return Array<RestaurantSearchResultProps>()
+  })
+
+  useEffect(() => {
+    localStorage.setItem('searchResults', JSON.stringify(searchResults))
+  }, [searchResults])
 
   return (
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider value={{ searchResults, setSearchResults }}>
       {children}
     </SearchContext.Provider>
   )

@@ -6,17 +6,18 @@ import {
   faMapLocationDot,
   faCartShopping,
   faSuitcase,
-  faHeadset,
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUserInfo } from '@/contexts/UserInfoContext'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { ROLE } from '@/config/enums'
 
 function Sidebar() {
+  const router = useRouter()
   const { isOpen } = useChangeSidebar()
-  const { name } = useUserInfo()
+  const { idNumber, name, role, clearContext } = useUserInfo()
   const pathname = usePathname()
 
   return (
@@ -33,7 +34,7 @@ function Sidebar() {
           <div className='flex flex-col items-center'>
             <FontAwesomeIcon
               icon={faCircleUser}
-              className='h-16 sm:h-32 lg:h-48 text-gray-500'
+              className='!h-16 sm:h-32 lg:h-48 text-gray-500'
             />
             <h4 className='m-4'>{name}</h4>
             <hr className='solid w-full mb-2' />
@@ -66,9 +67,9 @@ function Sidebar() {
                 <Link
                   className={`
                     flex m-2 cursor-pointer
-                    ${pathname === '/order/active' ? 'text-blue-600' : ''}
+                    ${pathname === `/order/${idNumber}` ? 'text-blue-600' : ''}
                   `}
-                  href='/order/active'
+                  href={`/order/${idNumber}`}
                 >
                   <FontAwesomeIcon icon={faCartShopping} className='mr-4' />
                   <p>Pedidos activos</p>
@@ -80,7 +81,9 @@ function Sidebar() {
                     flex m-2 cursor-pointer
                     ${pathname === '/jobs/list' ? 'text-blue-600' : ''}
                   `}
-                  href='/jobs/list'
+                  href={
+                    role === ROLE.worker ? '/jobs/list' : '/register/candidate'
+                  }
                 >
                   <FontAwesomeIcon icon={faSuitcase} className='mr-4' />
                   <p>Red de trabajo</p>
@@ -90,7 +93,13 @@ function Sidebar() {
           </div>
           <div>
             <hr className='solid  mb-2' />
-            <div className='flex text-red-600 justify-center items-center cursor-pointer'>
+            <div
+              className='flex text-red-600 justify-center items-center cursor-pointer'
+              onClick={() => {
+                clearContext()
+                router.push('/login')
+              }}
+            >
               <FontAwesomeIcon icon={faXmark} className='mr-4' />
               <p>Cerrar sesión</p>
             </div>

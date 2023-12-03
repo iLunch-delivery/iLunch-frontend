@@ -1,7 +1,7 @@
 'use client'
 
 import type { UserInfoContextInterface } from '@/config/interfaces'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 // Contexto para los datos del usuario
 const UserInfoContext = createContext<UserInfoContextInterface>({
@@ -22,7 +22,8 @@ const UserInfoContext = createContext<UserInfoContextInterface>({
   setIdNumber: () => {},
   setSpeciality: () => {},
   setRole: () => {},
-  setIsLogged: () => {}
+  setIsLogged: () => {},
+  clearContext: () => {}
 })
 
 // Proveedor de datos del usuario
@@ -31,15 +32,110 @@ export const UserInfoProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState(0)
-  const [address, setAddress] = useState('')
-  const [idType, setIdType] = useState('')
-  const [idNumber, setIdNumber] = useState(0)
-  const [speciality, setSpeciality] = useState('')
-  const [role, setRole] = useState('')
-  const [isLogged, setIsLogged] = useState(false)
+  const persistUser = localStorage.getItem('user')
+
+  const [name, setName] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.name
+    }
+    return ''
+  })
+  const [email, setEmail] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.email
+    }
+    return ''
+  })
+  const [phone, setPhone] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.phone
+    }
+    return 0
+  })
+  const [address, setAddress] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.address
+    }
+    return ''
+  })
+  const [idType, setIdType] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.idType
+    }
+    return ''
+  })
+  const [idNumber, setIdNumber] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.idNumber
+    }
+    return 0
+  })
+  const [speciality, setSpeciality] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.speciality
+    }
+    return ''
+  })
+  const [role, setRole] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.role
+    }
+    return ''
+  })
+  const [isLogged, setIsLogged] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.isLogged
+    }
+    return false
+  })
+
+  const clearContext = () => {
+    setName('')
+    setEmail('')
+    setPhone(0)
+    setAddress('')
+    setIdType('')
+    setIdNumber(0)
+    setSpeciality('')
+    setRole('')
+    setIsLogged(false)
+  }
+
+  useEffect(() => {
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        name,
+        email,
+        phone,
+        address,
+        idType,
+        idNumber,
+        speciality,
+        role,
+        isLogged
+      })
+    )
+  }, [
+    name,
+    email,
+    phone,
+    address,
+    idType,
+    idNumber,
+    speciality,
+    role,
+    isLogged
+  ])
 
   return (
     <UserInfoContext.Provider
@@ -61,7 +157,8 @@ export const UserInfoProvider = ({
         setIsLogged,
         setPhone,
         setRole,
-        setSpeciality
+        setSpeciality,
+        clearContext
       }}
     >
       {children}

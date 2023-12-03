@@ -1,23 +1,24 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '@/public/assets/iLunch-logo.png'
 import mobile from '@/public/assets/Mobile.png'
 import android from '@/public/assets/Android-I.png'
 import apple from '@/public/assets/Apple - I.png'
 import google from '@/public/assets/google-logo.svg'
-import { userData } from '@/config/data/users'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
 import { ROLE } from '@/config/enums'
 import Link from 'next/link'
+import apiRoutes from '@/config/apiRoutes'
 
 export default function Login() {
   const router = useRouter()
   const [inputEmail, setInputEmail] = useState('')
   const [password, setPassword] = useState('')
   const {
+    isLogged,
     setIsLogged,
     setAddress,
     setEmail,
@@ -29,40 +30,63 @@ export default function Login() {
     setSpeciality
   } = useUserInfo()
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const userInfo = userData.find((user) => {
-      if (user.email === inputEmail && user.password === password) {
-        return user
-      }
-    })
-    if (userInfo != null) {
-      setIsLogged(true)
-      setAddress(userInfo.address)
-      setEmail(userInfo.email)
-      setIdNumber(userInfo.idNumber)
-      setIdType(userInfo.idType)
-      setName(userInfo.name)
-      setPhone(userInfo.phone)
-      setRole(userInfo.role)
-      if (userInfo.role === ROLE.worker) {
-        setSpeciality(userInfo.speciality)
-      }
+  useEffect(() => {
+    if (isLogged) {
+      alert('Ya has iniciado sesión')
       router.push('/')
-    } else {
-      alert('Login Failed')
+    }
+  })
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      const response = await fetch(
+        `${apiRoutes.login}${inputEmail}/${password}/`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+      const userInfo = await response.json()
+      console.log(userInfo)
+      if (userInfo != null) {
+        setIsLogged(true)
+        setAddress(userInfo.address)
+        setEmail(userInfo.email)
+        setIdNumber(userInfo.idNumber)
+        setIdType(userInfo.idType)
+        setName(userInfo.name)
+        setPhone(userInfo.phone)
+        setRole(userInfo.role)
+        if (userInfo.role === ROLE.worker) {
+          setSpeciality(userInfo.speciality)
+        }
+        router.push('/')
+      } else {
+        alert('Login Failed')
+      }
+    } catch (error) {
+      console.log(error)
+      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
     }
   }
   return (
     <main className='flex h-full w-full p-0'>
-      <section className='form-section bg-blue-700 w-1/2 flex flex-col flex-1 items-center justify-around py-2'> {/* Se crea la sección del formulario para logearse */ }
+      <section className='form-section bg-blue-700 w-1/2 flex flex-col flex-1 items-center justify-around py-2'>
+        {' '}
+        {/* Se crea la sección del formulario para logearse */}
         <Image src={logo} alt='iLunch Logo' className='h-24 w-auto' />
         <form
           className=' flex flex-col w-1/2'
           onSubmit={(e) => {
-            handleLogin(e)
+            void handleLogin(e)
           }}
-        > {/* Se comprueba que los datos ingresados sean los correctos */}
+        >
+          {' '}
+          {/* Se comprueba que los datos ingresados sean los correctos */}
           <input
             type='email'
             placeholder='Correo electrónico'
@@ -71,7 +95,8 @@ export default function Login() {
             onChange={(e) => {
               setInputEmail(e.target.value)
             }}
-          /> {/* Se guarda el email para comprobación de información correcta de login */}
+          />{' '}
+          {/* Se guarda el email para comprobación de información correcta de login */}
           <input
             type='password'
             placeholder='Contraseña'
@@ -80,7 +105,8 @@ export default function Login() {
             onChange={(e) => {
               setPassword(e.target.value)
             }}
-          /> {/* Se guarda la contraseña para comprobación de información correcta de login */}
+          />{' '}
+          {/* Se guarda la contraseña para comprobación de información correcta de login */}
           <button
             type='submit'
             className=' mt-10 p-2 text-white rounded-full border-2 border-white sm:w-full lg:w-1/2  self-center'
@@ -94,12 +120,13 @@ export default function Login() {
               loading='lazy'
               alt='google logo'
             />
-            Ingresa con google {/* El inicio de sesión con google será implemetando después */}
+            Ingresa con google{' '}
+            {/* El inicio de sesión con google será implemetando después */}
           </button>
         </form>
         <div className=' text-white flex flex-col items-center'>
           <p className='flex text-center'>¿Aún no estás registrado?</p>
-          <Link 
+          <Link
             className=' mt-3 p-2 text-white text-center rounded-full border-2 self-center bg-orange-600 border-orange-600 sm:w-full lg:w-fit shadow-lg '
             href='/register/user'
           >
@@ -107,7 +134,9 @@ export default function Login() {
           </Link>
         </div>
       </section>
-      <section className='banner-section w-1/2 flex-col items-center justify-end flex-1 hidden md:flex'>  {/* Sección publicitaria de la app. La appa no existe en realidad. No se da prioridad en baja resoluciones debbido a que lo importante es logearse */}
+      <section className='banner-section w-1/2 flex-col items-center justify-end flex-1 hidden md:flex'>
+        {' '}
+        {/* Sección publicitaria de la app. La appa no existe en realidad. No se da prioridad en baja resoluciones debbido a que lo importante es logearse */}
         <Image className='h-2/3 w-auto' src={mobile} alt='Mobile App' />
         <div className='mt-8'>
           <h2 className=' font-semibold text-xl text-blue-700 '>

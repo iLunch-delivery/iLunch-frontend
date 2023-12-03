@@ -73,16 +73,3 @@ export const restaurants = [
     distance: 1.0
   }
 ]
-
-// Formas de pago disponibles
-export const billingOptions = [
-  {
-    imageURL: '/assets/restaurant/billing_options/cash.png',
-    name: PAYMENT_METHODS.Efectivo
-  },
-
-  {
-    imageURL: '/assets/restaurant/billing_options/card.png',
-    name: PAYMENT_METHODS.Tarjeta
-  }
-]

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 'use client'
 import UserFilesTable from '@/components/features/Tables/UserFilesTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
 import MainLayout from '@/components/layout/common/MainLayout'
-import { userFiles } from '@/config/data/userInfo'
+import apiRoutes from '@/config/apiRoutes'
 import type { File } from '@/config/interfaces'
 import { useUserInfo } from '@/contexts/UserInfoContext'
 import {
@@ -21,19 +22,66 @@ function UserProfile() {
   const [files, setUserFiles] = useState<File[] | undefined>()
 
   // Obtener datos del usuario del contexto
-  const { name, role, email, address, phone, idNumber, idType, speciality } =
-    useUserInfo()
+  const {
+    name,
+    role,
+    email,
+    address,
+    phone,
+    idNumber,
+    idType,
+    speciality,
+    setName,
+    setAddress,
+    setPhone,
+    setSpeciality
+  } = useUserInfo()
 
   // Guardar los archivos del usuario en el estado
   useEffect(() => {
-    setUserFiles(userFiles)
+    fetch(`${apiRoutes.getUserFiles}${idType}/${idNumber}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(async (response) => {
+        return await response.json()
+      })
+      .then((data) => {
+        setUserFiles(data)
+      })
   }, [])
 
   // Función para editar el perfil
-  const handleEdit = () => {
+  const handleEdit = async () => {
     if (isEditing) {
       // Safe Data
-      console.log(name, email, address, phone, idNumber, idType, speciality)
+      const response = await fetch(apiRoutes.updateProfile, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          address,
+          phone,
+          idNumber,
+          idType,
+          speciality
+        })
+      })
+      const responseJson = await response.json()
+      if (response.status !== 200) {
+        alert(responseJson.message)
+        return
+      }
+      setName(responseJson.name)
+      setAddress(responseJson.address)
+      setPhone(responseJson.phone)
+      setSpeciality(responseJson.speciality)
+      alert('Datos actualizados con éxito')
     }
     setIsEditing(!isEditing)
   }
@@ -44,7 +92,7 @@ function UserProfile() {
         <button
           className='absolute top-16 right-8 rounded-full bg-[#FB5A3E] text-lg py-2 px-9 w-fit text-white'
           onClick={() => {
-            handleEdit()
+            void handleEdit()
           }}
         >
           {isEditing ? 'Guardar cambios' : 'Editar perfil'}
@@ -57,7 +105,7 @@ function UserProfile() {
           <div className='flex'>
             <FontAwesomeIcon
               icon={faCircleUser}
-              className='h-48 text-gray-500 bg-slate-50 rounded-full my-4'
+              className='!h-48 text-gray-500 bg-slate-50 rounded-full my-4'
             />
             {isEditing && (
               <div className='flex flex-col justify-center ml-4'>
@@ -72,7 +120,18 @@ function UserProfile() {
               </div>
             )}
           </div>
-          <h1 className='text-4xl font-semibold my-2'>{name}</h1>
+          {isEditing ? (
+            <input
+              className='w-fit rounded-full bg-transparent border-none text-center text-4xl font-semibold'
+              type='text'
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value)
+              }}
+            />
+          ) : (
+            <h1 className='text-4xl font-semibold my-2'>{name}</h1>
+          )}
         </section>
 
         {/* Información del usuario */}

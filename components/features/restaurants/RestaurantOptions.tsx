@@ -22,6 +22,9 @@ function RestaurantOptions({ imageURL, id, name, open, availability, distance }:
       status = 'Abre pronto'
       break
     default:
+      icon = faHourglassHalf
+      color = 'grey'
+      status = 'Abre pronto'
       break
   }
 

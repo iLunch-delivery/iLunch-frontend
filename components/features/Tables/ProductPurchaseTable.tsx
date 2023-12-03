@@ -1,11 +1,11 @@
-import type { ProductPurchaseProps } from '@/config/interfaces'
+import type { ProductPurchaseInfoProps } from '@/config/interfaces'
 import React from 'react'
 
 function ProductPurchaseTable({
   products,
   total
 }: {
-  products: ProductPurchaseProps[]
+  products: ProductPurchaseInfoProps[]
   total: number
 }) {
   // Retornar tabla con productos seleccionados y total a pagar
@@ -14,8 +14,8 @@ function ProductPurchaseTable({
       <tbody>
         {products.map((product, index) => (
           <tr key={`product-purchase-${index}`}>
-            <td>{product.name}</td>
-            <td className='text-center'>x{product.amount} und</td>
+            <td>{product.title}</td>
+            <td className='text-center'>x{product.units} und</td>
             <td className='text-right'>$ {product.price}</td>
           </tr>
         ))}
