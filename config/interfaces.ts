@@ -59,7 +59,7 @@ export interface DetailButtonProps {
 // Interfaz de propiedades para el id de un producto del carrito de compra
 export interface ProductPurchaseIdProps {
   productId: string
-  userId: number
+  userId: string
 }
 
 // Interfaz de propiedades para el componente de producto agregado al carrito
@@ -201,7 +201,7 @@ export interface ShoppingCartInterface {
 // Interfaz de propiedades del carrito de compra
 export interface ShoppingCartInfoProps {
   _id: string
-  userId: number
+  userId: string
   restaurantId: number
   deliveryWay: string
   paymentMethod: string

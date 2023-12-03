@@ -14,7 +14,7 @@ import Link from 'next/link'
 export default function ShoppingCart({
   params
 }: {
-  params: { userId: Number }
+  params: { userId: String }
 }) {
   const [shoppingCartInfo, setShoppingCartInfo] = useState<ShoppingCartInfoProps>()
   const [errorMessage, setErrorMessage] = useState("")

@@ -13,7 +13,7 @@ import Link from 'next/link'
 function OrderStatus({
   params
 }: {
-  params: { userId: Number }
+  params: { userId: String }
 }) {
   const [errorMessage, setErrorMessage] = useState("")
   const [shoppingCartInfo, setShoppingCartInfo] = useState<ShoppingCartInfoProps>()
