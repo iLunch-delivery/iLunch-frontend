@@ -19,6 +19,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const {
     isLogged,
+    setUserId,
     setIsLogged,
     setAddress,
     setEmail,
@@ -53,6 +54,7 @@ export default function Login() {
       const userInfo = await response.json()
       console.log(userInfo)
       if (userInfo != null) {
+        setUserId(userInfo._id)
         setIsLogged(true)
         setAddress(userInfo.address)
         setEmail(userInfo.email)

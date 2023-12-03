@@ -165,6 +165,7 @@ export interface JobsReceivedContextInterface {
 
 // Interfaz de propiedades para el contexto de la información del usuario
 export interface UserInfoContextInterface {
+  userId: string
   name: string
   email: string
   phone: number
@@ -174,6 +175,7 @@ export interface UserInfoContextInterface {
   speciality: string
   role: string
   isLogged: boolean
+  setUserId: (userId: string) => void
   setName: (name: string) => void
   setEmail: (email: string) => void
   setPhone: (phone: number) => void

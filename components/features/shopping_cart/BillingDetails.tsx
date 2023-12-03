@@ -20,7 +20,7 @@ function BillingDetails({
   userInfo: { name: string; email: string; phone: number; address: string }
 }) {
   // User id
-  const { idNumber } = useUserInfo()
+  const { userId } = useUserInfo()
   const router = useRouter()
   const { deliveryWay, paymentMethod, setPaymentMethod, additionalComments } = useShoppingCart()
 
@@ -31,7 +31,7 @@ function BillingDetails({
       alert('Debes seleccionar un método de envío!')
     } else {
       try {
-        const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.updateShoppingCart}`, {
+        const response = await fetch(`${apiRoutes.getShoppingCart}${userId}/${apiRoutes.updateShoppingCart}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ function BillingDetails({
         return
       }
 
-      router.push(`/order/${idNumber}`)
+      router.push(`/order/${userId}`)
     }
   }
 

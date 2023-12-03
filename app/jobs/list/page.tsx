@@ -11,7 +11,7 @@ import { useJobsReceived } from '@/contexts/JobsReceivedContext'
 
 export default function JobsList() {
   // User id
-  const { idNumber } = useUserInfo()
+  const { userId } = useUserInfo()
 
   // Jobs received state
   const { jobsReceived, setJobsReceived } = useJobsReceived()
@@ -37,7 +37,7 @@ export default function JobsList() {
       })
 
     // Get list of jobs received
-    fetch(`${apiRoutes.recivedOffers}${idNumber}`, {
+    fetch(`${apiRoutes.recivedOffers}${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ export default function JobsList() {
     console.log('jobId', jobId)
     if (confirm('¿Estás seguro de rechazar esta oferta?')) {
       const response = await fetch(
-        `${apiRoutes.recivedOffers}${idNumber}/job/${jobId}`,
+        `${apiRoutes.recivedOffers}${userId}/job/${jobId}`,
         {
           method: 'POST',
           headers: {

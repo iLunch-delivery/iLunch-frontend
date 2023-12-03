@@ -22,7 +22,7 @@ export default function Restaurant({
   params: { restaurantId: Number }
 }) {
   // User id
-  const { idNumber } = useUserInfo()
+  const { userId } = useUserInfo()
   const [restaurantInfo, setRestaurantInfo] = useState<RestaurantInfoProps>()
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -49,7 +49,7 @@ export default function Restaurant({
   }, [])
 
   const handleAddProduct = async (product: ProductInfoProps) => {
-    const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.addShoppingCartProduct}/${product._id}`, {
+    const response = await fetch(`${apiRoutes.getShoppingCart}${userId}/${apiRoutes.addShoppingCartProduct}/${product._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

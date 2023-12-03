@@ -11,7 +11,7 @@ import apiRoutes from '@/config/apiRoutes'
 
 export default function RegisterCandidate() {
   const [fileList, setFileList] = useState<File[]>()
-  const { name, email, address, phone, setIdType, setIdNumber, setSpeciality } =
+  const { name, email, address, phone, setIdType, setIdNumber, setSpeciality, setRole } =
     useUserInfo()
 
   const router = useRouter()
@@ -54,7 +54,7 @@ export default function RegisterCandidate() {
       alert('Error al actualizar los datos')
       return
     }
-
+    setRole('worker')
     router.push('/jobs/list')
   }
   return (
