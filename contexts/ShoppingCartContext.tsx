@@ -1,23 +1,16 @@
 'use client'
 
-import type {
-  ProductPurchaseProps,
-  ShoppingCartInterface
-} from '@/config/interfaces'
+import type { ShoppingCartInterface } from '@/config/interfaces'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { PAYMENT_METHODS, DELIVERY_WAY } from '@/config/enums'
 
 const ShoppingCartContext = createContext<ShoppingCartInterface>({
-  products: [],
-  total: 0,
-  setProducts: () => {},
-  setTotal: () => {},
-  deliveryWay: { imageURL: '', name: '' },
+  deliveryWay: "",
   setDeliveryWay: () => {},
-  paymentMethod: { imageURL: '', name: '' },
+  paymentMethod: "",
   setPaymentMethod: () => {},
-  restaurantId: 0,
-  setRestaurantId: () => {},
-  clearContext: () => {}
+  additionalComments: "",
+  setAdditionalComments: () => {},
 })
 
 export const ShoppingCartProvider = ({
@@ -26,74 +19,48 @@ export const ShoppingCartProvider = ({
   children: React.ReactNode
 }) => {
   const persistShoppingCart = localStorage.getItem('shoppingCart')
-  const [products, setProducts] = useState<ProductPurchaseProps[]>(() => {
-    if (persistShoppingCart !== null) {
-      const shoppingCart = JSON.parse(persistShoppingCart)
-      return shoppingCart.products
-    }
-    return Array<ProductPurchaseProps>()
-  })
-  const [total, setTotal] = useState(() => {
-    if (persistShoppingCart !== null) {
-      const shoppingCart = JSON.parse(persistShoppingCart)
-      return shoppingCart.total
-    }
-    return 0
-  })
   const [deliveryWay, setDeliveryWay] = useState(() => {
     if (persistShoppingCart !== null) {
       const shoppingCart = JSON.parse(persistShoppingCart)
       return shoppingCart.deliveryWay
     }
-    return { imageURL: '', name: '' }
+    return DELIVERY_WAY.Domicilio
   })
   const [paymentMethod, setPaymentMethod] = useState(() => {
     if (persistShoppingCart !== null) {
       const shoppingCart = JSON.parse(persistShoppingCart)
       return shoppingCart.paymentMethod
     }
-    return { imageURL: '', name: '' }
+    return PAYMENT_METHODS.Efectivo
   })
-  const [restaurantId, setRestaurantId] = useState(() => {
+  const [additionalComments, setAdditionalComments] = useState(() => {
     if (persistShoppingCart !== null) {
       const shoppingCart = JSON.parse(persistShoppingCart)
-      return shoppingCart.restaurantId
+      return shoppingCart.additionalComments
     }
-    return 0
+    return ""
   })
-
-  const clearContext = () => {
-    setProducts([])
-    setTotal(0)
-  }
 
   useEffect(() => {
     localStorage.setItem(
       'shoppingCart',
       JSON.stringify({
-        products,
-        total,
         deliveryWay,
         paymentMethod,
-        restaurantId
+        additionalComments
       })
     )
-  }, [products, total, deliveryWay, paymentMethod, restaurantId])
+  }, [deliveryWay, paymentMethod])
 
   return (
     <ShoppingCartContext.Provider
       value={{
-        products,
-        total,
-        setTotal,
-        setProducts,
         deliveryWay,
         setDeliveryWay,
         paymentMethod,
         setPaymentMethod,
-        restaurantId,
-        setRestaurantId,
-        clearContext
+        additionalComments,
+        setAdditionalComments
       }}
     >
       {children}

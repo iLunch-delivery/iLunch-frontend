@@ -70,6 +70,7 @@ export default function Login() {
       }
     } catch (error) {
       console.log(error)
+      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
     }
   }
   return (

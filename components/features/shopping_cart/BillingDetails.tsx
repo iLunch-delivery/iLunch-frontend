@@ -2,28 +2,59 @@
 import SelectOption from '@/components/common/SelectOption'
 import { billingOptions } from '@/config/data/restaurants'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 import { useRouter } from 'next/navigation'
+import { DELIVERY_WAY } from '@/config/enums'
+import apiRoutes from '@/config/apiRoutes'
 
 function BillingDetails({
-  total,
+  totalProductsPrice,
+  platformFee,
+  homeDeliveryPrice,
   userInfo
 }: {
-  total: number
+  totalProductsPrice: number
+  platformFee: number
+  deliveryWay: DELIVERY_WAY | ""
+  homeDeliveryPrice: number
   userInfo: { name: string; email: string; phone: number; address: string }
 }) {
+  // User id
+  const { idNumber } = useUserInfo()
   const router = useRouter()
-  const { deliveryWay, paymentMethod, setPaymentMethod, clearContext } =
-    useShoppingCart()
+  const { deliveryWay, paymentMethod, additionalComments, setPaymentMethod } = useShoppingCart()
 
-  const handlePayment = () => {
-    if (paymentMethod.imageURL === '' || paymentMethod.name === '') {
-      alert('Debes seleccionar un método de pago')
-    } else if (deliveryWay.name === '' || deliveryWay.imageURL === '') {
-      alert('Debes seleccionar un método de envío')
+  const handlePayment = async () => {
+    if (paymentMethod === "") {
+      alert('Debes seleccionar un método de pago!')
+    } else if (deliveryWay === "") {
+      alert('Debes seleccionar un método de envío!')
     } else {
-      clearContext()
+      try {
+        const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/update`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            deliveryWay: deliveryWay,
+            paymentMethod: paymentMethod,
+            additionalComments: additionalComments
+          })
+        })
+    
+        if (response.status == 200) {
+          alert('Carrito de compra validado exitosamente... Procediendo a activar la orden')
+        } else {
+          alert('Ha habido un error. Por favor intenta más tarde.')
+          return
+        }
+      } catch (error) {
+        alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+        return
+      }
 
-      router.push('/order/1')
+      router.push(`/order/${idNumber}`)
     }
   }
 
@@ -35,21 +66,21 @@ function BillingDetails({
         <ul className='text-sm'>
           <li className='flex justify-between'>
             <p>Costo total de platillos</p>
-            <p>$ {total}</p>
+            <p>$ {totalProductsPrice}</p>
           </li>
           <li className='flex justify-between'>
-            <p>Costo de domicilio</p>
-            <p>$ {5000}</p>
+            <p>Costo de entrega</p>
+            <p>$ {deliveryWay === 'Domicilio' ? homeDeliveryPrice : 0}</p>
           </li>
           <li className='flex justify-between'>
             <p>Tarifa de plataforma</p>
-            <p>$ {total * 0.1}</p>
+            <p>$ {platformFee}</p>
           </li>
         </ul>
         <hr className='border-gray-400'></hr>
         <div className='flex justify-between text-sm font-semibold'>
           <p>Total a pagar</p>
-          <p>COP $ {total * 1.1 + 5000}</p>
+          <p>COP $ {totalProductsPrice + (deliveryWay === 'Domicilio' ? homeDeliveryPrice : 0) + platformFee}</p>
         </div>
       </div>
       <div id='contactInformation' className='space-y-2'>
@@ -83,17 +114,17 @@ function BillingDetails({
               <SelectOption
                 key={`receive_option-${index}`}
                 imageURL={option.imageURL}
-                name={option.name}
-                selected={paymentMethod.name === option.name}
+                name={option.type}
+                selected={paymentMethod === option.type}
                 action={() => {
-                  setPaymentMethod(option)
+                  setPaymentMethod(option.type)
                 }}
               />
             )
           })}
         </div>
         <p className='text-md font-bold text-center'>
-          Total a pagar: COP $ {total * 1.1 + 5000}
+          Total a pagar: COP $ {totalProductsPrice + (deliveryWay === 'Domicilio' ? homeDeliveryPrice : 0) + platformFee}
         </p>
       </div>
       <div className='flex justify-center'>

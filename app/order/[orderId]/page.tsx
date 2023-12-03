@@ -2,7 +2,7 @@
 import React from 'react'
 import ProductPurchaseTable from '@/components/features/Tables/ProductPurchaseTable'
 import UserInfoTable from '@/components/features/Tables/UserInfoTable'
-import OrderChat from '@/components/features/restaurants/OrderChat'
+import OrderChat from '@/components/features/shopping_cart/OrderChat'
 import MainLayout from '@/components/layout/common/MainLayout'
 import { restaurants } from '@/config/data/restaurants'
 import { ROLE } from '@/config/enums'

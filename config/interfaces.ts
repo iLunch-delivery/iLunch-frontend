@@ -1,4 +1,4 @@
-import type { RESTAURANT_AVAILABILITY } from './enums'
+import type { RESTAURANT_AVAILABILITY, PAYMENT_METHODS, DELIVERY_WAY } from './enums'
 
 // Interfaz de propiedades para los items del carrusel
 export interface CarouselItemProps {
@@ -58,12 +58,30 @@ export interface DetailButtonProps {
   href?: string
 }
 
-// Interfaz de propiedades para el producto agregado al carrito
+// Interfaz de propiedades para el id de un producto del carrito de compra
+export interface ProductPurchaseIdProps {
+  productId: string
+  userId: number
+}
+
+// Interfaz de propiedades para el componente de producto agregado al carrito
 export interface ProductPurchaseProps {
+  _id: ProductPurchaseIdProps
   imageURL: string
-  name: string
+  title: string
   price: number
-  amount: number
+  units: number
+  editAction: (_id: ProductPurchaseIdProps, units: number) => void
+  deleteAction: () => void
+}
+
+// Interfaz de propiedades el producto agregado al carrito
+export interface ProductPurchaseInfoProps {
+  _id: ProductPurchaseIdProps
+  imageURL: string
+  title: string
+  price: number
+  units: number
 }
 
 // Interfaz de propiedades para el componente de platillo expuesto en el menú de un restaurante
@@ -172,17 +190,26 @@ export interface UserInfoContextInterface {
 
 // Interfaz de propiedades para el contexto del carrito de compras
 export interface ShoppingCartInterface {
-  products: ProductPurchaseProps[]
-  setProducts: (products: ProductPurchaseProps[]) => void
-  total: number
-  setTotal: (total: number) => void
-  deliveryWay: { imageURL: string; name: string }
-  setDeliveryWay: (deliveryWay: { imageURL: string; name: string }) => void
-  paymentMethod: { imageURL: string; name: string }
-  setPaymentMethod: (paymentMethod: { imageURL: string; name: string }) => void
+  deliveryWay: DELIVERY_WAY | ""
+  setDeliveryWay: (deliveryWay: DELIVERY_WAY | "") => void
+  paymentMethod: PAYMENT_METHODS | ""
+  setPaymentMethod: (paymentMethod: PAYMENT_METHODS | "") => void
+  additionalComments: string
+  setAdditionalComments: (additionalComments: string) => void
+}
+
+// Interfaz de propiedades del carrito de compra
+export interface ShoppingCartInfoProps {
+  _id: string
+  userId: number
   restaurantId: number
-  setRestaurantId: (restaurantId: number) => void
-  clearContext: () => void
+  deliveryWay: string
+  paymentMethod: string
+  additionalComments: string
+  products: ProductPurchaseInfoProps[]
+  homeDeliveryPrice: number
+  totalProductsPrice: number
+  platformFee: number
 }
 
 // Interfaz de propiedades para la tarjeta de platillo de un restaurante

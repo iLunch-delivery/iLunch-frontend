@@ -78,11 +78,11 @@ export const restaurants = [
 export const billingOptions = [
   {
     imageURL: '/assets/restaurant/billing_options/cash.png',
-    name: PAYMENT_METHODS.Efectivo
+    type: PAYMENT_METHODS.Efectivo
   },
 
   {
     imageURL: '/assets/restaurant/billing_options/card.png',
-    name: PAYMENT_METHODS.Tarjeta
+    type: PAYMENT_METHODS.Tarjeta
   }
 ]

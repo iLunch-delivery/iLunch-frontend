@@ -148,7 +148,7 @@ export default function Restaurant({
             {restaurantInfo?.menu?.map((product, index) => {
               return (
                 <Detail
-                  key={`dish-${index}`}
+                  key={`dish-${product._id}`}
                   imageURL={product?.imageURL ?? ''}
                   title={product?.title ?? ''}
                   subtitle={{

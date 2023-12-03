@@ -33,6 +33,7 @@ export const UserInfoProvider = ({
   children: React.ReactNode
 }) => {
   const persistUser = localStorage.getItem('user')
+
   const [name, setName] = useState(() => {
     if (persistUser !== null) {
       const user = JSON.parse(persistUser)
