@@ -16,7 +16,7 @@ function SearchModal({
   // Search state context
   const { searchResults } = useSearch()
   // Se limita la busqueda para mostrar un máximo de 2 resultados
-  const shortSearch = searchResults.slice(0, 2)
+  const shortSearch = searchResults.slice(0, 3)
 
   return(
     <Modal dismissible show={isOpen} onClose={handleOpen}>

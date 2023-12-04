@@ -44,26 +44,26 @@ export default function Restaurant({
       setRestaurantInfo(data)
     })
     .catch((error) => {
-      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+      alert('Ha habido un error. Por favor intenta más tarde.\n\nError: ' + error)
     })
   }, [])
 
   const handleAddProduct = async (product: ProductInfoProps) => {
-    const response = await fetch(`${apiRoutes.getShoppingCart}${userId}/${apiRoutes.addShoppingCartProduct}/${product._id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        restaurantId: Number(params.restaurantId), 
-        ...product
+    try {
+      const response = await fetch(`${apiRoutes.getShoppingCart}${userId}/${apiRoutes.addShoppingCartProduct}/${product._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          restaurantId: Number(params.restaurantId), 
+          ...product
+        })
       })
-    })
-
-    if (response.status == 200) {
-      alert('Producto agregado al carrito')
-    } else {
-      alert('Ha habido un error. Por favor intenta más tarde.')
+      const responseJSON = await response.json()
+      alert(responseJSON.message)
+    } catch (error) { 
+      alert('Ha habido un error. Por favor intenta más tarde.\n\nError: ' + error)
     }
   }
 
