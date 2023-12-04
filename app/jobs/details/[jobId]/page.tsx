@@ -97,26 +97,16 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
                 <span className='p-1 me-4'>{jobInfo?.offerSalary}</span>
               </div>
             </div>
-            <div className='grid grid-cols-2 gap-5'>
+            <div>
               <button
-                className='px-4 py-1 bg-green-500 text-xs text-white rounded-full border border-green-500 hover:bg-green-400 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2'
+                className='px-4 py-1 bg-orange-600 text-md text-white rounded-full border border-orange-600 hover:bg-orange-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2'
                 onClick={() => {
                   alert(
-                    'Se ha notificado al restaurante que has aceptado la oferta.\nEspera a ser contactado de vuelta por el restaurante.'
+                    'Se ha notificado al restaurante que te encuentras interesado en la oferta. Espera a ser contactado de vuelta.'
                   )
                 }}
               >
-                Aceptar
-              </button>
-              <button
-                className='px-4 py-1 bg-red-600 text-xs text-white rounded-full border border-red-600 hover:bg-red-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2'
-                onClick={() => {
-                  alert(
-                    'Se ha notificado al restaurante que has rechazado la oferta.'
-                  )
-                }}
-              >
-                Rechazar
+                Postularse
               </button>
             </div>
           </div>
@@ -134,7 +124,7 @@ export default function JobOffer({ params }: { params: { jobId: string } }) {
           ></textarea>
           <div className='flex flex-row justify-end'>
             <button
-              className='px-4 py-1 bg-orange-600 text-xs text-white rounded-full border border-orange-600 hover:bg-orange-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2'
+              className='px-4 py-1 bg-orange-600 text-md text-white rounded-full border border-orange-600 hover:bg-orange-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2'
               onClick={() => {
                 alert('Tu pregunta ha sido enviada al restaurante.')
               }}

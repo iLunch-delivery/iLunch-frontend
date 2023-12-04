@@ -59,7 +59,7 @@ export default function searchingResults() {
       }
     })
     .catch((error) => {
-      alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
+      alert('Ha habido un error. Por favor intenta más tarde.\n\nError: ' + error)
     })
   }
 
