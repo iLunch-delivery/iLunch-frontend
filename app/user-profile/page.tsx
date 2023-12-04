@@ -47,9 +47,15 @@ function UserProfile() {
       }
     })
       .then(async (response) => {
+        if (response.status !== 200) {
+          return
+        }
         return await response.json()
       })
       .then((data) => {
+        if (data === undefined) {
+          return
+        }
         setUserFiles(data)
       })
   }, [])

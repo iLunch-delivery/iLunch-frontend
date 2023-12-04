@@ -95,32 +95,35 @@ function UserInfoTable({
               )}
             </td>
           </tr>
-          <tr className='h-4'>
-            <td className='font-semibold'>Tipo ID:</td>
-            <td>{idType}</td>
-          </tr>
-          <tr className='h-4'>
-            <td className='font-semibold'>ID:</td>
-            <td>{idNumber}</td>
-          </tr>
-          {role === ROLE.worker && (
-            <tr className='h-4'>
-              <td className='font-semibold'>Especialidad</td>
-              <td>
-                {isEditing ? (
-                  <input
-                    className='w-full rounded-full border-gray-300'
-                    type='text'
-                    value={speciality}
-                    onChange={(e) => {
-                      setSpeciality(e.target.value)
-                    }}
-                  />
-                ) : (
-                  speciality
-                )}
-              </td>
-            </tr>
+          
+          {role === ROLE.Worker && (
+            <>
+              <tr className='h-4'>
+                <td className='font-semibold'>Tipo ID:</td>
+                <td>{idType}</td>
+              </tr>
+              <tr className='h-4'>
+                <td className='font-semibold'>ID:</td>
+                <td>{idNumber}</td>
+              </tr>
+              <tr className='h-4'>
+                <td className='font-semibold'>Especialidad</td>
+                <td>
+                  {isEditing ? (
+                    <input
+                      className='w-full rounded-full border-gray-300'
+                      type='text'
+                      value={speciality}
+                      onChange={(e) => {
+                        setSpeciality(e.target.value)
+                      }}
+                    />
+                  ) : (
+                    speciality
+                  )}
+                </td>
+              </tr>
+            </>
           )}
         </tbody>
       </table>

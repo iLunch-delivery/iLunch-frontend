@@ -7,20 +7,20 @@ import MainLayout from '@/components/layout/common/MainLayout'
 import { ROLE } from '@/config/enums'
 import { DELIVERY_OPTIONS, BILLING_OPTIONS } from '@/config/data/constants'
 import apiRoutes from '@/config/apiRoutes'
+import { useUserInfo } from '@/contexts/UserInfoContext'
 import type { ShoppingCartInfoProps, RestaurantInfoProps } from '@/config/interfaces'
 import Link from 'next/link'
 
-function OrderStatus({
-  params
-}: {
-  params: { userId: String }
-}) {
+function OrderStatus() {
+  // User id
+  const { userId } = useUserInfo()
+
   const [errorMessage, setErrorMessage] = useState("")
   const [shoppingCartInfo, setShoppingCartInfo] = useState<ShoppingCartInfoProps>()
   const [restaurantInfo, setRestaurantInfo] = useState<RestaurantInfoProps>()
 
   useEffect(() => {
-    fetch(`${apiRoutes.getShoppingCart}${params.userId}/${apiRoutes.order}`, {
+    fetch(`${apiRoutes.getShoppingCart}${userId}/${apiRoutes.order}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -212,7 +212,7 @@ function OrderStatus({
                 <h3 className='text-lg font-semibold'>¿Quién ordena?</h3>
                 <UserInfoTable
                   isEditing={false}
-                  role={ROLE.worker}
+                  role={ROLE.Worker}
                   voucher={true}
                 />
               </div>

@@ -196,6 +196,7 @@ export interface ShoppingCartInterface {
   setPaymentMethod: (paymentMethod: PAYMENT_METHODS | "") => void
   additionalComments: string
   setAdditionalComments: (additionalComments: string) => void
+  clearContext: () => void
 }
 
 // Interfaz de propiedades del carrito de compra

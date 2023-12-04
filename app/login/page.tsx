@@ -33,7 +33,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isLogged) {
-      alert('Ya has iniciado sesión')
+      alert('Has iniciado sesión!')
       router.push('/')
     }
   })
@@ -51,7 +51,12 @@ export default function Login() {
           }
         }
       )
-      const userInfo = await response.json()
+      const responseJSON = await response.json()
+      if (response.status !== 200) {
+        alert(responseJSON.message)
+        return
+      }
+      const userInfo = responseJSON
       console.log(userInfo)
       if (userInfo != null) {
         setUserId(userInfo._id)
@@ -63,7 +68,7 @@ export default function Login() {
         setName(userInfo.name)
         setPhone(userInfo.phone)
         setRole(userInfo.role)
-        if (userInfo.role === ROLE.worker) {
+        if (userInfo.role === ROLE.Worker) {
           setSpeciality(userInfo.speciality)
         }
         router.push('/')

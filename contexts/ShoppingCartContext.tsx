@@ -11,6 +11,7 @@ const ShoppingCartContext = createContext<ShoppingCartInterface>({
   setPaymentMethod: () => {},
   additionalComments: "",
   setAdditionalComments: () => {},
+  clearContext: () => {}
 })
 
 export const ShoppingCartProvider = ({
@@ -41,6 +42,12 @@ export const ShoppingCartProvider = ({
     return ""
   })
 
+  const clearContext = () => {
+    setDeliveryWay(DELIVERY_WAY.Domicilio)
+    setPaymentMethod(PAYMENT_METHODS.Efectivo)
+    setAdditionalComments('')
+  }
+
   useEffect(() => {
     localStorage.setItem(
       'shoppingCart',
@@ -60,7 +67,8 @@ export const ShoppingCartProvider = ({
         paymentMethod,
         setPaymentMethod,
         additionalComments,
-        setAdditionalComments
+        setAdditionalComments,
+        clearContext
       }}
     >
       {children}

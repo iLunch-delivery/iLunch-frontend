@@ -33,7 +33,7 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Shopping Cart states
-  const { userId, isLogged } = useUserInfo()
+  const { isLogged } = useUserInfo()
 
   // Hook para redireccionar si no hay sesión
   useEffect(() => {
@@ -81,7 +81,7 @@ function Header() {
   // Shopping Cart handler
   // Para redireccionar al carrito de compras o advertir que se encuentra vacio
   const handleCartNavigation = () => {
-    router.push(`/shopping_cart/${userId}`)
+    router.push(`/shopping_cart`)
   }
 
   // Para cerrar la sidebar al cambiar de ruta
