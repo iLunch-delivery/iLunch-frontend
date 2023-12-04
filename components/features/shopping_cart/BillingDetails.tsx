@@ -20,18 +20,18 @@ function BillingDetails({
   userInfo: { name: string; email: string; phone: number; address: string }
 }) {
   // User id
-  const { idNumber } = useUserInfo()
+  const { userId } = useUserInfo()
   const router = useRouter()
-  const { deliveryWay, paymentMethod, setPaymentMethod, additionalComments } = useShoppingCart()
+  const { deliveryWay, paymentMethod, setPaymentMethod, additionalComments, clearContext } = useShoppingCart()
 
   const handlePayment = async () => {
     if (paymentMethod === "") {
       alert('Debes seleccionar un método de pago!')
     } else if (deliveryWay === "") {
       alert('Debes seleccionar un método de envío!')
-    } else {
+    } else if (confirm( '¿Estás seguro de que deseas realizar esta compra? No podrás editarla luego de enviarla.')) {
       try {
-        const response = await fetch(`${apiRoutes.getShoppingCart}${idNumber}/${apiRoutes.updateShoppingCart}`, {
+        const response = await fetch(`${apiRoutes.getShoppingCart}${userId}/${apiRoutes.updateShoppingCart}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -46,6 +46,8 @@ function BillingDetails({
     
         if (response.status == 200) {
           alert('Carrito de compra validado exitosamente... Procediendo a activar la orden')
+          clearContext()
+          router.push(`/order`)
         } else {
           alert('Ha habido un error. Por favor intenta más tarde.')
           return
@@ -54,8 +56,6 @@ function BillingDetails({
         alert('Ha habido un error. Por favor intenta más tarde.\n' + error)
         return
       }
-
-      router.push(`/order/${idNumber}`)
     }
   }
 

@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 // Contexto para los datos del usuario
 const UserInfoContext = createContext<UserInfoContextInterface>({
+  userId: '',
   name: '',
   email: '',
   phone: 0,
@@ -14,6 +15,7 @@ const UserInfoContext = createContext<UserInfoContextInterface>({
   speciality: '',
   role: '',
   isLogged: false,
+  setUserId: () => {},
   setName: () => {},
   setEmail: () => {},
   setPhone: () => {},
@@ -33,7 +35,13 @@ export const UserInfoProvider = ({
   children: React.ReactNode
 }) => {
   const persistUser = localStorage.getItem('user')
-
+  const [userId, setUserId] = useState(() => {
+    if (persistUser !== null) {
+      const user = JSON.parse(persistUser)
+      return user.userId
+    }
+    return ''
+  })
   const [name, setName] = useState(() => {
     if (persistUser !== null) {
       const user = JSON.parse(persistUser)
@@ -99,6 +107,7 @@ export const UserInfoProvider = ({
   })
 
   const clearContext = () => {
+    setUserId('')
     setName('')
     setEmail('')
     setPhone(0)
@@ -114,6 +123,7 @@ export const UserInfoProvider = ({
     localStorage.setItem(
       'user',
       JSON.stringify({
+        userId,
         name,
         email,
         phone,
@@ -126,6 +136,7 @@ export const UserInfoProvider = ({
       })
     )
   }, [
+    userId,
     name,
     email,
     phone,
@@ -140,6 +151,7 @@ export const UserInfoProvider = ({
   return (
     <UserInfoContext.Provider
       value={{
+        userId,
         name,
         address,
         email,
@@ -149,6 +161,7 @@ export const UserInfoProvider = ({
         phone,
         role,
         speciality,
+        setUserId,
         setName,
         setAddress,
         setEmail,

@@ -4,8 +4,8 @@ export const enum ID_TYPES {
 }
 
 export const enum ROLE {
-  costumer = 'costumer',
-  worker = 'worker'
+  Costumer = 'Costumer',
+  Worker = 'Worker'
 }
 
 export const enum PAYMENT_METHODS {
@@ -14,9 +14,9 @@ export const enum PAYMENT_METHODS {
 }
 
 export const enum RESTAURANT_AVAILABILITY {
-  Lleno = 'lleno',
-  Pronto = 'pronto',
-  Disponible = 'disponible'
+  Lleno = 'Lleno',
+  Pronto = 'Pronto',
+  Disponible = 'Disponible'
 }
 
 export const enum DELIVERY_WAY {

@@ -34,8 +34,6 @@ function ItemsCarousel({
   items,
   itemsPerSlide,
   imageHeight,
-  imageWidth,
-  height,
   itemSearch
 }: CarouselProps) {
   // Lógica para dividir los elementos en slides
@@ -48,7 +46,7 @@ function ItemsCarousel({
 
   return (
     <Carousel
-      className={`z-0 h-${height ?? imageHeight}`}
+      className={`h-48`}
       theme={customTheme}
       indicators={false}
       pauseOnHover
@@ -70,9 +68,9 @@ function ItemsCarousel({
                     }}
                   >
                     <img
+                      style={{ height: `${imageHeight}rem` }}
                       src={item.imageUrl}
-                      alt='...'
-                      className={`h-${imageHeight} w-${imageWidth}`}
+                      alt={item.title}
                     />
                     {item.title != null ? (
                       <p className='text-lg font-semibold'>{item.title}</p>

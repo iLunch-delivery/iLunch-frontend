@@ -12,8 +12,6 @@ export interface CarouselProps {
   items: CarouselItemProps[]
   itemsPerSlide: number
   imageHeight: number
-  imageWidth?: number
-  height?: number
   itemSearch?: (categorySearch: string) => void
 }
 
@@ -61,7 +59,7 @@ export interface DetailButtonProps {
 // Interfaz de propiedades para el id de un producto del carrito de compra
 export interface ProductPurchaseIdProps {
   productId: string
-  userId: number
+  userId: string
 }
 
 // Interfaz de propiedades para el componente de producto agregado al carrito
@@ -167,6 +165,7 @@ export interface JobsReceivedContextInterface {
 
 // Interfaz de propiedades para el contexto de la información del usuario
 export interface UserInfoContextInterface {
+  userId: string
   name: string
   email: string
   phone: number
@@ -176,6 +175,7 @@ export interface UserInfoContextInterface {
   speciality: string
   role: string
   isLogged: boolean
+  setUserId: (userId: string) => void
   setName: (name: string) => void
   setEmail: (email: string) => void
   setPhone: (phone: number) => void
@@ -196,12 +196,13 @@ export interface ShoppingCartInterface {
   setPaymentMethod: (paymentMethod: PAYMENT_METHODS | "") => void
   additionalComments: string
   setAdditionalComments: (additionalComments: string) => void
+  clearContext: () => void
 }
 
 // Interfaz de propiedades del carrito de compra
 export interface ShoppingCartInfoProps {
   _id: string
-  userId: number
+  userId: string
   restaurantId: number
   deliveryWay: string
   paymentMethod: string

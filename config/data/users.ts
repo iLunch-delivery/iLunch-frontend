@@ -9,7 +9,7 @@ export const userData = [
     address: 'Calle 123 # 45 - 67',
     idType: ID_TYPES.Cedula,
     idNumber: 159753,
-    role: ROLE.costumer,
+    role: ROLE.Costumer,
     speciality: ''
   },
   {
@@ -20,7 +20,7 @@ export const userData = [
     address: 'Calle 123 # 45 - 67',
     idType: ID_TYPES.Pasaporte,
     idNumber: 98563,
-    role: ROLE.worker,
+    role: ROLE.Worker,
     speciality: 'Repartidor'
   },
   {
@@ -31,7 +31,7 @@ export const userData = [
     address: 'Calle 123 # 45 - 67',
     idType: ID_TYPES.Cedula,
     idNumber: 1,
-    role: ROLE.worker,
+    role: ROLE.Worker,
     speciality: 'Administrador'
   }
 ]

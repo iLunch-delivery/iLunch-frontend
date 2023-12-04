@@ -1,25 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faHourglassHalf, faStore } from '@fortawesome/free-solid-svg-icons'
 import { type RestaurantCardProps } from '@/config/interfaces'
+import { RESTAURANT_AVAILABILITY } from '@/config/enums'
 import Link from 'next/link'
 
 function RestaurantOptions({ imageURL, id, name, open, availability, distance }: RestaurantCardProps) {
   let icon, color, status
   switch (availability) {
-    case 'disponible':
+    case RESTAURANT_AVAILABILITY.Disponible:
       icon = faStore
       color = '#7fd912'
       status = 'Local disponible'
       break
-    case 'lleno':
+    case RESTAURANT_AVAILABILITY.Lleno:
       icon = faStore
       color = '#cf071b'
       status = 'Local lleno'
-      break
-    case 'pronto':
-      icon = faHourglassHalf
-      color = 'grey'
-      status = 'Abre pronto'
       break
     default:
       icon = faHourglassHalf

@@ -23,6 +23,7 @@ function UserProfile() {
 
   // Obtener datos del usuario del contexto
   const {
+    userId,
     name,
     role,
     email,
@@ -39,16 +40,22 @@ function UserProfile() {
 
   // Guardar los archivos del usuario en el estado
   useEffect(() => {
-    fetch(`${apiRoutes.getUserFiles}${idType}/${idNumber}`, {
+    fetch(`${apiRoutes.getUserFiles}${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then(async (response) => {
+        if (response.status !== 200) {
+          return
+        }
         return await response.json()
       })
       .then((data) => {
+        if (data === undefined) {
+          return
+        }
         setUserFiles(data)
       })
   }, [])

@@ -98,8 +98,7 @@ export default function Home() {
           <Carousel
             items={recommendedCarousel}
             itemsPerSlide={cardsPerSlide}
-            imageHeight={36}
-            height={48}
+            imageHeight={9} //Units: rem
           />
         </section>
         <section
@@ -172,8 +171,7 @@ export default function Home() {
           <Carousel
             items={discountsCarousel}
             itemsPerSlide={cardsPerSlide}
-            imageHeight={36}
-            height={48}
+            imageHeight={9} //Units: rem
           />
         </section>
         <section id='category-section' className='my-8'>
@@ -182,9 +180,7 @@ export default function Home() {
           <Carousel
             items={categoryCarousel}
             itemsPerSlide={categoriesPerSlide}
-            imageWidth={24}
-            imageHeight={24}
-            height={48}
+            imageHeight={6} //Units: rem
             itemSearch={handleSearch}
           />
         </section>

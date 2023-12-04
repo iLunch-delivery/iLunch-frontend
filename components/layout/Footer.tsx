@@ -38,7 +38,7 @@ function Footer() {
                 <Link href='/user-profile'>Tu perfil</Link>
               </li>
               <li>
-                <Link href='/order/active'>Pedidos en curso</Link>
+                <Link href='/order'>Pedidos en curso</Link>
               </li>
               <li>
                 <Link href='/'>Contáctanos</Link>

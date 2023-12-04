@@ -11,18 +11,17 @@ import apiRoutes from '@/config/apiRoutes'
 import type { ShoppingCartInfoProps, ProductPurchaseIdProps } from '@/config/interfaces'
 import Link from 'next/link'
 
-export default function ShoppingCart({
-  params
-}: {
-  params: { userId: Number }
-}) {
+export default function ShoppingCart() {
+  // User id
+  const { userId } = useUserInfo()
+
   const [shoppingCartInfo, setShoppingCartInfo] = useState<ShoppingCartInfoProps>()
   const [errorMessage, setErrorMessage] = useState("")
   const { deliveryWay, setDeliveryWay, additionalComments, setAdditionalComments } = useShoppingCart()
   const { name, email, phone, address } = useUserInfo()
 
   const handleGetShoppingCart = () => {
-    fetch(`${apiRoutes.getShoppingCart}${params.userId}`, {
+    fetch(`${apiRoutes.getShoppingCart}${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
